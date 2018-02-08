@@ -1,0 +1,17 @@
+{
+  "https://www.google.com/ncr": {
+    "root": true,
+    "type": [
+      [
+        "#lst-ib",
+        "aoe people"
+      ]
+    ],
+    "click": "#tsf > div.tsf-p > div.jsb > center > input[type=\"submit\"]:nth-child(1)"
+  },
+  "https://www.google.com/search": {
+    "fetch": {
+      "cite as links": []
+    }
+  }
+}

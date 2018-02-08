@@ -1,0 +1,24 @@
+{
+  "name": "manual-testing-speedup",
+  "version": "1.0.0",
+  "description": "automize anything that must be done in a workflow to reach a curently in development page in a valid state",
+  "main": "index.js",
+  "author": "Bernhard Behrendt",
+  "license": "MIT",
+  "dependencies": {
+    "@types/command-line-args": "^4.0.2",
+    "@types/puppeteer": "^1.0.0",
+    "ansi-escape-sequences": "^4.0.0",
+    "command-line-args": "^5.0.1",
+    "command-line-usage": "^4.1.0",
+    "nodemon": "^1.14.11",
+    "puppeteer": "https://github.com/GoogleChrome/puppeteer#master",
+    "ts-node": "^4.1.0",
+    "typescript": "^2.6.2"
+  },
+  "scripts": {
+    "manpage": "./node_modules/.bin/ts-node main.ts --help",
+    "start": "./node_modules/.bin/ts-node main.ts",
+    "start-and-wait": "./node_modules/.bin/ts-node main.ts --config=examples/search.google.json --wait=100000 --width=1280 --height=1024"
+  }
+}
