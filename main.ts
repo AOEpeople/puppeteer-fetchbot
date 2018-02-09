@@ -1,6 +1,6 @@
 import {existsSync, readFileSync} from 'fs';
-import {manPage} from './lib/manpage';
-import {cmdOptions} from "./lib/cmd-options";
+import {manPage} from './lib/cli/manpage';
+import {cmdOptions} from "./lib/cli/cmd-options";
 import {automator} from "./lib/automator";
 import * as commandLineArgs from 'command-line-args';
 import *  as getUsage from 'command-line-usage';

@@ -1,5 +1,5 @@
-import {Options} from "./lib/options";
-import {Bot} from "./lib/bot";
+import {Options} from "./lib/classes/options";
+import {Bot} from "./lib/classes/bot";
 
 console.log('lib usecase');
 

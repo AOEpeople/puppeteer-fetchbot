@@ -1,4 +1,4 @@
-import {OptionsInterface} from "../interfaces/options";
+import {OptionsInterface} from "../../interfaces/options";
 
 export class Options implements OptionsInterface {
     config: any;
@@ -35,6 +35,9 @@ export class Options implements OptionsInterface {
             height: this.height
         };
     }
+
+    // This is actually in the config but not necessary
+    // All options which are not required for concerns usecase must be stripped on cli level
 
     public helpRequest() {
         return this.getAll().help === true;

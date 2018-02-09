@@ -1,7 +1,7 @@
 import * as puppeteer from "puppeteer";
 import {Browser} from "puppeteer";
 import {Options} from "./options";
-import {OptionsInterface} from "../interfaces/options";
+import {OptionsInterface} from "../../interfaces/options";
 
 /**
  * Singleton class (one shared instance)

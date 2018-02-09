@@ -1,10 +1,10 @@
-import {OperationalPage} from "./page";
+import {OperationalPage} from "./operational-page";
 import {Options} from "./options";
-import {isAllowedCmd} from "./helpers/is-allowed-cmd";
-import {isSelectorStringCmd} from "./helpers/is-selector-string-cmd";
-import {isCallWithArgs} from "./helpers/is-called-with-args";
-import {isCallNoArgs} from "./helpers/is-called-no-args";
-import {isFetchJobCmd} from "./helpers/is-fetch-job-cmd";
+import {isAllowedCmd} from "../helpers/is-allowed-cmd";
+import {isSelectorStringCmd} from "../helpers/is-selector-string-cmd";
+import {isCallWithArgs} from "../helpers/is-called-with-args";
+import {isCallNoArgs} from "../helpers/is-called-no-args";
+import {isFetchJobCmd} from "../helpers/is-fetch-job-cmd";
 
 export class Bot extends OperationalPage {
 

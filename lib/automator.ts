@@ -1,6 +1,10 @@
+/**
+ * @deprecated
+ */
 import {Browser, Page} from "puppeteer";
 import * as puppeteer from "puppeteer";
 import {writeFileSync} from "fs";
+import {deprecate} from "util";
 
 let completed = [],
     processing = [],
@@ -30,7 +34,7 @@ export async function automator(options: any,
 
         page.on('load', async () => {
 
-          //  page.waitFor(3000);
+            //  page.waitFor(3000);
 
             let currentUrl = page.url();
 

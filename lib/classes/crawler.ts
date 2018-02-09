@@ -1,6 +1,6 @@
 import {Page} from "puppeteer";
-import {SelectorAndPropertyInterface} from "../interfaces/selector-and-property";
-import {hasDedicatedPropName} from "./helpers/has-dedicated-prop-name";
+import {SelectorAndPropertyInterface} from "../../interfaces/selector-and-property";
+import {hasDedicatedPropName} from "../helpers/has-dedicated-prop-name";
 
 export class Crawler {
     constructor(private page: Page) {
