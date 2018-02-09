@@ -58,7 +58,13 @@ export function manPage() {
                     typeLabel: '[underline]{Number}',
                     description: 'Specifies the browser window height (optional | default=600)'
 
-                }
+                },
+                {
+                    name: 'debug',
+                    alias: '',
+                    typeLabel: '[underline]{Boolean}',
+                    description: 'Determine if debugging and logging is enabled'
+                },
             ]
         },
         {

@@ -8,5 +8,6 @@ export function cmdOptions() {
         {name: 'trust', alias: 't', type: Boolean},
         {name: 'width', alias: 'w', type: Number},
         {name: 'height', alias: 'h', type: Number},
+        {name: 'debug', type: Boolean},
     ];
 }

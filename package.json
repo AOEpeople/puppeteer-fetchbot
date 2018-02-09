@@ -17,8 +17,10 @@
     "typescript": "^2.6.2"
   },
   "scripts": {
+    "postinstall": "yarn build",
+    "build": "tsc",
     "manpage": "./node_modules/.bin/ts-node main.ts --help",
-    "start": "./node_modules/.bin/ts-node main.ts",
-    "start-and-wait": "./node_modules/.bin/ts-node main.ts --config=examples/search.google.json --wait=100000 --width=1280 --height=1024"
+    "develop":"./node_modules/.bin/nodemon -L -e ts",
+    "start-and-wait": "./node_modules/.bin/ts-node main.ts --config=examples/search.google.json --wait=10000 --width=1280 --height=1024"
   }
 }

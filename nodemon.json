@@ -7,5 +7,5 @@
     "./**/*.spec.ts",
     "*.spec.ts"
   ],
-  "exec": "./node_modules/.bin/ts-node $NODE_DEBUG_OPTION  --cache-directory .tscache ./main.ts"
+  "exec": "./node_modules/.bin/ts-node $NODE_DEBUG_OPTION  --cache-directory .tscache  ./lib.ts"
 }
