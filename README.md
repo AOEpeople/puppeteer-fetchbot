@@ -4,7 +4,11 @@
 ![How it works]()
 
 ## About
+Declarative Puppeteer and data extraction
 
+Pilger.js
+
+— Forward your Chrome on a guided adventure
 
 ## Config File
 ### Grab urls from a google search result

@@ -6,17 +6,38 @@ console.log('lib usecase');
 let config = {
     "https://www.google.com/ncr": {
         "root": true,
+        //"maxCalls": 10,
         "type": [
             [
                 "#lst-ib",
-                "aoe people"
+                "AOE people"
+            ],
+            [
+                "#lst-ib",
+                "\r" //String.fromCharCode(13) //TODO support COMMANDS LIKE ENTER_KEY
             ]
-        ],
-        "click": "#tsf > div.tsf-p > div.jsb > center > input[type=\"submit\"]:nth-child(1)"
+        ]
     },
     "https://www.google.com/search": {
+        //   "maxCalls": 10,
         "fetch": {
-            "cite as links": []
+            "cite as links": ''
+        },
+        "click": "#rso > div > div > div:nth-child(1) > div > div > h3 > a"
+    },
+
+    "https://github.com/AOEpeople": {
+        //   "maxCalls": 10,
+        "fetch": {
+            "a.no-wrap.text-gray.d-inline-block.muted-link as sharedKnowledgeLanguages": []
+        },
+        "click": "#js-pjax-container > div > header > div > nav > a:nth-child(2)"
+    },
+
+    "https://github.com/orgs/AOEpeople/people": {
+        //   "maxCalls": 10,
+        "fetch": {
+            ".member-info as employees": []
         }
     }
 };
@@ -24,7 +45,7 @@ let config = {
 
 let options = new Options({
     config: config,
-    debug: true
+//    debug: true
 });
 
 
@@ -33,6 +54,6 @@ let bot = new Bot(options);
 bot
     .run()
     .then((result) => {
-        console.log(result);
+        console.log(JSON.stringify(result, null, '\t'));
     });
 

@@ -5,10 +5,12 @@ import {isSelectorStringCmd} from "../helpers/is-selector-string-cmd";
 import {isCallWithArgs} from "../helpers/is-called-with-args";
 import {isCallNoArgs} from "../helpers/is-called-no-args";
 import {isFetchJobCmd} from "../helpers/is-fetch-job-cmd";
+import {Fetcher} from "./fetcher";
 
 export class Bot extends OperationalPage {
 
     public job: any;
+    private fetchedData = {};
 
     constructor(protected options: Options) {
         super(options);
@@ -21,12 +23,15 @@ export class Bot extends OperationalPage {
         let completed;
 
         try {
-            await this._batchTasks(this._getRootTasks());
+            await this._batchTasks(this._getTasks(true), true);
         } catch (error) {
             if (this.options.debug === true) {
                 console.log(error.message);
             }
         }
+
+
+        let page = await this.getPageInstance();
 
         completed = await this.exit();
 
@@ -35,7 +40,7 @@ export class Bot extends OperationalPage {
             console.log('Bot completed');
         }
 
-        return {};
+        return this.fetchedData;
     }
 
     private async _getCmdType(command: string, params: any): Promise<string> {
@@ -70,9 +75,11 @@ export class Bot extends OperationalPage {
     }
 
     private async _exec(command: string, options: any) {
-
         const scope = await this.getPageInstance();
         const cmdType = await this._getCmdType(command, options);
+
+        console.log('execute cmd ' + command);
+       // console.log(options);
 
         // TODO More performant using enums?!?
 
@@ -93,48 +100,60 @@ export class Bot extends OperationalPage {
                 break;
 
             case 'fetch':
+                let fetchedData = await new Fetcher(scope).pull(options);
+                Object.assign(this.fetchedData, fetchedData);
                 break;
-
             default:
                 break;
         }
+
+       // await scope.waitFor(1000);
     }
 
-    private async _batchTask(rootTask: any): Promise<Boolean> {
-        let resource = Object.keys(rootTask)[0],
+    private async _batchTask(task: any, gotoResource: boolean = false): Promise<Boolean> {
+        let resource = Object.keys(task)[0],
             page = await this.getPageInstance();
 
-        await page.goto(resource);
+        if (gotoResource) {
+            await page.goto(resource);
+        }
 
         // Listener mus be started here because once things will change bot must recognize that
         // but first we apply commands for currently applied domain
 
-        await this._execution(rootTask[resource]);
+        await this._execution(task[resource]);
 
-        // await page.waitFor(3000);
+        // Todo optimize that e.g. via task[resource].delayAfterAppliance
+        await page.waitFor(750);
 
         return true;
     }
 
-    private async _batchTasks(rootTasks: any[]): Promise<boolean> {
-        const currentRootTask = rootTasks.pop();
+    private async _batchTasks(tasks: any[], root: boolean = false): Promise<boolean> {
+
+        const currentTasks = tasks.pop();
 
         if (this.options.debug === true) {
-            console.log('Process root task ' + rootTasks.length + ' tasks remaining');
+            console.log('Process root task ' + tasks.length + ' tasks remaining');
         }
 
-        await this._batchTask(currentRootTask);
+        await this._batchTask(currentTasks, root);
 
-        if (rootTasks.length > 0) {
-            console.log('fehler beseitigt');
-            return await this._batchTasks(rootTasks);
+        let page = await this.getPageInstance();
+        let matchingTasks = this._getUrlMatchingTasks(page.url(), this._getTasks(false));
+
+        // Run matching tasks until nothing matches anymore
+        await this._batchTasks(matchingTasks, false);
+
+        if (tasks.length > 0) {
+            return await this._batchTasks(tasks, root);
         } else {
             return true;
         }
     }
 
 
-    private _deleteRootJob(resource: string): void {
+    private _deleteJob(resource: string): void {
         delete this.job[resource];
     }
 
@@ -144,31 +163,58 @@ export class Bot extends OperationalPage {
         });
     }
 
-    private _getRootTasks(): any[] {
-        let rootTasks = [];
+    private _getTasks(root: boolean = false): any[] {
+        let tasks = [];
 
-        if (!this._hasRootTask()) {
+        if (root === true && !this._hasRootTask()) {
             throw new Error('The configuration job configuration has no root jobs');
         }
-
 
         Object
             .keys(this.job)
 
             .filter((resource: string) => {
-                return this.job[resource].root === true;
+                return (root === true) ? this.job[resource].root === true : !this.job[resource].root;
             })
 
             .forEach((resource: string) => {
-                let rootTask = {};
+                let task = {};
 
-                rootTask[resource] = this.job[resource];
+                task[resource] = this.job[resource];
 
-                this._deleteRootJob(resource);
+                if (root) {
+                    this._deleteJob(resource);
+                }
 
-                rootTasks.push(rootTask);
+                tasks.push(task);
             });
 
-        return rootTasks.reverse();
+        return tasks.reverse();
     }
+
+    private _getUrlMatchingTasks(url: string, tasks: any[]): any[] {
+
+        tasks = tasks
+            .filter((task: Object) => {
+                // TODO implement RegExp matching here as wells
+                const taskApliancePattern = Object.keys(task)[0];
+                const urlHasMatch = url.toLocaleLowerCase().indexOf(taskApliancePattern.toLocaleLowerCase()) === 0;
+
+                if (this.options.debug === true) {
+                    console.log(taskApliancePattern + ' is ' + ((urlHasMatch) ? '' : 'not') + ' matching to');
+                    //console.log(url);
+                }
+
+                if (!urlHasMatch) {
+                    return false;
+                }
+
+                this._deleteJob(taskApliancePattern);
+
+                return urlHasMatch
+            });
+
+        return tasks;
+    }
+
 }

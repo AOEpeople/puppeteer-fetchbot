@@ -6,12 +6,18 @@
   "author": "Bernhard Behrendt",
   "license": "MIT",
   "dependencies": {
+    "@types/chai": "^4.1.2",
     "@types/command-line-args": "^4.0.2",
+    "@types/mocha": "^2.2.48",
     "@types/puppeteer": "^1.0.0",
     "ansi-escape-sequences": "^4.0.0",
+    "chai": "^4.1.2",
     "command-line-args": "^5.0.1",
     "command-line-usage": "^4.1.0",
+    "coveralls": "^3.0.0",
+    "mocha": "^5.0.0",
     "nodemon": "^1.14.11",
+    "nyc": "^11.4.1",
     "puppeteer": "https://github.com/GoogleChrome/puppeteer#master",
     "ts-node": "^4.1.0",
     "typescript": "^2.6.2"
@@ -20,7 +26,33 @@
     "postinstall": "yarn build",
     "build": "tsc",
     "manpage": "./node_modules/.bin/ts-node main.ts --help",
-    "develop":"./node_modules/.bin/nodemon -L -e ts",
+    "develop": "./node_modules/.bin/nodemon -L -e ts",
+    "test": "NODE_ENV=testing ./node_modules/.bin/mocha -r ts-node/register lib/**/*.spec.ts",
+    "cover": "./node_modules/.bin/nyc yarn test",
+    "coveralls": "yarn run cover && ./node_modules/.bin/coveralls < coverage/lcov.info",
     "start-and-wait": "./node_modules/.bin/ts-node main.ts --config=examples/search.google.json --wait=10000 --width=1280 --height=1024"
+  },
+  "nyc": {
+    "include": [
+      "*.ts",
+      "**/*.ts"
+    ],
+    "exclude": [
+      "./node_modules/**/*.ts",
+      "./node_modules/**/*.js",
+      "./cli.ts",
+      "./lib.ts",
+      "./main.ts"
+    ],
+    "extension": [
+      ".ts"
+    ],
+    "require": [
+      "ts-node/register"
+    ],
+    "reporter": [
+      "lcov"
+    ],
+    "all": true
   }
 }

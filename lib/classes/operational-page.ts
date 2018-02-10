@@ -1,4 +1,4 @@
-import {ProvisionedBrowser} from "./browser";
+import {ProvisionedBrowser} from "./provisioned-browser";
 import {Browser, Page} from "puppeteer";
 
 

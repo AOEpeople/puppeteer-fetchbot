@@ -1,41 +1,44 @@
 import {Page} from "puppeteer";
-import {SelectorAndPropertyInterface} from "../../interfaces/selector-and-property";
+import {getSelectorAndPropertyName} from "../helpers/get-selector-and-property-name";
 import {hasDedicatedPropName} from "../helpers/has-dedicated-prop-name";
+import {SelectorAndPropertyInterface} from "../../interfaces/selector-and-property";
 
-export class Crawler {
+export class Fetcher {
+
     constructor(private page: Page) {
 
     }
 
-
-
-    public getSelectorAndPropertyName(key: string): SelectorAndPropertyInterface {
-        const extractSelectorAndPropertyName: RegExp = new RegExp('(\\S+)\\sas\\s(\\S+)');
-
-        let selectorAndProperty = {
-            selector: key,
-            property: key
-        };
-
-        if (hasDedicatedPropName(key)) {
-
-            const extraction = key.match(extractSelectorAndPropertyName),
-                SELECTOR = 1,
-                PROPERTY = 2;
-
-            if (!!extraction[SELECTOR] && !!extraction[PROPERTY]) {
-                selectorAndProperty.selector = extraction[SELECTOR];
-                selectorAndProperty.property = extraction[PROPERTY];
-            }
-
-        }
-
-        return selectorAndProperty;
-    }
-
-    public async crawl(adapter: Object): Promise<Object> {
-
+    public async pull(adapter: Object): Promise<Object> {
         return await this.page.evaluate((fetchItems) => {
+
+            // TODO Determine how to use the helper functions here
+            const getSelectorAndPropertyName = (key: string): SelectorAndPropertyInterface => {
+                const extractSelectorAndPropertyName: RegExp = new RegExp('(\\S+)\\sas\\s(\\S+)');
+
+                let selectorAndProperty = {
+                    selector: key,
+                    property: key
+                };
+
+                if (hasDedicatedPropName(key)) {
+
+                    const extraction = key.match(extractSelectorAndPropertyName),
+                        SELECTOR = 1,
+                        PROPERTY = 2;
+
+                    if (!!extraction[SELECTOR] && !!extraction[PROPERTY]) {
+                        selectorAndProperty.selector = extraction[SELECTOR];
+                        selectorAndProperty.property = extraction[PROPERTY];
+                    }
+                }
+
+                return selectorAndProperty;
+            };
+            const hasDedicatedPropName = (key): boolean => {
+                const hasDedicatedPropName: RegExp = new RegExp(' as ');
+                return key.match(hasDedicatedPropName) !== null;
+            };
 
             let data = {};
             const DOM = document.body;
@@ -43,7 +46,7 @@ export class Crawler {
 
             for (const originSelector of Object.keys(fetchItems)) {
 
-                const mapping = this.getSelectorAndPropertyName(originSelector);
+                const mapping = getSelectorAndPropertyName(originSelector);
 
                 data[mapping.property] = fetchItems[originSelector];
 
