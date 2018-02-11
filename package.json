@@ -3,27 +3,29 @@
   "version": "1.0.0",
   "description": "automize anything that must be done in a workflow to reach a curently in development page in a valid state",
   "main": "index.js",
-  "author": "Bernhard Behrendt",
+  "author": "Bernhard Behrendt <bernhard.behrendt@aoe.com>",
   "license": "MIT",
   "dependencies": {
+    "command-line-args": "^5.0.1",
+    "command-line-usage": "^4.1.0",
+    "puppeteer": "https://github.com/GoogleChrome/puppeteer#master",
+    "ts-node": "^4.1.0",
+    "typescript": "^2.6.2"
+  },
+  "devDependencies": {
     "@types/chai": "^4.1.2",
     "@types/command-line-args": "^4.0.2",
     "@types/mocha": "^2.2.48",
     "@types/puppeteer": "^1.0.0",
     "ansi-escape-sequences": "^4.0.0",
     "chai": "^4.1.2",
-    "command-line-args": "^5.0.1",
-    "command-line-usage": "^4.1.0",
     "coveralls": "^3.0.0",
     "mocha": "^5.0.0",
     "nodemon": "^1.14.11",
-    "nyc": "^11.4.1",
-    "puppeteer": "https://github.com/GoogleChrome/puppeteer#master",
-    "ts-node": "^4.1.0",
-    "typescript": "^2.6.2"
+    "nyc": "^11.4.1"
   },
   "scripts": {
-    "postinstall": "yarn build",
+    "postinstall": "",
     "manpage": "./node_modules/.bin/ts-node main.ts --help",
     "develop": "./node_modules/.bin/nodemon -L -e ts",
     "test": "NODE_ENV=testing ./node_modules/.bin/mocha -r ts-node/register ./lib/**/*.spec.ts",

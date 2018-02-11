@@ -1,3 +1,5 @@
 export function isFetchJobCmd(isPageCommand: boolean, params: any, commandName: string): boolean {
-    return isPageCommand === false && typeof params === 'object' && commandName === 'fetch';
+    const notAnArray = !(params instanceof Array);
+    const notNull = params !== null;
+    return isPageCommand === false && notAnArray && notNull && typeof params === 'object' && commandName === 'fetch';
 }

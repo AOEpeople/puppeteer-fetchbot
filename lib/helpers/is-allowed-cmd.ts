@@ -5,5 +5,5 @@ export function isAllowedCmd(cmdName: string): boolean {
         'maxCalls'
     ];
 
-    return protectedCmdNames.indexOf(cmdName) === -1;
+    return cmdName.length > 0 && protectedCmdNames.indexOf(cmdName) === -1;
 }
