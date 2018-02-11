@@ -24,10 +24,9 @@
   },
   "scripts": {
     "postinstall": "yarn build",
-    "build": "tsc",
     "manpage": "./node_modules/.bin/ts-node main.ts --help",
     "develop": "./node_modules/.bin/nodemon -L -e ts",
-    "test": "NODE_ENV=testing ./node_modules/.bin/mocha -r ts-node/register lib/**/*.spec.ts",
+    "test": "NODE_ENV=testing ./node_modules/.bin/mocha -r ts-node/register ./lib/**/*.spec.ts",
     "cover": "./node_modules/.bin/nyc yarn test",
     "coveralls": "yarn run cover && ./node_modules/.bin/coveralls < coverage/lcov.info",
     "start-and-wait": "./node_modules/.bin/ts-node main.ts --config=examples/search.google.json --wait=10000 --width=1280 --height=1024"
@@ -38,11 +37,9 @@
       "**/*.ts"
     ],
     "exclude": [
-      "./node_modules/**/*.ts",
-      "./node_modules/**/*.js",
-      "./cli.ts",
-      "./lib.ts",
-      "./main.ts"
+      "./",
+      "*.spec.ts",
+      "**/*.spec.ts"
     ],
     "extension": [
       ".ts"
