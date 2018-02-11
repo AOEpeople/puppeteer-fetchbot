@@ -2,7 +2,7 @@ import {expect} from 'chai';
 import {Fetcher} from "./fetcher";
 
 describe('Fetcher', () => {
-    it('Sould be a function', () => {
+    it('Should be a function', () => {
         expect(typeof Fetcher).to.equal('function');
     });
 });

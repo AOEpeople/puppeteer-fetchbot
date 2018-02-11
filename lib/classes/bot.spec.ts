@@ -3,7 +3,7 @@ import {Bot} from "./bot";
 
 describe('Bot', () => {
 
-    it('Sould be a function', () => {
+    it('Should be a function', () => {
         expect(typeof Bot).to.equal('function');
     });
 });

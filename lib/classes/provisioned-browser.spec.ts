@@ -1,10 +1,10 @@
 import {expect} from 'chai';
 import {ProvisionedBrowser} from "./provisioned-browser";
-import {Bot} from "./bot";
+
 
 describe('ProvisionedBrowser', () => {
    // const provisionedBrowser = new ProvisionedBrowser();
-    it('Sould be a function', () => {
+    it('Should be a function', () => {
         expect(typeof ProvisionedBrowser).to.equal('function');
     });
 
