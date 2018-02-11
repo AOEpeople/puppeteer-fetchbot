@@ -10,22 +10,33 @@ describe('getSelectorAndPropertyName', () => {
             selector: 'body > div.wrapper > pre > table > tbody > tr > td.text > pre > span:nth-child(123)',
             property: 'bsdf'
         },
+        {
+            selector: 'a.no-wrap.text-gray.d-inline-block.muted-link',
+            property: 'sharedKnowledgeLanguages'
+        },
+        {
+            selector: '.member-info',
+            property: 'mitarbeiter'
+        },
     ];
 
 
     validSamples
         .forEach((sample: SelectorAndPropertyInterface) => {
 
-            it('Should success provide selector [' + sample.selector + ']' + ' property [' + sample.property + ']', () => {
+            it('Should pass ' + sample.selector + ' as ' + sample.property, () => {
 
                 let generatedQueryStringToPropertyName = sample.selector + ' as ' + sample.property,
                     reSample = getSelectorAndPropertyName(generatedQueryStringToPropertyName);
 
                 expect(reSample.selector).to.equal(sample.selector);
                 expect(reSample.property).to.equal(sample.property);
+            });
 
-                generatedQueryStringToPropertyName = sample.selector + ' AS ' + sample.property;
-                reSample = getSelectorAndPropertyName(generatedQueryStringToPropertyName);
+            it('Should pass ' + sample.selector + ' AS ' + sample.property, () => {
+
+                let generatedQueryStringToPropertyName = sample.selector + ' AS ' + sample.property,
+                    reSample = getSelectorAndPropertyName(generatedQueryStringToPropertyName);
 
                 expect(reSample.selector).to.equal(sample.selector);
                 expect(reSample.property).to.equal(sample.property);

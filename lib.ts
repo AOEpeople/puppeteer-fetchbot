@@ -29,7 +29,7 @@ let config = {
     "https://github.com/AOEpeople": {
         //   "maxCalls": 10,
         "fetch": {
-            "a.no-wrap.text-gray.d-inline-block.muted-link as sharedKnowledgeLanguages": []
+            "a.no-wrap.text-gray.d-inline-block.muted-link AS sharedKnowledgeLanguages": []
         },
         "click": "#js-pjax-container > div > header > div > nav > a:nth-child(2)"
     },
@@ -37,7 +37,7 @@ let config = {
     "https://github.com/orgs/AOEpeople/people": {
         //   "maxCalls": 10,
         "fetch": {
-            ".member-info as employees": []
+            ".member-info AS mitarbeiter": []
         }
     }
 };

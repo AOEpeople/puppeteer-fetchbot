@@ -12,14 +12,21 @@ export class Fetcher {
     public async pull(adapter: Object): Promise<Object> {
         return await this.page.evaluate((fetchItems) => {
 
+            // TODO IMPORTANT
             // TODO Determine how to use the helper functions here
             const getSelectorAndPropertyName = (key: string): SelectorAndPropertyInterface => {
-                const extractSelectorAndPropertyName: RegExp = new RegExp('(\\S+)\\sas\\s(\\S+)');
+
+
+                const regExpString: string = '([.#a-z][a-zA-Z0-9\\s()>.:-]+|[a-z])\\sas\\s([a-z][a-zA-Z0-9]+|[a-z])';
+
+                // Apply RegExpString
+                const extractSelectorAndPropertyName: RegExp = new RegExp(regExpString, 'i');
 
                 let selectorAndProperty = {
                     selector: key,
                     property: key
                 };
+
 
                 if (hasDedicatedPropName(key)) {
 
@@ -27,18 +34,22 @@ export class Fetcher {
                         SELECTOR = 1,
                         PROPERTY = 2;
 
-                    if (!!extraction[SELECTOR] && !!extraction[PROPERTY]) {
+                    if (!!extraction && !!extraction[SELECTOR] && !!extraction[PROPERTY]) {
                         selectorAndProperty.selector = extraction[SELECTOR];
                         selectorAndProperty.property = extraction[PROPERTY];
+                    } else {
+                        throw new Error('SELECTOR_AS_PROPERTY_CUT_FAILED');
                     }
+
                 }
 
                 return selectorAndProperty;
             };
             const hasDedicatedPropName = (key): boolean => {
-                const hasDedicatedPropName: RegExp = new RegExp(' as ');
+                const hasDedicatedPropName: RegExp = new RegExp('\\S\\sas\\s\\S', 'i');
                 return key.match(hasDedicatedPropName) !== null;
             };
+
 
             let data = {};
             const DOM = document.body;
