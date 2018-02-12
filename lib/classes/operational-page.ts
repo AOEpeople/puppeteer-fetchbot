@@ -1,5 +1,5 @@
 import {ProvisionedBrowser} from "./provisioned-browser";
-import {Browser, Page} from "puppeteer";
+import {Page} from "puppeteer";
 
 
 export class OperationalPage extends ProvisionedBrowser {
