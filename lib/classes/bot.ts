@@ -9,13 +9,10 @@ import {Fetcher} from "./fetcher";
 
 export class Bot extends OperationalPage {
 
-    public job: any;
     private fetchedData = {};
 
-    constructor(protected options: Options) {
+    constructor(public tour = {}, protected options: Options) {
         super(options);
-
-        this.job = options.config;
     }
 
     public async run() {
@@ -79,7 +76,7 @@ export class Bot extends OperationalPage {
         const cmdType = await this._getCmdType(command, options);
 
         console.log('execute cmd ' + command);
-       // console.log(options);
+        // console.log(options);
 
         // TODO More performant using enums?!?
 
@@ -107,7 +104,7 @@ export class Bot extends OperationalPage {
                 break;
         }
 
-       // await scope.waitFor(1000);
+        // await scope.waitFor(1000);
     }
 
     private async _batchTask(task: any, gotoResource: boolean = false): Promise<Boolean> {
@@ -154,12 +151,12 @@ export class Bot extends OperationalPage {
 
 
     private _deleteJob(resource: string): void {
-        delete this.job[resource];
+        delete this.tour[resource];
     }
 
     private _hasRootTask() {
-        return Object.keys(this.job).some((resource: string) => {
-            return this.job[resource].root === true;
+        return Object.keys(this.tour).some((resource: string) => {
+            return this.tour[resource].root === true;
         });
     }
 
@@ -171,16 +168,16 @@ export class Bot extends OperationalPage {
         }
 
         Object
-            .keys(this.job)
+            .keys(this.tour)
 
             .filter((resource: string) => {
-                return (root === true) ? this.job[resource].root === true : !this.job[resource].root;
+                return (root === true) ? this.tour[resource].root === true : !this.tour[resource].root;
             })
 
             .forEach((resource: string) => {
                 let task = {};
 
-                task[resource] = this.job[resource];
+                task[resource] = this.tour[resource];
 
                 if (root) {
                     this._deleteJob(resource);

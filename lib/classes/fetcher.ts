@@ -13,7 +13,7 @@ export class Fetcher {
         return await this.page.evaluate((fetchItems) => {
 
             // TODO IMPORTANT
-            // TODO Determine how to use the helper functions here
+            // TODO Determine how to use the helper functions here (Stackoverflow)!?!
             const getSelectorAndPropertyName = (key: string): SelectorAndPropertyInterface => {
 
 

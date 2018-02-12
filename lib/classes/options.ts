@@ -1,10 +1,8 @@
 import {OptionsInterface} from "../../interfaces/options";
 
 export class Options implements OptionsInterface {
-    config: any;
-    help: boolean;
+
     headless: boolean;
-    directory: string;
     wait: number;
     trust: boolean;
     width: number;
@@ -12,12 +10,9 @@ export class Options implements OptionsInterface {
     debug: boolean;
 
     constructor(options) {
-        this.help = options.help === true;
         this.headless = options.headless === true;
-        this.directory = options.directory || null;
         this.wait = options.wait || 0;
         this.trust = options.trust === true;
-        this.config = options.config || {};
         this.width = (typeof options.width === 'number') ? options.width : 800;
         this.height = (typeof options.height === 'number') ? options.height : 600;
         this.debug = options.debug === true;
@@ -25,22 +20,13 @@ export class Options implements OptionsInterface {
 
     public getAll(): OptionsInterface {
         return {
-            config: this.config,
-            help: this.help,
             headless: this.headless,
-            directory: this.directory,
             wait: this.wait,
             trust: this.trust,
             width: this.width,
-            height: this.height
+            height: this.height,
+            debug:this.debug
         };
-    }
-
-    // This is actually in the config but not necessary
-    // All options which are not required for concerns usecase must be stripped on cli level
-
-    public helpRequest() {
-        return this.getAll().help === true;
     }
 
     public getDimensions() {

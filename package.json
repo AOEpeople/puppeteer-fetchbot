@@ -8,15 +8,17 @@
   "dependencies": {
     "command-line-args": "^5.0.1",
     "command-line-usage": "^4.1.0",
-    "puppeteer": "https://github.com/GoogleChrome/puppeteer#master",
+    "puppeteer": "^1.0.0",
     "ts-node": "^4.1.0",
-    "typescript": "^2.6.2"
+    "typescript": "^2.6.2",
+    "winston": "^2.4.0"
   },
   "devDependencies": {
     "@types/chai": "^4.1.2",
     "@types/command-line-args": "^4.0.2",
     "@types/mocha": "^2.2.48",
     "@types/puppeteer": "^1.0.0",
+    "@types/winston": "^2.3.8",
     "ansi-escape-sequences": "^4.0.0",
     "chai": "^4.1.2",
     "coveralls": "^3.0.0",

@@ -3,7 +3,7 @@ import {Bot} from "./lib/classes/bot";
 
 console.log('lib usecase');
 
-let config = {
+let tour = {
     "https://www.google.com/ncr": {
         "root": true,
         //"maxCalls": 10,
@@ -44,12 +44,11 @@ let config = {
 
 
 let options = new Options({
-    config: config,
 //    debug: true
 });
 
 
-let bot = new Bot(options);
+let bot = new Bot(tour, options);
 
 bot
     .run()
