@@ -14,5 +14,6 @@ describe('ProvisionedBrowser', () => {
         expect(typeof browserInstance.close).to.equal('function');
 
         await  browserInstance.close();
+        await  browserInstance.disconnect();
     });
 });

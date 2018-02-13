@@ -10,6 +10,10 @@ export class Fetcher {
     }
 
     public async pull(adapter: Object): Promise<Object> {
+        // TODO evaluate if it's somehomw/practical possible to deduplicate getSelectorAndPropertyName and  hasDedicatedPropName functions
+        //await page.exposeFunction("add", (a, b) => a + b);
+        //await this.page.addScriptTag({content: '${getSelectorAndPropertyName} ${hasDedicatedPropName}});
+
         return await this.page.evaluate((fetchItems) => {
 
             // TODO IMPORTANT
@@ -17,7 +21,7 @@ export class Fetcher {
             const getSelectorAndPropertyName = (key: string): SelectorAndPropertyInterface => {
 
 
-                const regExpString: string = '([.#a-z][a-zA-Z0-9\\s()>.:-]+|[a-z])\\sas\\s([a-z][a-zA-Z0-9]+|[a-z])';
+                const regExpString: string = '([[.#a-z][a-zA-Z0-9\\s()>\\.:"\'\\-=\\]]+|[a-z])\\sas\\s([a-z][a-zA-Z0-9]+|[a-z])';
 
                 // Apply RegExpString
                 const extractSelectorAndPropertyName: RegExp = new RegExp(regExpString, 'i');

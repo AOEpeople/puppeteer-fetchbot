@@ -1,6 +1,6 @@
 {
   "name": "manual-testing-speedup",
-  "version": "1.0.0",
+  "version": "1.0.0-alpha",
   "description": "automize anything that must be done in a workflow to reach a curently in development page in a valid state",
   "main": "index.js",
   "author": "Bernhard Behrendt <bernhard.behrendt@aoe.com>",
@@ -43,7 +43,8 @@
     "exclude": [
       "./",
       "*.spec.ts",
-      "**/*.spec.ts"
+      "**/*.spec.ts",
+      "lib/classes/fetcher.ts"
     ],
     "extension": [
       ".ts"

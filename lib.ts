@@ -42,7 +42,6 @@ let tour = {
     }
 };
 
-
 let options = new Options({
 //    debug: true
 });

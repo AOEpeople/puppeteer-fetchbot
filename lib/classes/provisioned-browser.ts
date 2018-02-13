@@ -8,22 +8,23 @@ import {OptionsInterface} from "../../interfaces/options";
  */
 export class ProvisionedBrowser {
 
-    private _browserInstance: Browser;
+    protected _browserInstance: Browser;
 
     constructor(protected options: Options) {
-
     }
 
     public async getBrowserInstance(): Promise<Browser> {
 
-        //if (typeof this._browserInstance === 'undefined') {
+        const browserWasStarted = !!this._browserInstance;
+
+        if (!browserWasStarted) {
             this._browserInstance = await puppeteer.launch({
                 headless: this.options.getRunMode(),
                 ignoreHTTPSErrors: this.options.ignoreHttpErrors(),
-                //   slowMo: 250,
+              //  slowMo: 250,
                 args: [`--window-size=${this.options.getDimensions().width},${this.options.getDimensions().height}`]
             });
-        //}
+        }
 
         return this._browserInstance;
     }

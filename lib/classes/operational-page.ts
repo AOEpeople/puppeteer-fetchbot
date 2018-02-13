@@ -8,14 +8,11 @@ export class OperationalPage extends ProvisionedBrowser {
 
     public async getPageInstance(): Promise<Page> {
 
-        if (!this._page) {
-            const browser = await this.getBrowserInstance();
+        const pageWasInitialized = !!this._page;
 
-            if (this.options.debug) {
-                console.log('Create new page instance');
-            }
-
-            this._page = await browser.newPage();
+        if (!pageWasInitialized) {
+            this._browserInstance = await this.getBrowserInstance();
+            this._page = await this._browserInstance.newPage();
 
             await this._page.setViewport({
                 width: this.options.getDimensions().width,
@@ -29,23 +26,13 @@ export class OperationalPage extends ProvisionedBrowser {
     public async exit(): Promise<boolean> {
         try {
 
-            const browser = await this.getBrowserInstance();
-
             if (!!this._page) {
                 await this._page.close();
+                await this._browserInstance.close();
+                await this._browserInstance.disconnect();
             }
-
-            await browser.close();
-
-            return true;
-
         } catch (error) {
-
-            if (this.options.debug === true) {
-                console.log(error);
-            }
-
-            return false;
+            console.log(error);
         }
     }
 }

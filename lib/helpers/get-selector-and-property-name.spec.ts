@@ -18,6 +18,10 @@ describe('getSelectorAndPropertyName', () => {
             selector: '.member-info',
             property: 'mitarbeiter'
         },
+        {
+            selector:"[title=\"Repositories\"]",
+            property:'numberExample'
+        }
     ];
 
 
