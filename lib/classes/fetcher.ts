@@ -1,7 +1,7 @@
 import {Page} from "puppeteer";
 import {getSelectorAndPropertyName} from "../helpers/get-selector-and-property-name";
 import {hasDedicatedPropName} from "../helpers/has-dedicated-prop-name";
-import {SelectorAndPropertyInterface} from "../../interfaces/selector-and-property";
+import {SelectorAndPropertyInterface} from "../interfaces/selector-and-property";
 
 export class Fetcher {
 

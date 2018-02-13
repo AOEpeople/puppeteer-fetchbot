@@ -1,4 +1,4 @@
-import {OptionsInterface} from "../../interfaces/options";
+import {OptionsInterface} from "../interfaces/options";
 
 export class Options implements OptionsInterface {
 

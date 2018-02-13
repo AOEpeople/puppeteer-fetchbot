@@ -1,11 +1,12 @@
 {
   "watch": [
     "*.ts",
-    "./**/*.ts"
+    "./lib/**/*.ts"
   ],
+
   "ignore": [
     "./**/*.spec.ts",
     "*.spec.ts"
   ],
-  "exec": "./node_modules/.bin/ts-node $NODE_DEBUG_OPTION  --cache-directory .tscache  ./lib.ts"
+  "exec": "./node_modules/.bin/ts-node $NODE_DEBUG_OPTION  --cache-directory .tscache  ./how-to-include-example.ts"
 }

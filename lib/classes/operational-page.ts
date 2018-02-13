@@ -25,14 +25,15 @@ export class OperationalPage extends ProvisionedBrowser {
 
     public async exit(): Promise<boolean> {
         try {
-
             if (!!this._page) {
                 await this._page.close();
                 await this._browserInstance.close();
                 await this._browserInstance.disconnect();
             }
         } catch (error) {
-            console.log(error);
+            return false;
         }
+
+        return true;
     }
 }

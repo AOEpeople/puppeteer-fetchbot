@@ -1,5 +1,5 @@
 import {hasDedicatedPropName} from "./has-dedicated-prop-name";
-import {SelectorAndPropertyInterface} from "../../interfaces/selector-and-property";
+import {SelectorAndPropertyInterface} from "../interfaces/selector-and-property";
 
 export function getSelectorAndPropertyName(key: string): SelectorAndPropertyInterface {
 

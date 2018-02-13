@@ -5,6 +5,9 @@
   "main": "index.js",
   "author": "Bernhard Behrendt <bernhard.behrendt@aoe.com>",
   "license": "MIT",
+  "bin": {
+    "APPNAME": "bin/test-module.js"
+  },
   "dependencies": {
     "command-line-args": "^5.0.1",
     "command-line-usage": "^4.1.0",
@@ -27,7 +30,8 @@
     "nyc": "^11.4.1"
   },
   "scripts": {
-    "postinstall": "",
+    "postinstall": "yarn test && yarn build",
+    "build":"./node_modules/.bin/tsc",
     "manpage": "./node_modules/.bin/ts-node main.ts --help",
     "develop": "./node_modules/.bin/nodemon -L -e ts",
     "test": "NODE_ENV=testing ./node_modules/.bin/mocha -r ts-node/register ./lib/**/*.spec.ts",

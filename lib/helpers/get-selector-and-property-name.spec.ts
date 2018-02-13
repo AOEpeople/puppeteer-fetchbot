@@ -1,6 +1,6 @@
 import {expect} from 'chai';
 import {getSelectorAndPropertyName} from "./get-selector-and-property-name";
-import {SelectorAndPropertyInterface} from "../../interfaces/selector-and-property";
+import {SelectorAndPropertyInterface} from "../interfaces/selector-and-property";
 
 describe('getSelectorAndPropertyName', () => {
 
