@@ -6,7 +6,7 @@ import {Options} from "./options";
 describe('OperationalPage', () => {
 
     it('Should create a new page object and keep within the instance', async () => {
-        let page = new OperationalPage(new Options({headless: false}));
+        let page = new OperationalPage(new Options({headless: true}));
 
 
         let pageInstance = await page.getPageInstance();

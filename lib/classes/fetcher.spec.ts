@@ -21,14 +21,15 @@ describe('Fetcher', () => {
     };
 
 
-    it('Should pull specified data from opened page and return JSON (excluded in cov reports)', async () => {
+    it('Should pull specified data (via selector) from page and provide as "boolean" [excluded from coverage]', async () => {
 
         // TODO Excluded yet in coverage reports (@see package.json nyc config)
         // TODO due to context/evaluation issues
         // Maybe solvable by https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#class-coverage
-        const operationalPage = new OperationalPage(new Options({headless: false}));
+        const operationalPage = new OperationalPage(new Options({headless: true}));
         const page = await operationalPage.getPageInstance();
         const fetcher = new Fetcher(page);
+
         let data,
             asPropertyName: string;
 
@@ -39,6 +40,22 @@ describe('Fetcher', () => {
         asPropertyName = getSelectorAndPropertyName(Object.keys(fetchJobs.BOOLEAN)[0]).property;
         expect(data[asPropertyName]).to.equal(true);
 
+        await operationalPage.exit();
+
+    }).timeout(5000);
+
+    it('Should pull specified data (via selector) from page and provide as "string" [excluded from coverage]', async () => {
+
+        // TODO Excluded yet in coverage reports (@see package.json nyc config)
+        // TODO due to context/evaluation issues
+        // Maybe solvable by https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#class-coverage
+        const operationalPage = new OperationalPage(new Options({headless: true}));
+        const page = await operationalPage.getPageInstance();
+        const fetcher = new Fetcher(page);
+        let data,
+            asPropertyName: string;
+
+        await page.goto(url);
 
         // TYPE STRING
         data = await fetcher.pull(fetchJobs.STRING);
@@ -46,10 +63,44 @@ describe('Fetcher', () => {
         expect(data[asPropertyName]).to.equal('@AOEpeople');
 
 
+        await operationalPage.exit();
+
+    }).timeout(5000);
+
+    it('Should pull specified data (via selector) from page and provide as "number" [excluded from coverage]', async () => {
+
+        // TODO Excluded yet in coverage reports (@see package.json nyc config)
+        // TODO due to context/evaluation issues
+        // Maybe solvable by https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#class-coverage
+        const operationalPage = new OperationalPage(new Options({headless: true}));
+        const page = await operationalPage.getPageInstance();
+        const fetcher = new Fetcher(page);
+        let data,
+            asPropertyName: string;
+
+        await page.goto(url);
+
         // TYPE NUMBER
         data = await fetcher.pull(fetchJobs.NUMBER);
         asPropertyName = getSelectorAndPropertyName(Object.keys(fetchJobs.NUMBER)[0]).property;
         expect(data[asPropertyName]).to.equal(19); // Amount of repositories
+
+        await operationalPage.exit();
+
+    }).timeout(5000);
+
+    it('Should pull specified data (via selector) from page and provide as "array of string(s)" [excluded from coverage]', async () => {
+
+        // TODO Excluded yet in coverage reports (@see package.json nyc config)
+        // TODO due to context/evaluation issues
+        // Maybe solvable by https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#class-coverage
+        const operationalPage = new OperationalPage(new Options({headless: true}));
+        const page = await operationalPage.getPageInstance();
+        const fetcher = new Fetcher(page);
+        let data,
+            asPropertyName: string;
+
+        await page.goto(url);
 
 
         //TYPE ARRAY_CONTAINING_STRINGS
@@ -58,6 +109,24 @@ describe('Fetcher', () => {
         expect(data[asPropertyName] instanceof Array).to.equal(true);
         expect(typeof data[asPropertyName][0]).to.equal('string');
         expect(data[asPropertyName].length).to.equal(6);
+
+
+        await operationalPage.exit();
+
+    }).timeout(5000);
+
+    it('Should pull specified data (via selector) from page and provide as "array of number(s)" [excluded from coverage]', async () => {
+
+        // TODO Excluded yet in coverage reports (@see package.json nyc config)
+        // TODO due to context/evaluation issues
+        // Maybe solvable by https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#class-coverage
+        const operationalPage = new OperationalPage(new Options({headless: true}));
+        const page = await operationalPage.getPageInstance();
+        const fetcher = new Fetcher(page);
+        let data,
+            asPropertyName: string;
+
+        await page.goto(url);
 
         //TYPE ARRAY_CONTAINING_NUMBERS
         data = await fetcher.pull(fetchJobs.ARRAY_CONTAINING_NUMBERS);

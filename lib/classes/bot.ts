@@ -18,7 +18,6 @@ export class Bot extends OperationalPage {
     public async run() {
 
         let completed;
-
         try {
             await this._batchTasks(this._getTasks(true), true);
         } catch (error) {
@@ -28,7 +27,7 @@ export class Bot extends OperationalPage {
         }
 
 
-        let page = await this.getPageInstance();
+       // let page = await this.getPageInstance();
 
         completed = await this.exit();
 
@@ -74,9 +73,6 @@ export class Bot extends OperationalPage {
     private async _exec(command: string, options: any) {
         const scope = await this.getPageInstance();
         const cmdType = await this._getCmdType(command, options);
-
-        console.log('execute cmd ' + command);
-        // console.log(options);
 
         // TODO More performant using enums?!?
 
@@ -127,7 +123,6 @@ export class Bot extends OperationalPage {
     }
 
     private async _batchTasks(tasks: any[], root: boolean = false): Promise<boolean> {
-
         const currentTasks = tasks.pop();
 
         if (this.options.debug === true) {
@@ -148,7 +143,6 @@ export class Bot extends OperationalPage {
             return true;
         }
     }
-
 
     private _deleteJob(resource: string): void {
         delete this.tour[resource];
@@ -197,10 +191,6 @@ export class Bot extends OperationalPage {
                 const taskApliancePattern = Object.keys(task)[0];
                 const urlHasMatch = url.toLocaleLowerCase().indexOf(taskApliancePattern.toLocaleLowerCase()) === 0;
 
-                if (this.options.debug === true) {
-                    console.log(taskApliancePattern + ' is ' + ((urlHasMatch) ? '' : 'not') + ' matching to');
-                    //console.log(url);
-                }
 
                 if (!urlHasMatch) {
                     return false;

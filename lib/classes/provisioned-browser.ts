@@ -21,7 +21,7 @@ export class ProvisionedBrowser {
             this._browserInstance = await puppeteer.launch({
                 headless: this.options.getRunMode(),
                 ignoreHTTPSErrors: this.options.ignoreHttpErrors(),
-              //  slowMo: 250,
+                //slowMo: 250,
                 args: [`--window-size=${this.options.getDimensions().width},${this.options.getDimensions().height}`]
             });
         }
