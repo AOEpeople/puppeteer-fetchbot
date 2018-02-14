@@ -13,5 +13,7 @@ let bot = new Bot(tour, new Options({
 bot
     .run()
     .then((result) => {
+        // Now the browser instance was closed and
+        // the data grabbed during APPNAMEing gets available
         console.log(JSON.stringify(result, null, '\t'));
     });

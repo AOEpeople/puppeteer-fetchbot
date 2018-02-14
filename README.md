@@ -2,6 +2,7 @@
 
 
 ![How it works]()
+Demo
 
 ## About
 APPNAME is a shell command & library to perform human like interactions and data "grabbing" on any website.
@@ -35,7 +36,7 @@ grabbed data is returned (see grabbing).
      
 #### Stopover objects
 
-Stopover objects do **not** have the root attribute. These objects behave different and can be understood a bit like
+Stopover objects do **not** have the root property. These objects behave different and can be understood a bit like
 event listeners. Once the browser changes the url and the opened url matches a stopover url ist's configuration gets 
 applied (e.g. by a form submission on a root page or a clicked link). When configuration has been applied to open page 
 the objects gets removed from APPNAMElist.
@@ -131,11 +132,12 @@ A complete list whats possible on a page is yet only available in the puppeteer 
 
 For data grabbing there is a ``fetch`` command which simplifies puppeteers evaluation api.
 The fetch api provides declarative support for four different data types which can be grabbed from a page:
-- Boolean
-- Number
-- String
-- Array of String(s) 
-- Array of Numbers(s) 
+
+- `Boolean`
+- `Number`
+- `String`
+- `Array of String(s)` 
+- `Array of Numbers(s)`
 
 Furthermore it's possible to map meaningful property names to selectors having required data using the `AS` or `as`
 keyword.
@@ -162,27 +164,75 @@ keyword.
             }
         }
     }
-
+        
 ### Command line ready
-When APPNAME should be used as command line tool only a global installation is recommended
+APPNAME can be used as a command line tool. There are 
 
     npm install -g APPNAME or yarn global APPNAME
 
    
 ### Use as library in your own project
 
-     npm install APPNAME or yarn APPNAME
-     
-     var AppName = require('APPNAME');
-     
-     let app = new AppName(APPNAMEJOBLIST, OPTIONS)
-     
-     app
-         .run()
-         .then((result) => {
-             console.log(JSON.stringify(result, null, '\t'));
-         });
+     > cd /my/existing/project/
+     > npm install APPNAME or yarn APPNAME
+ 
+> Example
 
+    import {readFileSync} from "fs";
+    import {Options} from "./lib/classes/options";
+    import {Bot} from "./lib/classes/bot";
+    
+    let tour = JSON.parse('PATH/TO/APPNAME_CONFIGURATION.json', 'utf-8'));
+    
+    let bot = new Bot(tour, new Options({
+        debug: false,
+        headless: false
+    }));
+    
+    bot
+        .run()
+        .then((result) => {
+            // Now the browser instance was closed and 
+            // the data grabbed during APPNAMEing gets available
+            console.log(JSON.stringify(result, null, '\t'));
+        });
+    
+    
+### Options
+Following options can be applied directly via passed configuration object or as params in via command line.
+
+#### Options object
+    
+        headless: boolean | default=false   Specifies if the browser window is shown or not
+        wait: number      | default=0       Delay time between each page interaction
+        trust: boolean    | default=false   Open unsecure https pages without a warning 
+        width: number     | defautlt=800    The Browser and viewport width
+        height: number    | default=600     The Browser and Viewport height
+        slowMotion:number | default=0       Slowes down the processing in milliseconds
+        debug: boolean    | default=false   Determine if debug/logging messages are shown 
+        
+
+#### Pass options Object
+> Options object
+
+    var Options = require('APPNAME').Options,
+        
+        options = new Options({
+            headless: false,
+            debug: true
+        });
+    
+#### Pass options via command line 
+
+An entire list of all command line options (some more than in the options object) can be optained via
+
+    > APPNAME --help
+
+   
+> Command line input
+
+    APPNAME --trust --debug --slowMotion=250 --width=1024 --height=768 o ./my-grabbed-data.json
+    
 ### Conclusion
 
 APPNAME is written in TypeScript and transpiled via npm/yarn run build. it's normally automatically built during

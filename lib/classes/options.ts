@@ -8,6 +8,7 @@ export class Options implements OptionsInterface {
     width: number;
     height: number;
     debug: boolean;
+    slowMotion: number;
 
     constructor(options) {
         this.headless = options.headless === true;
@@ -15,6 +16,7 @@ export class Options implements OptionsInterface {
         this.trust = options.trust === true;
         this.width = (typeof options.width === 'number') ? options.width : 800;
         this.height = (typeof options.height === 'number') ? options.height : 600;
+        this.slowMotion = (typeof options.slowMotion === 'number') ? options.slowMotion : 0;
         this.debug = options.debug === true;
     }
 
@@ -25,7 +27,8 @@ export class Options implements OptionsInterface {
             trust: this.trust,
             width: this.width,
             height: this.height,
-            debug:this.debug
+            slowMotion: this.slowMotion,
+            debug: this.debug
         };
     }
 

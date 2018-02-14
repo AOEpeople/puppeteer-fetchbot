@@ -5,4 +5,5 @@ export interface OptionsInterface {
     width?: number;
     height?: number;
     debug?: boolean;
+    slowMotion?: number;
 }

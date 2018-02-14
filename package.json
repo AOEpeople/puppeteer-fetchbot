@@ -1,12 +1,12 @@
 {
   "name": "manual-testing-speedup",
   "version": "1.0.0-alpha",
-  "description": "automize anything that must be done in a workflow to reach a curently in development page in a valid state",
+  "description": "Declarative browser automization and data extraction",
   "main": "index.js",
   "author": "Bernhard Behrendt <bernhard.behrendt@aoe.com>",
   "license": "MIT",
   "bin": {
-    "APPNAME": "bin/test-module.js"
+    "appname": "bin/appname"
   },
   "dependencies": {
     "command-line-args": "^5.0.1",
@@ -31,7 +31,7 @@
   },
   "scripts": {
     "postinstall": "yarn test && yarn build",
-    "build":"./node_modules/.bin/tsc",
+    "build": "./node_modules/.bin/tsc",
     "manpage": "./node_modules/.bin/ts-node main.ts --help",
     "develop": "./node_modules/.bin/nodemon -L -e ts",
     "test": "NODE_ENV=testing ./node_modules/.bin/mocha -r ts-node/register ./lib/**/*.spec.ts",
