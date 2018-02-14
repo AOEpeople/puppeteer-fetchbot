@@ -1,7 +1,7 @@
 {
   "name": "APPNAME",
   "version": "1.0.0-alpha",
-  "description": "Declarative browser automization and data extraction",
+  "description": "Library and Shell command that provides a simple JSON-API to perform human like interactions and data extractions on any website. Built on top of pupeteerr.",
   "engines" : { "node" : ">=6.0.0" },
   "main": "dist/index.js",
   "author": "Bernhard Behrendt <bernhard.behrendt@aoe.com>",
