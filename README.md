@@ -4,7 +4,7 @@
 
 ## About
 APPNAME is a library and shell command that provides a simple JSON-API to perform human like interactions and 
-data extractions on any website and was built on top of [pupeteerr](https://github.com/GoogleChrome/puppeteer).
+data extractions on any website and was built on top of [puppeteer](https://github.com/GoogleChrome/puppeteer).
 
 **Using APPNAME you can do both:**
  - Automize website interactions like a human
