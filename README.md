@@ -12,7 +12,7 @@ data extractions on any website and was built on top of [puppeteer](https://gith
  
 APPNAME also has an "event listener like" system that turns your browser into a
 bot who knows what to do when the url changes. 
-From now on tt's up to you to configure a friendly bot or a crazy zombie.
+From now on it's up to you to configure a friendly bot or a crazy zombie.
 
 ### JSON configurations
 A configuration is a simple JSON object which has on the highest level URI's as keys.
