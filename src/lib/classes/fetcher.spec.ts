@@ -9,7 +9,7 @@ describe('Fetcher', () => {
 
     //const url = 'https://github.com/BernhardBezdek';
     // load the html mockfile instead
-    const url = 'file://' + realpathSync(__dirname + '/../../mock/gitHubPage.htm');
+    const url = 'file://' + realpathSync(__dirname + '"/../../../mocks/gitHubPage.htm');
 
 
     const fetchJobs = {

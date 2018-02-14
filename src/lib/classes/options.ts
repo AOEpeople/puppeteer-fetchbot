@@ -3,31 +3,28 @@ import {OptionsInterface} from "../interfaces/options";
 export class Options implements OptionsInterface {
 
     headless: boolean;
-    wait: number;
     trust: boolean;
     width: number;
     height: number;
     debug: boolean;
-    slowMotion: number;
+    slowmo: number;
 
     constructor(options) {
         this.headless = options.headless === true;
-        this.wait = options.wait || 0;
         this.trust = options.trust === true;
         this.width = (typeof options.width === 'number') ? options.width : 800;
         this.height = (typeof options.height === 'number') ? options.height : 600;
-        this.slowMotion = (typeof options.slowMotion === 'number') ? options.slowMotion : 0;
+        this.slowmo = (typeof options.slowmo === 'number') ? options.slowmo : 0;
         this.debug = options.debug === true;
     }
 
     public getAll(): OptionsInterface {
         return {
             headless: this.headless,
-            wait: this.wait,
             trust: this.trust,
             width: this.width,
             height: this.height,
-            slowMotion: this.slowMotion,
+            slowmo: this.slowmo,
             debug: this.debug
         };
     }

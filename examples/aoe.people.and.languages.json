@@ -1,6 +1,7 @@
 {
   "https://www.google.com/ncr": {
     "root": true,
+    "waitFor":[[5000]],
     "type": [
       [
         "#lst-ib",
@@ -25,23 +26,19 @@
     "type": [
       [
         "input[type='text']",
-        "Hi I`m APPNAME."
-      ],
-      [
-        "input[type='text']",
-        "..and I interact with this website"
+        "Hello dude..."
       ]
     ],
     "waitFor": [
       [
-        10000
+        1500
       ]
     ],
     "click": "#js-pjax-container > div > header > div > nav > a:nth-child(2)"
   },
   "https://github.com/orgs/AOEpeople/people": {
     "fetch": {
-      ".member-info AS employees": []
+      ".member-info > a AS employees": []
     }
   }
 }

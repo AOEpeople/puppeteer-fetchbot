@@ -6,13 +6,28 @@ import {isCallWithArgs} from "../helpers/is-called-with-args";
 import {isCallNoArgs} from "../helpers/is-called-no-args";
 import {isFetchJobCmd} from "../helpers/is-fetch-job-cmd";
 import {Fetcher} from "./fetcher";
+import {OptionsInterface} from "../interfaces/options";
+import {readFileSync} from "fs";
 
 export class Bot extends OperationalPage {
 
+    public tour: Object;
+
     private fetchedData = {};
 
-    constructor(public tour = {}, protected options: Options) {
-        super(options);
+    constructor(tour: Object | string, protected userOptions: OptionsInterface) {
+
+        super(userOptions);
+
+        if (typeof tour === 'string') {
+            try {
+                this.tour = JSON.parse(readFileSync(tour, 'utf-8'));
+            } catch (error) {
+                throw new Error('Cannot read tour file (Does it exist or is it valid JSON?)')
+            }
+        } else {
+            this.tour = tour;
+        }
     }
 
     public async run() {
@@ -27,7 +42,7 @@ export class Bot extends OperationalPage {
         }
 
 
-       // let page = await this.getPageInstance();
+        // let page = await this.getPageInstance();
 
         completed = await this.exit();
 

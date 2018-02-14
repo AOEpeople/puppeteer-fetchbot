@@ -4,9 +4,9 @@ import {realpathSync} from "fs";
 import {Options} from "./options";
 
 describe('Bot', () => {
-    const fakeUrl = 'file://' + realpathSync(__dirname + '/../../mock/gitHubPage.htm');
-    const targetUrl = 'file://' + realpathSync(__dirname + '/../../mock/link-target.html');
-    const options = new Options({headless: true});
+    const fakeUrl = 'file://' + realpathSync(__dirname + '"/../../../mocks/gitHubPage.htm');
+    const targetUrl = 'file://' + realpathSync(__dirname + '"/../../../mocks/link-target.html');
+    const options = {headless: true};
     const expectedData = {
         booleanExample: true,
         stringExample: '@AOEpeople',
@@ -25,7 +25,7 @@ describe('Bot', () => {
 
 
     it('Should open the mock page, fill the input, click the logo and navigate to target page where content is verified', async () => {
-
+        //unit-test.via.config-file.json
         let bot,
             data,
             delay = 100;
@@ -59,7 +59,6 @@ describe('Bot', () => {
 
     }).timeout(5000);
 
-
     it('Should fetch a set of data', async () => {
 
         tour = {};
@@ -83,7 +82,6 @@ describe('Bot', () => {
         expect(data).to.deep.equal(expectedData);
 
     }).timeout(50000);
-
 
     it('Should resolve all root tours and finally have an empty tour list', async () => {
 
@@ -109,6 +107,30 @@ describe('Bot', () => {
         await bot.run();
 
         expect(Object.keys(tour).length).to.equal(0);
+
+    }).timeout(5000);
+
+    it('Should load an existing config via file (from examples folder)', async () => {
+        //TODO This tests isn't working in headless mode
+        let bot = new Bot(realpathSync(__dirname + '/../../../examples/tour-via-file-for-tests.json'), options);
+
+        let result = await bot.run();
+
+        // TODO This test isn't working in headless mode because "chrome://credits/" is served as blank page
+        // expect(result['links'] instanceof Array).to.equal(true);
+        // expect(result['links'].length).to.be.greaterThan(0);
+        expect(Object.keys(result).length).to.equal(0);
+
+    }).timeout(5000);
+
+    it('Should fail when loading a not existing config file', async () => {
+
+        try {
+            new Bot('this-file-does-not-exist.json', options);
+        } catch (error) {
+            expect(error.message).to.equal('Cannot read tour file (Does it exist or is it valid JSON?)');
+        }
+
 
     }).timeout(5000);
 });
