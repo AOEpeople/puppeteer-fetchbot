@@ -1,0 +1,9 @@
+{
+  "chrome://credits/": {
+    "root": true,
+    "waitFor": 1000,
+    "fetch": {
+      "a as links": []
+    }
+  }
+}

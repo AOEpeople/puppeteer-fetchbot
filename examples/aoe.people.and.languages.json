@@ -1,0 +1,44 @@
+{
+  "https://www.google.com/ncr": {
+    "root": true,
+    "waitFor":[[5000]],
+    "type": [
+      [
+        "#lst-ib",
+        "AOE people"
+      ],
+      [
+        "#lst-ib",
+        "\r"
+      ]
+    ]
+  },
+  "https://www.google.com/search": {
+    "fetch": {
+      "cite as links": ""
+    },
+    "click": "#rso > div > div > div:nth-child(1) > div > div > h3 > a"
+  },
+  "https://github.com/AOEpeople": {
+    "fetch": {
+      "a.no-wrap.text-gray.d-inline-block.muted-link AS sharedKnowledgeLanguages": []
+    },
+    "type": [
+      [
+        "input[type='text']",
+        "Hello dude..."
+      ]
+    ],
+    "waitFor": [
+      [
+        1500
+      ]
+    ],
+    "click": "#js-pjax-container > div > header > div > nav > a:nth-child(2)"
+  },
+  "https://github.com/orgs/AOEpeople/people": {
+    "fetch": {
+      ".member-info > a AS employees": []
+    }
+  }
+}
