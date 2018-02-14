@@ -5,7 +5,7 @@
   "engines" : { "node" : ">=6.0.0" },
   "main": "dist/index.js",
   "author": "Bernhard Behrendt <bernhard.behrendt@aoe.com>",
-  "license": "GPLv3.0",
+  "license": "GPL-3.0./bi ",
   "bin": {
     "appname": "bin/appname"
   },
