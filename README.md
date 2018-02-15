@@ -1,4 +1,4 @@
-# FetchBot 1.1.10
+# FetchBot 1.1.10-alpha
 
 <img src="https://i.imgur.com/ntm3aNU.png" alt="FetchBot" width="200" align="center"/>
 
@@ -16,7 +16,19 @@ From now on it's up to you to configure a friendly bot or a crazy zombie.
 
 ## Installation
 
-🔥️ **There are heavy issues on Linux (Debian & Ubuntu) yet im trying to fix**
+**FetchBot is not running on ARM architectures**
+
+
+Ensure dependencies below are installed on Debian/Ubuntu systems
+
+    apt-get install gconf-service libasound2 libatk1.0-0 libc6 libcairo2 libcups2 libdbus-1-3 libexpat1 libfontconfig1 libgcc1 libgconf-2-4 libgdk-pixbuf2.0-0 libglib2.0-0 libgtk-3-0 libnspr4 libpango-1.0-0 libpangocairo-1.0-0 libstdc++6 libx11-6 libx11-xcb1 libxcb1 libxcomposite1 libxcursor1 libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 libxtst6 ca-certificates fonts-liberation libappindicator1 libnss3 lsb-release xdg-utils wget    
+
+For other operating systems have a look in the 
+[troubleshooting section](https://github.com/GoogleChrome/puppeteer/blob/master/docs/troubleshooting.md) for puppeteer 
+related problems.
+
+
+**For other problems leave an issue here.**
 
 ### Use as library in your own project
 
@@ -41,13 +53,14 @@ From here on there are unlimited possibilities and a list of nice use cases will
     
 #### Pass options via command line 
 
+It's important to keep in mind that on systems without a GUI, fetchbot must run always with option headless enabled
 An entire list of all command line options (some more than in the options object) can be obtained via
 
     $ fetchbot --help
    
 > Command line input example
 
-    $ fetchbot --job=./examples/aoe.people.and.languages.json --slowmo=25 --output=a-json-file.json --debug
+    $ fetchbot --job=./examples/aoe.people.and.languages.json --slowmo=250 --output=a-json-file.json --headless --debug
 
 ## Job configuration (JSON)
 A configuration is a simple JSON object which has on the highest level URI's as keys.
