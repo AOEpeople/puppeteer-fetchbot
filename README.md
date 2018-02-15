@@ -60,10 +60,10 @@ An entire list of all command line options (some more than in the options object
    
 > Command line input example
 
-    $ fetchbot --job=./examples/aoe.people.and.languages.json --slowmo=250 --output=a-json-file.json --headless --debug
+    $ fetchbot --job=./path/to/job/file.json --slowmo=250 --output=a-json-file.json --headless --debug
 
 ## Job configuration (JSON)
-A configuration is a simple JSON object which has on the highest level URI's as keys.
+A job configuration is a simple JSON object which has on the highest level URI's as keys.
 > Example the configurations highest level
 
     {
@@ -71,11 +71,14 @@ A configuration is a simple JSON object which has on the highest level URI's as 
     }
 
 Each key accept two types of values `object` and `array`.
-The Array accepts multiple FetchBot objects (**root** and **stopover** objects).
+The Array accepts multiple FetchBot objects:
+
+- **root** Objects
+- **stopover** Objects
 
 ### Root objects
 
-The root level url forces the FetchBot runner to open the page in a new browser tab. It's allowed to have multiple root 
+The root level url forces FetchBot to to open the page url immediately. It's allowed to have multiple root 
 objects inside a single configuration. Once all root configuration urls have been visited the FetchBot job is finished and
 fetched data is returned (see **Data Fetching**).
 
@@ -175,22 +178,6 @@ There are three ways yet how page-commands can be called.
 
 A complete list whats possible on a page is yet only available in the puppeteer documentation at 
 [Page API Chapter](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#class-page).
-
-#### Examples: 
-
-> Write into text input
-
-    {"type":[["input#username", "foo"]]}
-    
-> Write into multiple inputs and press return key to submit form
-    
-    {
-        "type":[
-            ["input#username", "foo"],
-            ["input#password", "password"],
-            ["input#password", "\n"],       // Means to press enter/return key and submit the form
-        ]
-    }
     
 ### Data Fetching aka. "Crawling"
 
