@@ -14,7 +14,42 @@ FetchBot also has an "event listener like" system that turns your browser into a
 bot who knows what to do when the url changes. 
 From now on it's up to you to configure a friendly bot or a crazy zombie.
 
-### JSON configurations
+## Installation
+
+🔥️ **There are heavy issues on Linux (Debian & Ubuntu) yet im trying to fix**
+
+### Use as library in your own project
+
+To get the most out of FetchBot it can be also integrated into a software project as a 3rd party library.
+From here on there are unlimited possibilities and a list of nice use cases will follow soon.
+
+     $ cd /my/existing/project/
+     $ npm install fetchbot
+     
+     $ cd /my/existing/project/
+     $ yarn add fetchbot 
+     
+### Use as global command
+
+**NOTICE:** 
+**Do not install globally via yarn because linking is not working there**
+
+    $ sudo npm install -g fetchbot --unsafe-perm=true
+      
+    # --unsafe-perm=true is required yet due to global install issues in puppeteer
+    # https://github.com/GoogleChrome/puppeteer/issues/375#issuecomment-363466257
+    
+#### Pass options via command line 
+
+An entire list of all command line options (some more than in the options object) can be obtained via
+
+    $ fetchbot --help
+   
+> Command line input example
+
+    $ fetchbot --job=./examples/aoe.people.and.languages.json --slowmo=25 --output=a-json-file.json
+
+## Job configuration (JSON)
 A configuration is a simple JSON object which has on the highest level URI's as keys.
 > Example the configurations highest level
 
@@ -25,7 +60,7 @@ A configuration is a simple JSON object which has on the highest level URI's as 
 Each key accept two types of values `object` and `array`.
 The Array accepts multiple FetchBot objects (**root** and **stopover** objects).
 
-#### Root objects
+### Root objects
 
 The root level url forces the FetchBot runner to open the page in a new browser tab. It's allowed to have multiple root 
 objects inside a single configuration. Once all root configuration urls have been visited the FetchBot job is finished and
@@ -39,7 +74,7 @@ fetched data is returned (see **Data Fetching**).
         }
      }
      
-#### Stopover objects
+### Stopover objects
 
 Stopover objects do **not** have the root property. These objects behave different and can be understood a bit like
 event listeners. Once the browser changes the url and the opened url matches a stopover url ist's configuration gets 
@@ -54,7 +89,7 @@ page the object gets immediately removed from FetchBot job list.
         }
     } 
 
-#### Command types for interaction
+### Command types for interaction
 
 There are three ways yet how page-commands can be called.
 
@@ -64,7 +99,7 @@ There are three ways yet how page-commands can be called.
 
 **Note:** Any single argument action can also been called using the multiple argument action
 
-##### No argument action
+#### No argument action
 
 > Syntax
 
@@ -72,14 +107,14 @@ There are three ways yet how page-commands can be called.
         "reload":null  // page.reload()
     }
 
-##### Single argument action
+#### Single argument action
 > Syntax
 
     {
         "click":"#myButton"  // page.click("#myButton")
     }
 
-##### Multiple arguments action
+#### Multiple arguments action
 > Syntax
 
     {
@@ -89,7 +124,7 @@ There are three ways yet how page-commands can be called.
     }
     
     
-#### And now it's time to start interaction with a website
+### And now it's time to start interaction with a website
 > Syntax
 
     {
@@ -128,10 +163,7 @@ There are three ways yet how page-commands can be called.
 A complete list whats possible on a page is yet only available in the puppeteer documentation at 
 [Page API Chapter](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#class-page).
 
-
-    
-
-###### Examples: 
+#### Examples: 
 
 > Write into text input
 
@@ -147,7 +179,7 @@ A complete list whats possible on a page is yet only available in the puppeteer 
         ]
     }
     
-#### Data Fetching aka. "Crawling"
+### Data Fetching aka. "Crawling"
 
 For data fetching there is a `fetch` API that simplifies puppeteers evaluation interface.
 The `fetch` API provides declarative support to four different data types:
@@ -203,31 +235,6 @@ keyword.
             87,
         ]
     }    
-        
-### Command line usage
-FetchBot can be installed as a command line tool (global).
-
-**NOTICE:** 
-**Do not install globally via yarn because linking is not working there**
-
-    $ sudo npm install -g fetchbot --unsafe-perm=true
-      
-      # --unsafe-perm=true is required due to global install issues in puppeteer
-      # https://github.com/GoogleChrome/puppeteer/issues/375#issuecomment-363466257
-      
-   
-### Use as library in your own project
-
-To get the most out of FetchBot it can be also integrated into a software project as a 3rd party library.
-From here on there are unlimited possibilities and a list of nice use cases will follow soon.
-
-
-     $ cd /my/existing/project/
-     $ npm install fetchbot
-     
-     $ cd /my/existing/project/
-     $ yarn add fetchbot 
-     
    
  
 > Boilerplate (plain JS)
@@ -253,8 +260,12 @@ All these options can be passed via command line too.
 > To get a complete list whats possible via commandline just type
 
     $ fetchbot --help
+ 
+ or in a local installation
+ 
+    $ ./node_modules/.bin/fetchbot --help
 
-#### Options object
+#### Options params
     
         headless: boolean | default=false   Specifies if the browser window is shown or not
         trust: boolean    | default=false   Open unsecure https pages without a warning 
@@ -262,17 +273,7 @@ All these options can be passed via command line too.
         height: number    | default=600     The Browser and Viewport height
         slowmo:number     | default=0       Slowes down the execution in milliseconds
         debug: boolean    | default=false   Determine if debug/logging messages are shown 
-        
-#### Pass options via command line 
-
-An entire list of all command line options (some more than in the options object) can be optained via
-
-    $ FetchBot --help
-   
-> Command line input
-
-    $ fetchbot --job=./examples/aoe.people.and.languages.json --slowmo=25
-    
+            
 ### Conclusion
 
 FetchBot has been introduced to speed up the development process as a frontend engineer by stepping automatically over
