@@ -47,7 +47,7 @@ An entire list of all command line options (some more than in the options object
    
 > Command line input example
 
-    $ fetchbot --job=./examples/aoe.people.and.languages.json --slowmo=25 --output=a-json-file.json
+    $ fetchbot --job=./examples/aoe.people.and.languages.json --slowmo=25 --output=a-json-file.json --debug
 
 ## Job configuration (JSON)
 A configuration is a simple JSON object which has on the highest level URI's as keys.
