@@ -237,7 +237,7 @@ keyword.
     }    
    
  
-> Boilerplate (plain JS)
+### Boilerplate (plain JS)
 
     var FetchBot = require('fetchbot'),
     
