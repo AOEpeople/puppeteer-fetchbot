@@ -24,7 +24,8 @@ export class ProvisionedBrowser {
                 headless: this.options.getRunMode(),
                 ignoreHTTPSErrors: this.options.ignoreHttpErrors(),
                 slowMo: this.options.slowmo || 0,
-                args: [`--window-size=${this.options.getDimensions().width},${this.options.getDimensions().height}`]
+                timeout: 0,
+                args: [`--window-size=${this.options.getDimensions().width},${this.options.getDimensions().height}`, '--no-sandbox', '--disable-setuid-sandbox']
             });
         }
 

@@ -37,7 +37,7 @@ export class Bot extends OperationalPage {
             await this._batchTasks(this._getTasks(true), true);
         } catch (error) {
             if (this.options.debug === true) {
-                console.log(error.message);
+                console.log(error);
             }
         }
 

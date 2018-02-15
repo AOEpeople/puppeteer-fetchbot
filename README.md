@@ -1,16 +1,16 @@
-# Appname
+# FetchBot 1.0.1
 
-<img src="https://i.imgur.com/PnxAzGH.png" alt="APPNAME" width="200" align="center"/>
+<img src="https://i.imgur.com/ntm3aNU.png" alt="FetchBot" width="200" align="center"/>
 
 ## About
-APPNAME is a library and shell command that provides a simple JSON-API to perform human like interactions and 
+FetchBot is a library and shell command that provides a simple JSON-API to perform human like interactions and 
 data extractions on any website and was built on top of [puppeteer](https://github.com/GoogleChrome/puppeteer).
 
-**Using APPNAME you can do both:**
+**Using FetchBot you can do both:**
  - Automize website interactions like a human
  - Treat website(s) like an API and use fetched data in your own application.
  
-APPNAME also has an "event listener like" system that turns your browser into a
+FetchBot also has an "event listener like" system that turns your browser into a
 bot who knows what to do when the url changes. 
 From now on it's up to you to configure a friendly bot or a crazy zombie.
 
@@ -23,12 +23,12 @@ A configuration is a simple JSON object which has on the highest level URI's as 
     }
 
 Each key accept two types of values `object` and `array`.
-The Array accepts multiple APPNAME objects (**root** and **stopover** objects).
+The Array accepts multiple FetchBot objects (**root** and **stopover** objects).
 
 #### Root objects
 
-The root level url forces the APPNAME-runner to open the page in a new browser tab. It's allowed to have multiple root 
-objects inside a single configuration. Once all root configuration urls have been visited the APPNAMEtour is finished and
+The root level url forces the FetchBot runner to open the page in a new browser tab. It's allowed to have multiple root 
+objects inside a single configuration. Once all root configuration urls have been visited the FetchBot job is finished and
 fetched data is returned (see **Data Fetching**).
 
 >Example
@@ -44,7 +44,7 @@ fetched data is returned (see **Data Fetching**).
 Stopover objects do **not** have the root property. These objects behave different and can be understood a bit like
 event listeners. Once the browser changes the url and the opened url matches a stopover url ist's configuration gets 
 applied (e.g. by a form submission on a root page or a clicked link). Once a configuration has been applied to an open
-page the object gets immediately removed from APPNAMElist.
+page the object gets immediately removed from FetchBot job list.
  
 > Syntax
 
@@ -56,7 +56,7 @@ page the object gets immediately removed from APPNAMElist.
 
 #### Command types for interaction
 
-There are three ways yet how a page-commands can be called.
+There are three ways yet how page-commands can be called.
 
 - Without a parameter (No argument action)
 - With a single argument (Single argument action)
@@ -100,7 +100,7 @@ There are three ways yet how a page-commands can be called.
             "type": [
               [
                 "input[type='text']",
-                "Hi I`m APPNAME."
+                "Hi I`m FetchBot."
               ],
               
               [
@@ -205,30 +205,42 @@ keyword.
     }    
         
 ### Command line usage
-APPNAME can be installed as a command line tool.
+FetchBot can be installed as a command line tool (global).
 
-    $ npm install -g APPNAME or yarn global add APPNAME
+**NOTICE:** 
+**Do not install globally via yarn because linking is not working there**
+
+    $ sudo npm install -g fetchbot --unsafe-perm=true
+      
+      # --unsafe-perm=true is required due to global install issues in puppeteer
+      # https://github.com/GoogleChrome/puppeteer/issues/375#issuecomment-363466257
+      
    
 ### Use as library in your own project
 
-To get the most out of APPNAME it can be also integrated into a software project as a 3rd party library.
-From here on there are unlimited possibilities and a list of nice use cases wil follow soon.
+To get the most out of FetchBot it can be also integrated into a software project as a 3rd party library.
+From here on there are unlimited possibilities and a list of nice use cases will follow soon.
 
 
      $ cd /my/existing/project/
-     $ npm install APPNAME or yarn add APPNAME
+     $ npm install fetchbot
+     
+     $ cd /my/existing/project/
+     $ yarn add fetchbot 
+     
+   
  
 > Boilerplate (plain JS)
 
-    var APPNAME = require('APPNAME'),
+    var FetchBot = require('fetchbot'),
     
-        // Create an APPNAME instance whre entire config is passed in
-        appname = new APPNAME({"https://google.com": {root: true, waitFor: [[10000]]}}, {headles: false});
+        // Create an FetchBot instance whre entire config is passed in
+        myFetchBot = new FetchBot({"https://google.com": {root: true, waitFor: [[10000]]}}, {headles: false});
     
-        // Or alternatively create an instance which tells APPNAME to load a JSON file as config
-        appname = new APPNAME('./path/to/my/config.json', {headles: false});
+        // Or alternatively create an instance which tells FetchBot to load a JSON file as config
+        myFetchBot = new FetchBot('./path/to/my/config.json', {headles: false});
     
-        appname
+        myFetchBot
             .run()
             .then(function (result) {
                 console.log('Completed');
@@ -240,7 +252,7 @@ All these options can be passed via command line too.
 
 > To get a complete list whats possible via commandline just type
 
-    $ APPNAME --help
+    $ fetchbot --help
 
 #### Options object
     
@@ -255,21 +267,21 @@ All these options can be passed via command line too.
 
 An entire list of all command line options (some more than in the options object) can be optained via
 
-    $ APPNAME --help
+    $ FetchBot --help
    
 > Command line input
 
-    $ APPNAME --job=./examples/aoe.people.and.languages.json --slowmo=25
+    $ fetchbot --job=./examples/aoe.people.and.languages.json --slowmo=25
     
 ### Conclusion
 
-APPNAME has been introduced to speed up the development process as a frontend engineer by stepping automatically over
+FetchBot has been introduced to speed up the development process as a frontend engineer by stepping automatically over
 pages which are not part of the current user story. But during development more and more use cases were found and it
-made a lot of fun building "batch like" JSON files that turned the browser into a bot. APPNAME was written in [TypeScript](https://www.typescriptlang.org/) and is transpiled via npm/yarn run build. 
+made a lot of fun building "batch like" JSON files that turned the browser into a bot. FetchBot was written in [TypeScript](https://www.typescriptlang.org/) and is transpiled in build run. 
 It's normally automatically built during installation. 
 
-Now it's time to thank all the people who had an open ear and a different perspective then myself and yeah all in all made APPNAME
-much better. 
+Now it's time to thank all the people who had an open ear and a different perspective than myself and yeah all in all
+made FetchBot much better. 
 
 
 

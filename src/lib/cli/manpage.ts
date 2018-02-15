@@ -9,9 +9,8 @@ export function manPage() {
             raw: true
         },
         {
-            header: 'AutoBot',
-            content: 'Library and shell-command that provides a simple JSON-API to perform human like interactions and \n' +
-                     'data extractions on any website. Built on top of pupeteerr'
+            header: 'FetchBot',
+            content: 'Library and shell-command that provides a simple JSON-API to perform human like interactions and data extractions on any website. Built on top of pupeteerr'
         },
         {
             header: 'Options',
@@ -74,9 +73,9 @@ export function manPage() {
                     description: 'Show the help page'
                 },
             ]
+        },
+        {
+            content: 'Project home: [underline]{https://github.com/AOEpeople/puppeteer-fetchbot}'
         }
-       // {
-           // content: 'Project home: [underline]{https://github.com/aoepeople/APPNAME}'
-      //  }
     ]
 }

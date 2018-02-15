@@ -16,7 +16,7 @@ if (options.help === true) {
 }
 
 if (!existsSync(options.job)) {
-    throw new Error('No job file specified');
+    throw new Error('No job file specified (' + options.job + ')');
 }
 
 try {
@@ -27,7 +27,7 @@ try {
 
 let bot = new Bot(job, options);
 
-console.log('🚀  autobot launches...');
+console.log('🚀  FetchBot is launching...');
 console.log('🕘  Please wait a moment...');
 
 

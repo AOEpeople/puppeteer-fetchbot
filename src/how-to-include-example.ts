@@ -15,6 +15,6 @@ bot
     .then((result) => {
         
         // Now the browser instance was closed and
-        // the data grabbed during APPNAMEing gets available
+        //the data grabbed during fetchbot's working process gets available
         console.log(JSON.stringify(result, null, '\t'));
     });
