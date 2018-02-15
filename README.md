@@ -1,4 +1,4 @@
-# FetchBot 1.1.9
+# FetchBot 1.1.10
 
 <img src="https://i.imgur.com/ntm3aNU.png" alt="FetchBot" width="200" align="center"/>
 
