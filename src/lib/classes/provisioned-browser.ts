@@ -25,7 +25,7 @@ export class ProvisionedBrowser {
                 ignoreHTTPSErrors: this.options.ignoreHttpErrors(),
                 slowMo: this.options.slowmo || 0,
                 timeout: 0,
-                args: [`--window-size=${this.options.getDimensions().width},${this.options.getDimensions().height}`, '--no-sandbox', '--disable-setuid-sandbox']
+                args: ['--window-position=0,0', `--window-size=${this.options.getDimensions().width},${this.options.getDimensions().height}`, '--no-sandbox', '--disable-setuid-sandbox']
             });
         }
 

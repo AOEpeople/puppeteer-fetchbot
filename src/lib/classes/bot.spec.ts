@@ -47,15 +47,24 @@ describe('Bot', () => {
                 [delay]
             ],
             fetch: {
-                '#linkTargetResolved as completed': false
+                '#linkTargetResolved as completed': false,
+                '#linkTargetResolved as attributeIsWorking': {'attr': 'align', 'type': ''},
+                '#linkTargetResolved as attributeAlignExists': {'attr': 'align', 'type': false},
+                '#linkTargetResolved as dataTestIsWorking': {'attr': 'data-test', 'type': ''},
+                'h2.xyz as collectedIds': {'attr': 'id', 'type': null},
+                'h2.xyz as collectedClassNames': {'attr': 'class', 'type': []}
             }
         };
 
         bot = new Bot(tour, options);
         data = await bot.run();
 
-
-        expect(data['completed']).to.deep.equal(true);
+        expect(data['completed']).to.equal(true);
+        expect(data['attributeIsWorking']).to.equal('yes');
+        expect(data['attributeAlignExists']).to.equal(true);
+        expect(data['collectedIds']).to.deep.equal([123, 456]);
+        expect(data['collectedClassNames']).to.deep.equal(['xyz', 'xyz']);
+        expect(data['dataTestIsWorking']).to.equal('working');
 
     }).timeout(5000);
 

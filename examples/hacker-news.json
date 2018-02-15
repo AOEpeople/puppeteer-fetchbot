@@ -1,0 +1,13 @@
+{
+  "https://news.ycombinator.com/": {
+    "root": true,
+    "fetch": {
+      "tr.athing > td[align=\"right\"] > span.rank as rank": null,
+      "tr.athing > td.title > a as headline": [],
+      "tr.athing > td.title > a as link": {
+        "type": [],
+        "attr": "href"
+      }
+    }
+  }
+}

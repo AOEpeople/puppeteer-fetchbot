@@ -55,37 +55,81 @@ export class Fetcher {
             };
 
 
-            let data = {};
             const DOM = document.body;
 
+            let domAttrName: string,
+                isDataSet: boolean = false,
+                data = {};
 
             for (const originSelector of Object.keys(fetchItems)) {
 
                 const mapping = getSelectorAndPropertyName(originSelector);
 
                 data[mapping.property] = fetchItems[originSelector];
+                domAttrName = 'textContent';
 
-                if (data[mapping.property] instanceof Array) {
-                    const nodeList: any /*NodeList*/ = DOM.querySelectorAll(mapping.selector);
-                    nodeList.forEach((node: any /*ChildNode*/) => {
-                        data[mapping.property].push(node.textContent.trim());
-                    });
-                } else if (typeof data[mapping.property] === 'string') {
-                    const node: any /*ChildNode*/ = DOM.querySelector(mapping.selector);
-                    data[mapping.property] = node.textContent.trim();
-                } else if (typeof data[mapping.property] === 'number') {
-                    const node: any /*ChildNode*/ = DOM.querySelector(mapping.selector);
-                    data[mapping.property] = parseInt(node.textContent, 10);
-                } else if (data[mapping.property] === null) {
-                    const nodeList: any /*NodeList*/ = DOM.querySelectorAll(mapping.selector);
-                    data[mapping.property] = [];
-                    nodeList.forEach((node: any /*ChildNode*/) => {
-                        data[mapping.property].push(parseInt(node.textContent, 10));
-                    });
-                } else if (data[mapping.property] === false) {
-                    const node: any /*ChildNode */ = DOM.querySelector(mapping.selector);
+                console.log(data[mapping.property]);
 
-                    data[mapping.property] = (node !== null);
+                if (data[mapping.property] !== null && typeof data[mapping.property] === 'object' && !!data[mapping.property].attr) {
+
+                    isDataSet = data[mapping.property].attr.match(/^data-/) !== null;
+
+                    domAttrName = data[mapping.property].attr || domAttrName;
+
+                    domAttrName = (isDataSet) ? domAttrName.replace(/^data-/, '') : domAttrName;
+                    domAttrName = (domAttrName === 'class') ? 'className' : domAttrName;
+
+
+                    data[mapping.property] = (data[mapping.property].type !== false) ? data[mapping.property].type : false;
+
+
+                }
+                // TODO create a new function to grab the requested data and less complex
+
+                if (DOM.querySelector(mapping.selector) !== null) {
+
+                    if (data[mapping.property] instanceof Array) {
+                        const nodeList: any /*NodeList*/ = DOM.querySelectorAll(mapping.selector);
+                        nodeList.forEach((node: any /*ChildNode*/) => {
+                            if (!isDataSet) {
+                                data[mapping.property].push((node[domAttrName] + '').trim());
+                            } else {
+                                data[mapping.property].push((node.dataset[domAttrName] + '').trim());
+                            }
+                        });
+                    } else if (typeof data[mapping.property] === 'string') {
+                        const node: any /*ChildNode*/ = DOM.querySelector(mapping.selector);
+                        if (!isDataSet) {
+                            data[mapping.property] = (node[domAttrName] + '').trim();
+                        } else {
+                            data[mapping.property] = (node.dataset[domAttrName] + '').trim();
+                        }
+                    } else if (typeof data[mapping.property] === 'number') {
+                        const node: any /*ChildNode*/ = DOM.querySelector(mapping.selector);
+                        if (!isDataSet) {
+                            data[mapping.property] = parseInt(node[domAttrName], 10);
+                        } else {
+                            data[mapping.property] = parseInt(node.dataset[domAttrName], 10);
+                        }
+                    } else if (data[mapping.property] === null) {
+                        const nodeList: any /*NodeList*/ = DOM.querySelectorAll(mapping.selector);
+                        data[mapping.property] = [];
+                        nodeList.forEach((node: any /*ChildNode*/) => {
+                            if (!isDataSet) {
+                                data[mapping.property].push(parseInt(node[domAttrName], 10));
+                            } else {
+                                data[mapping.property].push(parseInt(node.dataset[domAttrName], 10));
+                            }
+                        });
+                    } else if (data[mapping.property] === false) {
+                        const node: any /*ChildNode */ = DOM.querySelector(mapping.selector);
+
+                        if (!isDataSet) {
+                            data[mapping.property] = !!node[domAttrName];
+                        } else {
+                            data[mapping.property] = !!node.dataset[domAttrName];
+                        }
+                    }
                 }
             }
 

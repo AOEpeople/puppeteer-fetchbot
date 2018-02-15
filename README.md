@@ -1,4 +1,4 @@
-# FetchBot 1.1.10-alpha
+# FetchBot 1.2.0-alpha
 
 <img src="https://i.imgur.com/ntm3aNU.png" alt="FetchBot" width="200" align="center"/>
 
@@ -189,9 +189,16 @@ The `fetch` API provides declarative support to four different data types:
 - `String`
 - `Array of String(s)` 
 - `Array of Numbers(s)`
+- `Objects containing an additional attribute matching `
 
 And of course it's possible to map meaningful property names to selectors using the `AS` or `as`
 keyword.
+
+Fetching the `textContent` attribute is the default behavior but it's possible as well to access any other
+attribute. Then write instead of the defined data type an object containing a configuration of `type` and `attr`.
+`type` is the data type as previously explained and attr is the attribute to fetch.
+
+
 
 > Fetch syntax
 
@@ -212,9 +219,13 @@ keyword.
             },
             {
                 "#myFifthSelector AS likes": null        // selector matches textContents are parsed to number 
+            },
+            {
+                "#mySixthelector AS links": {"attr":"href", "type": "ONE_OF_THE_PREVIOUS_FIVE_TYPES" }  // false, 0, "", [], null     
             }
         }
     }
+        
     
 **The configuration above results in an object like in the example below**
     
@@ -233,9 +244,58 @@ keyword.
             132,
             2,
             87,
+        ],
+        "links":[
+            "http://www.foo.bar",
+            "http://www.bar.foo",
+            "http://www.baz.bar",
         ]
     }    
-   
+    
+> Syntax for element attributes
+
+    fetch: {
+        '#linkTargetResolved as completed': false,
+        '#linkTargetResolved as attributeIsWorking': {'attr': 'align', 'type': ''},
+        '#linkTargetResolved as attributeAlignExists': {'attr': 'align', 'type': false},
+        '#linkTargetResolved as dataTestIsWorking': {'attr': 'data-test', 'type': ''},
+        'h2.xyz as collectedIds': {'attr': 'id', 'type': null},
+        'h2.xyz as collectedClassNames': {'attr': 'class', 'type': []}
+    }
+    
+> Results in
+       
+       { 
+            completed: true,
+            attributeIsWorking: 'yes',
+            attributeAlignExists: true,
+            dataTestIsWorking: 'working',
+            collectedIds: [ 123, 456 ],
+            collectedClassNames: [ 'xyz', 'xyz' ]
+       }
+ 
+ ### Options
+ Many options can be applied directly via passed configuration object to control browser and page behavior.
+ All these options can be passed via command line too. 
+ 
+ > To get a complete list whats possible via commandline just type
+ 
+     $ fetchbot --help
+  
+  or in a local installation
+  
+     $ ./node_modules/.bin/fetchbot --help
+ 
+ #### Options params
+     
+         headless: boolean | default=false   Specifies if the browser window is shown or not
+         trust: boolean    | default=false   Open unsecure https pages without a warning 
+         width: number     | defautlt=800    The Browser and viewport width
+         height: number    | default=600     The Browser and Viewport height
+         slowmo:number     | default=0       Slowes down the execution in milliseconds
+         debug: boolean    | default=false   Determine if debug/logging messages are shown 
+              
+ ## Examples
  
 ### Boilerplate (plain JS)
 
@@ -252,28 +312,7 @@ keyword.
             .then(function (result) {
                 console.log('Completed');
             });
-        
-### Options
-Many options can be applied directly via passed configuration object to control browser and page behavior.
-All these options can be passed via command line too. 
-
-> To get a complete list whats possible via commandline just type
-
-    $ fetchbot --help
- 
- or in a local installation
- 
-    $ ./node_modules/.bin/fetchbot --help
-
-#### Options params
-    
-        headless: boolean | default=false   Specifies if the browser window is shown or not
-        trust: boolean    | default=false   Open unsecure https pages without a warning 
-        width: number     | defautlt=800    The Browser and viewport width
-        height: number    | default=600     The Browser and Viewport height
-        slowmo:number     | default=0       Slowes down the execution in milliseconds
-        debug: boolean    | default=false   Determine if debug/logging messages are shown 
-            
+         
 ### Conclusion
 
 FetchBot has been introduced to speed up the development process as a frontend engineer by stepping automatically over

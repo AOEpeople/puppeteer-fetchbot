@@ -149,8 +149,9 @@ export class Bot extends OperationalPage {
         let page = await this.getPageInstance();
         let matchingTasks = this._getUrlMatchingTasks(page.url(), this._getTasks(false));
 
-        // Run matching tasks until nothing matches anymore
-        await this._batchTasks(matchingTasks, false);
+        if (matchingTasks.length > 0) {
+            await this._batchTasks(matchingTasks, false);
+        }
 
         if (tasks.length > 0) {
             return await this._batchTasks(tasks, root);
