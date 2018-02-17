@@ -54,7 +54,7 @@ From here on there are unlimited possibilities and a list of nice use cases will
     
 ### Options
 It's important to keep in mind that e.g on linux systems without a GUI (terminal clients), FetchBot must been started
-using the `headless=true` or terminal `--headless` option enabled. Many options can be applied directly via passed 
+using the `headless=true` or in terminal `--headless` option enabled. Many options can be applied directly via passed 
 configuration object to control browser and page behavior. All these options can be passed via command line too.  An
 entire list of all command line options can be obtained via:
  
