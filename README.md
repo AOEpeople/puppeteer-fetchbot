@@ -242,13 +242,13 @@ There are three ways yet how page-commands can be called.
 			]
 		]
 	},
-	
-    "https://www.google.de/search": {
+
+	"https://www.google.de/search": {
 		"fetch": {
 			"h3.r > a AS headlines": [],
 			"h3.r > a AS links": {
-			  "attr":"href",
-			  "type":[]
+				"attr": "href",
+				"type": []
 			}
 		},
 
