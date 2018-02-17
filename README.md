@@ -93,6 +93,8 @@ entire list of all command line options can be obtained via:
      // Or by passing a configuration opject directly
      (async () => {
          const fetchbot = new FetchBot({
+                 
+                 // The job configurations are explained in the next chapters
                  "https://www.aoe.com/en/home.html": {
                      "root": true,
                      "fetch": {
@@ -103,9 +105,16 @@ entire list of all command line options can be obtained via:
                      }
                  }
              },
+             
+             // The options object is here
              {
-                 headless: true
-             });
+                 headless: true,
+                 slowmo:250,
+                 width:1280,
+                 height:1024,
+                 trust:true
+             }
+         );
      
          fetchBotData = await fetchbot.run();
      })();
