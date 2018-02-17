@@ -226,38 +226,33 @@ There are three ways yet how page-commands can be called.
 > Job syntax
 ```json
 {
-	"https://google.com": {
-
-		"root": true,
-
-		"type": [
-			[
-				"input[type=\"text\"]",
-				"puppeteer-fetchbot aoepeople"
-			],
-
-			[
-				"input[type=\"text\"]",
-				"\n"
-			]
-		]
-	},
-
-	"https://www.google.de/search": {
-		"fetch": {
-			"h3.r > a AS headlines": [],
-			"h3.r > a AS links": {
-				"attr": "href",
-				"type": []
-			}
-		},
-
-		"waitFor": [
-			[
-				1000
-			]
-		]
-	}
+  "https://google.com": {
+    "root": true,
+    "type": [
+      [
+        "input[type=\"text\"]",
+        "puppeteer-fetchbot aoepeople"
+      ],
+      [
+        "input[type=\"text\"]",
+        "\n"
+      ]
+    ]
+  },
+  "https://www.google.de/search": {
+    "fetch": {
+      "h3.r > a AS headlines": [],
+      "h3.r > a AS links": {
+        "attr": "href",
+        "type": []
+      }
+    },
+    "waitFor": [
+      [
+        1000
+      ]
+    ]
+  }
 }
 ````
 > Results in
