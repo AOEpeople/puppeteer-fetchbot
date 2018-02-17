@@ -91,35 +91,55 @@ const FetchBot = require('fetchbot');
 (async () => {
  const fetchbot = new FetchBot('./path/to/job/file.json', {headless: true});
  fetchBotData = await fetchbot.run();  
+ 
+ console.log(fetchBotData);
 })();
 
 // Or by passing a configuration opject directly
 (async () => {
- const fetchbot = new FetchBot({
-         
-         // The job configurations are explained in the next chapters
-         "https://www.aoe.com/en/home.html": {
-             "root": true,
-             "fetch": {
-                 "img as images": {
-                     "attr": "src",
-                     "type": []
-                 }
-             }
-         }
-     },
-     
-     // The options object is here
-     {
-         headless: true,
-         slowmo:250,
-         width:1280,
-         height:1024,
-         trust:true
-     }
- );
+    const fetchbot = new FetchBot({
+            "https://google.com": {
+                "root": true,
+                "type": [
+                    [
+                        "input[type=\"text\"]",
+                        "puppeteer-fetchbot aoepeople"
+                    ],
+                    [
+                        "input[type=\"text\"]",
+                        "\n"
+                    ]
+                ]
+            },
+            "https://www.google.de/search": {
+                "fetch": {
+                    "h3.r > a AS headlines": [],
+                    "h3.r > a AS links": {
+                        "attr": "href",
+                        "type": []
+                    }
+                },
+                "waitFor": [
+                    [
+                        1000
+                    ]
+                ]
+            }
+        },
 
- fetchBotData = await fetchbot.run();
+        // The options object is here
+        {
+            "headless": true,
+            "slowmo": 250,
+            "width": 1280,
+            "height": 1024,
+            "trust": true
+        }
+    );
+
+    fetchBotData = await
+        fetchbot.run();
+    console.log(fetchBotData);
 })();
 ````  
 
