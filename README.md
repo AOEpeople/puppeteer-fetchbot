@@ -244,7 +244,7 @@ keyword.
 
 Fetching the `textContent` attribute is the default behavior but it's possible as well to access any other
 attribute. Then write instead of the defined data type an object containing a configuration of `type` and `attr`.
-`type` is the data type as previously explained and attr is the attribute to fetch.
+`type` is the data type as previously explained and `attr` is the attribute to fetch.
 
 > Fetch syntax
 ````json
