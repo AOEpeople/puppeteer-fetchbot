@@ -171,11 +171,13 @@ page the object gets immediately removed from FetchBot job list.
 
 ````json
 {
+
+    // set of commands but each command only once
     "https://www.aoe.com/en/solutions.html": {
         "click":"nav.main-menu.ng-scope > ul > li:nth-child(2) > a"
     },
 
-    // Or as an array (set of commands)
+    // Or as an array (set of command groups)
     "https://www.aoe.com/en/products.html": [
         {
             "click":"[data-qa=\"header-navigation-search-icon\"]"
