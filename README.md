@@ -306,7 +306,7 @@ attribute. Then write instead of the defined data type an object containing a co
         "#mySecondSelector AS amount": 0                // selector match textContent is parsed as Number
         "#myThirdSelector AS description": ""           // selector match textContent is stored
         "#myFouthSelector AS pressReleases": []         // selector matches textContents are stored
-        "#myFifthSelector AS likes": null,               // selector matches textContents are parsed to number 
+        "#myFifthSelector AS likes": null,              // selector matches textContents are parsed to number 
         "#mySixthelector AS links": {
             "attr": "href",
             "type": "ONE_OF_THE_PREVIOUS_FIVE_TYPES"
