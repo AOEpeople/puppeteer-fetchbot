@@ -258,16 +258,16 @@ There are three ways yet how page-commands can be called.
 > Results in
 `````json
 {
-	"headlines": [
-		"GitHub - AOEpeople/puppeteer-fetchbot: Library and Shell command ...",
-		"AOE · GitHub",
-		"fetchbot - npm"
-	],
-	"links": [
-		"https://github.com/AOEpeople/puppeteer-fetchbot",
-		"https://github.com/AOEpeople",
-		"https://www.npmjs.com/package/fetchbot"
-	]
+  "headlines": [
+    "GitHub - AOEpeople/puppeteer-fetchbot: Library and Shell command ...",
+    "AOE · GitHub",
+    "fetchbot - npm"
+  ],
+  "links": [
+    "https://github.com/AOEpeople/puppeteer-fetchbot",
+    "https://github.com/AOEpeople",
+    "https://www.npmjs.com/package/fetchbot"
+  ]
 }
 `````
 
@@ -293,8 +293,6 @@ Fetching the `textContent` attribute is the default behavior but it's possible a
 attribute. Then write instead of the defined data type an object containing a configuration of `type` and `attr`.
 `type` is the data type as previously explained and attr is the attribute to fetch.
 
-
-
 > Fetch syntax
 ````json
 {
@@ -317,49 +315,70 @@ attribute. Then write instead of the defined data type an object containing a co
     
 > Result
 ````json
-    {
-        "exists":true,
-        "amount":123,
-        "description":"Some fetched text content",
-        "pressReleases":[
-            "Foo",
-            "Bar",
-            "Baz",
-        ],
-        "likes":[
-            132,
-            2,
-            87
-        ],
-        "links":[
-            "http://www.foo.bar",
-            "http://www.bar.foo",
-            "http://www.baz.bar"
-        ]
-    }    
+{
+ "exists": true,
+ "amount": 123,
+ "description": "Some fetched text content",
+ "pressReleases": [
+   "Foo",
+   "Bar",
+   "Baz"
+ ],
+ "likes": [
+   132,
+   2,
+   87
+ ],
+ "links": [
+   "http://www.foo.bar",
+   "http://www.bar.foo",
+   "http://www.baz.bar"
+ ]
+}    
  ````   
 > Syntax for element attributes
 ````json
 {
-    "fetch": {
-        "#linkTargetResolved as completed": false,
-        "#linkTargetResolved as attributeIsWorking": {"attr": "align", "type":""},
-        "#linkTargetResolved as attributeAlignExists": {"attr": "align", "type": false},
-        "#linkTargetResolved as dataTestIsWorking": {"attr": "data-test", "type":""},
-        "h2.xyz as collectedIds": {"attr": "id", "type": null},
-        "h2.xyz as collectedClassNames": {"attr": "class", "type": []}
+  "fetch": {
+    "#linkTargetResolved as completed": false,
+    "#linkTargetResolved as attributeIsWorking": {
+      "attr": "align",
+      "type": ""
+    },
+    "#linkTargetResolved as attributeAlignExists": {
+      "attr": "align",
+      "type": false
+    },
+    "#linkTargetResolved as dataTestIsWorking": {
+      "attr": "data-test",
+      "type": ""
+    },
+    "h2.xyz as collectedIds": {
+      "attr": "id",
+      "type": null
+    },
+    "h2.xyz as collectedClassNames": {
+      "attr": "class",
+      "type": []
     }
+  }
 }
 ````    
 > Results in
 ````json      
-{ 
-    "completed": true,
-    "attributeIsWorking": "yes",
-    "attributeAlignExists": true,
-    "dataTestIsWorking": "working",
-    "collectedIds": [ 123, 456 ],
-    "collectedClassNames": [ "xyz", "xyz" ]
+{
+  "completed": true,
+  "attributeIsWorking": "yes",
+  "attributeAlignExists": true,
+  "dataTestIsWorking": "working",
+  "collectedIds": [
+    123,
+    456
+  ],
+  "collectedClassNames": [
+    "xyz",
+    "xyz"
+  ]
 }
 ````             
 ## Examples
