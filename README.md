@@ -53,8 +53,9 @@ From here on there are unlimited possibilities and a list of nice use cases will
     
 #### Pass options via command line 
 
-It's important to keep in mind that on systems without a GUI, fetchbot must run always with option headless enabled
-An entire list of all command line options (some more than in the options object) can be obtained via
+It's important to keep in mind that e.g on linux systems without a GUI (terminal clients), FetchBot always 
+must been started  using the `headless=true` or terminal `--headless` option enabled. An entire list of all command line 
+options can be obtained via
 
     $ fetchbot --help
    
@@ -296,7 +297,6 @@ attribute. Then write instead of the defined data type an object containing a co
          debug: boolean    | default=false   Determine if debug/logging messages are shown 
               
  ## Examples
- 
 ### Boilerplate (plain JS)
 
     var FetchBot = require('fetchbot'),
