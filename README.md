@@ -81,8 +81,8 @@ entire list of all command line options can be obtained via:
      $ fetchbot --job=./path/to/job/file.json --slowmo=250 --output=a-json-file.json --headless --debug
      
  #### Pass options as configuration object in the library
- 
-     const FetchBot = require('fetchbot'):
+ ```javascript
+     const FetchBot = require('fetchbot');
      
      // Pass a path to a job configuration file
      (async () => {
@@ -118,9 +118,7 @@ entire list of all command line options can be obtained via:
      
          fetchBotData = await fetchbot.run();
      })();
-  
-      $ fetchbot --job=./path/to/job/file.json --slowmo=250 --output=a-json-file.json --headless --debug
-    
+ ``` 
 
 ## Job configuration (JSON)
 A job configuration is a simple JSON object which has on the highest level URI's as keys.
