@@ -226,7 +226,94 @@ There are three ways yet how page-commands can be called.
     ]  
 }
 ```` 
+     
+### Data Fetching aka. "Crawling"
+
+For data fetching there is a `fetch` API that simplifies puppeteers evaluation interface.
+The `fetch` API provides declarative support to four different data types:
+
+- `Boolean`
+- `Number`
+- `String`
+- `Array of String(s)` 
+- `Array of Numbers(s)`
+- `Objects containing an additional attribute matching `
+
+And of course it's possible to map meaningful property names to selectors using the `AS` or `as`
+keyword.
+
+Fetching the `textContent` attribute is the default behavior but it's possible as well to access any other
+attribute. Then write instead of the defined data type an object containing a configuration of `type` and `attr`.
+`type` is the data type as previously explained and attr is the attribute to fetch.
+
+> Fetch syntax
+````json
+{
+    "fetch": {
+        "#myFirstSelector AS exists": false,           
+        "#mySecondSelector AS amount": 0,               
+        "#myThirdSelector AS description": "",          
+        "#myFouthSelector AS pressReleases": [],      
+        "#myFifthSelector AS likes": null,             
+        "#linkTargetResolved as attributeIsWorking": {
+              "attr": "align",
+              "type": ""
+            },
+            "#linkTargetResolved as attributeAlignExists": {
+              "attr": "align",
+              "type": false
+            },
+            "#linkTargetResolved as dataTestIsWorking": {
+              "attr": "data-test",
+              "type": ""
+            },
+            "h2.xyz as collectedIds": {
+              "attr": "id",
+              "type": null
+            },
+            "h2.xyz as collectedClassNames": {
+              "attr": "class",
+              "type": []
+            }
+    }
+}
+````  
+**The configuration above results in an object like in the example below**
     
+> Result
+````json
+{
+	"exists": true,
+	"amount": 123,
+	"description": "Some fetched text content",
+	"pressReleases": [
+		"Foo",
+		"Bar",
+		"Baz"
+	],
+	"likes": [
+		132,
+		2,
+		87
+	],
+	"links": [
+		"http://www.foo.bar",
+		"http://www.bar.foo",
+		"http://www.baz.bar"
+	],
+	"attributeIsWorking": "yes",
+	"attributeAlignExists": true,
+	"dataTestIsWorking": "working",
+	"collectedIds": [
+		123,
+		456
+	],
+	"collectedClassNames": [
+		"xyz",
+		"xyz"
+	]
+} 
+````  
 ### And now it's time to start interaction with a website
 > Job syntax
 ```json
@@ -278,96 +365,7 @@ There are three ways yet how page-commands can be called.
 
 A complete list whats possible on a page is yet only available in the puppeteer documentation at 
 [Page API Chapter](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#class-page).
-    
-### Data Fetching aka. "Crawling"
-
-For data fetching there is a `fetch` API that simplifies puppeteers evaluation interface.
-The `fetch` API provides declarative support to four different data types:
-
-- `Boolean`
-- `Number`
-- `String`
-- `Array of String(s)` 
-- `Array of Numbers(s)`
-- `Objects containing an additional attribute matching `
-
-And of course it's possible to map meaningful property names to selectors using the `AS` or `as`
-keyword.
-
-Fetching the `textContent` attribute is the default behavior but it's possible as well to access any other
-attribute. Then write instead of the defined data type an object containing a configuration of `type` and `attr`.
-`type` is the data type as previously explained and attr is the attribute to fetch.
-
-> Fetch syntax
-````json
-{
-    "fetch": {
-        "#myFirstSelector AS exists": false,           
-        "#mySecondSelector AS amount": 0,               
-        "#myThirdSelector AS description": "",          
-        "#myFouthSelector AS pressReleases": [],      
-        "#myFifthSelector AS likes": null,             
-        "#linkTargetResolved as attributeIsWorking": {
-              "attr": "align",
-              "type": ""
-            },
-            "#linkTargetResolved as attributeAlignExists": {
-              "attr": "align",
-              "type": false
-            },
-            "#linkTargetResolved as dataTestIsWorking": {
-              "attr": "data-test",
-              "type": ""
-            },
-            "h2.xyz as collectedIds": {
-              "attr": "id",
-              "type": null
-            },
-            "h2.xyz as collectedClassNames": {
-              "attr": "class",
-              "type": []
-            }
-    }
-}
-````
-        
-    
-**The configuration above results in an object like in the example below**
-    
-> Result
-````json
-{
-	"exists": true,
-	"amount": 123,
-	"description": "Some fetched text content",
-	"pressReleases": [
-		"Foo",
-		"Bar",
-		"Baz"
-	],
-	"likes": [
-		132,
-		2,
-		87
-	],
-	"links": [
-		"http://www.foo.bar",
-		"http://www.bar.foo",
-		"http://www.baz.bar"
-	],
-	"attributeIsWorking": "yes",
-	"attributeAlignExists": true,
-	"dataTestIsWorking": "working",
-	"collectedIds": [
-		123,
-		456
-	],
-	"collectedClassNames": [
-		"xyz",
-		"xyz"
-	]
-} 
-````      
+       
 ## Examples
 ### Boilerplate (plain JS)
 ````javascript
