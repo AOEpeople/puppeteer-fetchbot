@@ -13,7 +13,8 @@ export function getSelectorAndPropertyName(key: string): SelectorAndPropertyInte
 //  const regExpString: string = '([a-z][a-zA-Z0-9\\s()>.:-]+)\\sas\\s([a-z][a-zA-Z0-9]+)';
 //  const regExpString: string = '([a-z][a-zA-Z0-9\\s()>.:-]+)\\sas\\s(([a-z][a-zA-Z0-9]+|[a-z]+))';
 //  const regExpString: string = '([.#a-z][a-zA-Z0-9\\s()>.:-]+|[a-z])\\sas\\s([a-z][a-zA-Z0-9]+|[a-z])';
-    const regExpString: string = '([[.#a-z][a-zA-Z0-9\\s()>\\.:"\'\\-=\\]]+|[a-z])\\sas\\s([a-z][a-zA-Z0-9]+|[a-z])';
+//  const regExpString: string = '([[.#a-z][a-zA-Z0-9\\s()>\\.:"\'\\-=\\]]+|[a-z])\\sas\\s([a-z][a-zA-Z0-9]+|[a-z])';
+    const regExpString: string = '([\\[.#a-z][\\[#a-zA-Z0-9\\s()>\\.:_"\'\\-=\\]]+|[a-z])\\sas\\s([a-z][a-zA-Z0-9]+|[a-z])';
 
     // Apply RegExpString
     const extractSelectorAndPropertyName: RegExp = new RegExp(regExpString, 'i');

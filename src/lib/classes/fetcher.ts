@@ -20,8 +20,7 @@ export class Fetcher {
             // TODO Determine how to use the helper functions here (Stackoverflow)!?!
             const getSelectorAndPropertyName = (key: string): SelectorAndPropertyInterface => {
 
-
-                const regExpString: string = '([[.#a-z][a-zA-Z0-9\\s()>\\.:"\'\\-=\\]]+|[a-z])\\sas\\s([a-z][a-zA-Z0-9]+|[a-z])';
+                const regExpString: string = '([\\[.#a-z][\\[#a-zA-Z0-9\\s()>\\.:_"\'\\-=\\]]+|[a-z])\\sas\\s([a-z][a-zA-Z0-9]+|[a-z])';
 
                 // Apply RegExpString
                 const extractSelectorAndPropertyName: RegExp = new RegExp(regExpString, 'i');
@@ -67,8 +66,6 @@ export class Fetcher {
 
                 data[mapping.property] = fetchItems[originSelector];
                 domAttrName = 'textContent';
-
-                console.log(data[mapping.property]);
 
                 if (data[mapping.property] !== null && typeof data[mapping.property] === 'object' && !!data[mapping.property].attr) {
 

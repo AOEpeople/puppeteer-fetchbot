@@ -19,8 +19,28 @@ describe('getSelectorAndPropertyName', () => {
             property: 'mitarbeiter'
         },
         {
-            selector:"[title=\"Repositories\"]",
-            property:'numberExample'
+            selector: "[title=\"Repositories\"]",
+            property: 'numberExample'
+        },
+        {
+            selector: "[data-global-stats-market-cap]",
+            property: 'marketCap'
+        },
+        {
+            selector: "table#currencies tr > [data-timespan=\"24h\"]",
+            property: 'currencyPercent24h'
+        },
+        {
+            selector: "table#currencies tr > .sorting",
+            property: 'currencySorting'
+        },
+        {
+            selector: "[data-global-stats-btc-dominance]",
+            property: 'btcDominance'
+        },
+        {
+            selector: "table#currencies tr > .sorting_1",
+            property: 'currencySorting'
         }
     ];
 
