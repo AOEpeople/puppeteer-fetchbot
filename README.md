@@ -399,16 +399,28 @@ A complete list whats possible on a page is yet only available in the puppeteer 
 var FetchBot = require('fetchbot'),
 
     // Create an FetchBot instance whre entire config is passed in
-    myFetchBot = new FetchBot({"https://google.com": {root: true, waitFor: [[10000]]}}, {headles: false});
+    myFetchBot = new FetchBot({"https://google.com": {root: true, waitFor: [[10000]]}}, {headless: false, debug:true});
 
     // Or alternatively create an instance which tells FetchBot to load a JSON file as config
-    myFetchBot = new FetchBot('./path/to/my/config.json', {headles: false});
+    myFetchBot = new FetchBot('googlesearch.json', {headless: false, debug:true});
 
     myFetchBot
         .run()
         .then(function (result) {
-            console.log('Completed');
-        });         
+            console.log(result);
+            // {
+            //     "headlines": [
+            //     "GitHub - AOEpeople/puppeteer-fetchbot: Library and Shell command ...",
+            //     "AOE · GitHub",
+            //     "fetchbot - npm"
+            // ],
+            //     "links": [
+            //     "https://github.com/AOEpeople/puppeteer-fetchbot",
+            //     "https://github.com/AOEpeople",
+            //     "https://www.npmjs.com/package/fetchbot"
+            // ]
+            // }
+        });       
 ````
 
 ### Conclusion
