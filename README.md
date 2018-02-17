@@ -82,42 +82,42 @@ entire list of all command line options can be obtained via:
      
  #### Pass options as configuration object in the library
  ```javascript
-     const FetchBot = require('fetchbot');
-     
-     // Pass a path to a job configuration file
-     (async () => {
-         const fetchbot = new FetchBot('./path/to/job/file.json', {headless: true});
-         fetchBotData = await fetchbot.run();  
-     })();
-      
-     // Or by passing a configuration opject directly
-     (async () => {
-         const fetchbot = new FetchBot({
-                 
-                 // The job configurations are explained in the next chapters
-                 "https://www.aoe.com/en/home.html": {
-                     "root": true,
-                     "fetch": {
-                         "img as images": {
-                             "attr": "src",
-                             "type": []
-                         }
+ const FetchBot = require('fetchbot');
+ 
+ // Pass a path to a job configuration file
+ (async () => {
+     const fetchbot = new FetchBot('./path/to/job/file.json', {headless: true});
+     fetchBotData = await fetchbot.run();  
+ })();
+  
+ // Or by passing a configuration opject directly
+ (async () => {
+     const fetchbot = new FetchBot({
+             
+             // The job configurations are explained in the next chapters
+             "https://www.aoe.com/en/home.html": {
+                 "root": true,
+                 "fetch": {
+                     "img as images": {
+                         "attr": "src",
+                         "type": []
                      }
                  }
-             },
-             
-             // The options object is here
-             {
-                 headless: true,
-                 slowmo:250,
-                 width:1280,
-                 height:1024,
-                 trust:true
              }
-         );
-     
-         fetchBotData = await fetchbot.run();
-     })();
+         },
+         
+         // The options object is here
+         {
+             headless: true,
+             slowmo:250,
+             width:1280,
+             height:1024,
+             trust:true
+         }
+     );
+ 
+     fetchBotData = await fetchbot.run();
+ })();
  ``` 
 
 ## Job configuration (JSON)
