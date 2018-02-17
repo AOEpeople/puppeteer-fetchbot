@@ -124,7 +124,7 @@ const FetchBot = require('fetchbot');
 ````  
 
 ## Job configuration
-A job configuration JSON object which has on the highest level URI's as keys.
+A job configuration is a JSON object which has on the highest level URI's as keys.
 > Example the configurations highest level
 
 ````json
