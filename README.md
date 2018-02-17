@@ -51,17 +51,67 @@ From here on there are unlimited possibilities and a list of nice use cases will
     # --unsafe-perm=true is required yet due to global install issues in puppeteer
     # https://github.com/GoogleChrome/puppeteer/issues/375#issuecomment-363466257
     
-#### Pass options via command line 
-
-It's important to keep in mind that e.g on linux systems without a GUI (terminal clients), FetchBot 
-must been started  using the `headless=true` or terminal `--headless` option enabled. An entire list of all command line 
-options can be obtained via
-
-    $ fetchbot --help
-   
-> Command line input example
-
-    $ fetchbot --job=./path/to/job/file.json --slowmo=250 --output=a-json-file.json --headless --debug
+    
+### Options
+It's important to keep in mind that e.g on linux systems without a GUI (terminal clients), FetchBot must been started
+using the `headless=true` or terminal `--headless` option enabled. Many options can be applied directly via passed 
+configuration object to control browser and page behavior. All these options can be passed via command line too.  An
+entire list of all command line options can be obtained via:
+ 
+ > To get a complete list whats possible via commandline just type
+ 
+     $ fetchbot --help
+  
+  or in a local installation
+  
+     $ ./node_modules/.bin/fetchbot --help
+ 
+ #### Options params
+     
+         headless: boolean | default=false   Specifies if the browser window is shown or not
+         trust: boolean    | default=false   Open unsecure https pages without a warning 
+         width: number     | defautlt=800    The Browser and viewport width
+         height: number    | default=600     The Browser and Viewport height
+         slowmo:number     | default=0       Slowes down the execution in milliseconds
+         debug: boolean    | default=false   Determine if debug/logging messages are shown
+         
+ #### Pass options via command line 
+ > Command line input example
+ 
+     $ fetchbot --job=./path/to/job/file.json --slowmo=250 --output=a-json-file.json --headless --debug
+     
+ #### Pass options as configuration object in the library
+ 
+     const FetchBot = require('fetchbot'):
+     
+     // Pass a path to a job configuration file
+     (async () => {
+         const fetchbot = new FetchBot('./path/to/job/file.json', {headless: true});
+         fetchBotData = await fetchbot.run();  
+     })();
+      
+     // Or by passing a configuration opject directly
+     (async () => {
+         const fetchbot = new FetchBot({
+                 "https://www.aoe.com/en/home.html": {
+                     "root": true,
+                     "fetch": {
+                         "img as images": {
+                             "attr": "src",
+                             "type": []
+                         }
+                     }
+                 }
+             },
+             {
+                 headless: true
+             });
+     
+         fetchBotData = await fetchbot.run();
+     })();
+  
+      $ fetchbot --job=./path/to/job/file.json --slowmo=250 --output=a-json-file.json --headless --debug
+    
 
 ## Job configuration (JSON)
 A job configuration is a simple JSON object which has on the highest level URI's as keys.
@@ -274,27 +324,6 @@ attribute. Then write instead of the defined data type an object containing a co
             collectedIds: [ 123, 456 ],
             collectedClassNames: [ 'xyz', 'xyz' ]
        }
- 
- ### Options
- Many options can be applied directly via passed configuration object to control browser and page behavior.
- All these options can be passed via command line too. 
- 
- > To get a complete list whats possible via commandline just type
- 
-     $ fetchbot --help
-  
-  or in a local installation
-  
-     $ ./node_modules/.bin/fetchbot --help
- 
- #### Options params
-     
-         headless: boolean | default=false   Specifies if the browser window is shown or not
-         trust: boolean    | default=false   Open unsecure https pages without a warning 
-         width: number     | defautlt=800    The Browser and viewport width
-         height: number    | default=600     The Browser and Viewport height
-         slowmo:number     | default=0       Slowes down the execution in milliseconds
-         debug: boolean    | default=false   Determine if debug/logging messages are shown 
               
  ## Examples
 ### Boilerplate (plain JS)
