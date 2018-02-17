@@ -302,15 +302,31 @@ attribute. Then write instead of the defined data type an object containing a co
 ````json
 {
     "fetch": {
-        "#myFirstSelector AS exists": false,            // selector match becomes (true) 
-        "#mySecondSelector AS amount": 0                // selector match textContent is parsed as Number
-        "#myThirdSelector AS description": ""           // selector match textContent is stored
-        "#myFouthSelector AS pressReleases": []         // selector matches textContents are stored
-        "#myFifthSelector AS likes": null,              // selector matches textContents are parsed to number 
-        "#mySixthelector AS links": {
-            "attr": "href",
-            "type": "ONE_OF_THE_PREVIOUS_FIVE_TYPES"
-        }                                               // false, 0, "", [], null     
+        "#myFirstSelector AS exists": false,           
+        "#mySecondSelector AS amount": 0,               
+        "#myThirdSelector AS description": "",          
+        "#myFouthSelector AS pressReleases": [],      
+        "#myFifthSelector AS likes": null,             
+        "#linkTargetResolved as attributeIsWorking": {
+              "attr": "align",
+              "type": ""
+            },
+            "#linkTargetResolved as attributeAlignExists": {
+              "attr": "align",
+              "type": false
+            },
+            "#linkTargetResolved as dataTestIsWorking": {
+              "attr": "data-test",
+              "type": ""
+            },
+            "h2.xyz as collectedIds": {
+              "attr": "id",
+              "type": null
+            },
+            "h2.xyz as collectedClassNames": {
+              "attr": "class",
+              "type": []
+            }
     }
 }
 ````
@@ -321,71 +337,37 @@ attribute. Then write instead of the defined data type an object containing a co
 > Result
 ````json
 {
- "exists": true,
- "amount": 123,
- "description": "Some fetched text content",
- "pressReleases": [
-   "Foo",
-   "Bar",
-   "Baz"
- ],
- "likes": [
-   132,
-   2,
-   87
- ],
- "links": [
-   "http://www.foo.bar",
-   "http://www.bar.foo",
-   "http://www.baz.bar"
- ]
-}    
- ````   
-> Syntax for element attributes
-````json
-{
-  "fetch": {
-    "#linkTargetResolved as completed": false,
-    "#linkTargetResolved as attributeIsWorking": {
-      "attr": "align",
-      "type": ""
-    },
-    "#linkTargetResolved as attributeAlignExists": {
-      "attr": "align",
-      "type": false
-    },
-    "#linkTargetResolved as dataTestIsWorking": {
-      "attr": "data-test",
-      "type": ""
-    },
-    "h2.xyz as collectedIds": {
-      "attr": "id",
-      "type": null
-    },
-    "h2.xyz as collectedClassNames": {
-      "attr": "class",
-      "type": []
-    }
-  }
-}
-````    
-> Results in
-````json      
-{
-  "completed": true,
-  "attributeIsWorking": "yes",
-  "attributeAlignExists": true,
-  "dataTestIsWorking": "working",
-  "collectedIds": [
-    123,
-    456
-  ],
-  "collectedClassNames": [
-    "xyz",
-    "xyz"
-  ]
-}
-````             
+	"exists": true,
+	"amount": 123,
+	"description": "Some fetched text content",
+	"pressReleases": [
+		"Foo",
+		"Bar",
+		"Baz"
+	],
+	"likes": [
+		132,
+		2,
+		87
+	],
+	"links": [
+		"http://www.foo.bar",
+		"http://www.bar.foo",
+		"http://www.baz.bar"
+	],
+	"attributeIsWorking": "yes",
+	"attributeAlignExists": true,
+	"dataTestIsWorking": "working",
+	"collectedIds": [
+		123,
+		456
+	],
+	"collectedClassNames": [
+		"xyz",
+		"xyz"
+	]
+} 
+````      
 ## Examples
 ### Boilerplate (plain JS)
 ````javascript
