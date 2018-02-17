@@ -315,7 +315,14 @@ attribute. Then write instead of the defined data type an object containing a co
 } 
 ````  
 ### And now it's time to start interaction with a website
-> Job syntax
+
+Feel free to copy this example below, save to a file e.g. googlesearch.json and execute using the cli tool.
+
+```bash
+./node_modules/.bin/fetchbot --job=googlesearch.json --debug --slowmo
+````
+
+> Example job
 ```json
 {
   "https://google.com": {
