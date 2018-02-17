@@ -66,20 +66,23 @@ entire list of all command line options can be obtained via:
   
      $ ./node_modules/.bin/fetchbot --help
  
- #### Options params
-     
-         headless: boolean | default=false   Specifies if the browser window is shown or not
-         trust: boolean    | default=false   Open unsecure https pages without a warning 
-         width: number     | defautlt=800    The Browser and viewport width
-         height: number    | default=600     The Browser and Viewport height
-         slowmo:number     | default=0       Slowes down the execution in milliseconds
-         debug: boolean    | default=false   Determine if debug/logging messages are shown
+#### Options params
+````text
+ headless: boolean | default=false   Specifies if the browser window is shown or not
+ trust: boolean    | default=false   Open unsecure https pages without a warning 
+ width: number     | defautlt=800    The Browser and viewport width
+ height: number    | default=600     The Browser and Viewport height
+ slowmo:number     | default=0       Slowes down the execution in milliseconds
+ debug: boolean    | default=false   Determine if debug/logging messages are shown
+ ````  
+
          
- #### Pass options via command line 
- > Command line input example
- 
-     $ fetchbot --job=./path/to/job/file.json --slowmo=250 --output=a-json-file.json --headless --debug
-     
+#### Pass options via command line 
+> Command line input example
+````bash
+$ fetchbot --job=./path/to/job/file.json --slowmo=250 --output=a-json-file.json --headless --debug
+````   
+
 #### Pass options as configuration object in the library
 ````javascript
 const FetchBot = require('fetchbot');
