@@ -81,7 +81,7 @@ entire list of all command line options can be obtained via:
      $ fetchbot --job=./path/to/job/file.json --slowmo=250 --output=a-json-file.json --headless --debug
      
 #### Pass options as configuration object in the library
-```javascript
+````javascript
 const FetchBot = require('fetchbot');
 
 // Pass a path to a job configuration file
@@ -118,21 +118,28 @@ const FetchBot = require('fetchbot');
 
  fetchBotData = await fetchbot.run();
 })();
-``` 
+````  
 
 ## Job configuration (JSON)
 A job configuration is a simple JSON object which has on the highest level URI's as keys.
 > Example the configurations highest level
 
-    {
-        "https://github.com/aoepeople": {} | [{},{}]
-    }
+````json
+{
+    "https://github.com/aoepeople": {"root":true}
+}
+```` 
 
-Each key accept two types of values `object` and `array`.
-The Array accepts multiple FetchBot objects:
+````json
+{
+    "https://github.com/aoepeople": {"root":true},
+    "https://github.com/aoepeople/home.html": [{}, {}],
+    "https://www.aoe.com/en/solutions.html": {"root":true}
+}
+```` 
 
-- **root** Objects
-- **stopover** Objects
+- **Root** Objects
+- **Stopover** Objects (can be wrapped in arrays)
 
 ### Root objects
 
@@ -141,12 +148,14 @@ objects inside a single configuration. Once all root configuration urls have bee
 fetched data is returned (see **Data Fetching**).
 
 >Example
-
-     {
-        "https://github.com/aoepeople": {
-            "root":true
-        }
-     }
+````json
+{
+  "https://www.aoe.com/en/": {
+    "root":true,
+    "click":"nav.main-menu.ng-scope > ul > li:nth-child(2) > a"
+  }
+}
+```` 
      
 ### Stopover objects
 
@@ -157,11 +166,26 @@ page the object gets immediately removed from FetchBot job list.
  
 > Syntax
 
-    {
-        "https://github.com/orgs/AOEpeople/people": {
-            
+````json
+{
+    "https://www.aoe.com/en/solutions.html": {
+        "click":"nav.main-menu.ng-scope > ul > li:nth-child(2) > a"
+    },
+
+    // Or as an array (set of commands)
+    "https://www.aoe.com/en/products.html": [
+        {
+            "click":"[data-qa=\"header-navigation-search-icon\"]"
+        },
+        {
+            "type":[["#city-input-field", "Open Source"]],
+            "click":"#search"           
         }
-    } 
+    ]
+}
+```` 
+
+
 
 ### Command types for interaction
 
@@ -176,63 +200,81 @@ There are three ways yet how page-commands can be called.
 #### No argument action
 
 > Syntax
-
-    {
-        "reload":null  // page.reload()
-    }
-
+````json
+{
+    "reload":null  // page.reload()
+}
+```` 
 #### Single argument action
 > Syntax
-
-    {
-        "click":"#myButton"  // page.click("#myButton")
-    }
-
+````json
+{
+    "click":"#myButton"  // page.click("#myButton")
+}
+```` 
 #### Multiple arguments action
 > Syntax
-
-    {
-        "type":[
-                ["#myInput", "Hello World"]  // page.type("#myInput", "Hello World")
-        ]  
-    }
-    
+````json
+{
+    "type":[
+            ["#myInput", "Hello World"]  // page.type("#myInput", "Hello World")
+    ]  
+}
+```` 
     
 ### And now it's time to start interaction with a website
-> Syntax
+> Job syntax
+```json
+{
+	"https://google.com": {
 
-    {
-        "https://github.com/aoepeople": {
-           
-            "root":true,
-            
-            "type": [
-              [
-                "input[type='text']",
-                "Hi I`m FetchBot."
-              ],
-              
-              [
-                "input[type='text']",
-                "..and I interact with this website"
-              ]
-            ],
-            
-            fetch:{            
-              {
-                "#mySelector AS count": 0
-              }
-            },
-            
-            "waitFor": [
-              [
-                10000
-              ]
-            ],
-            
-            "click":"#js-pjax-container > div > header > div > nav > a:nth-child(2)"
-        }
-    }
+		"root": true,
+
+		"type": [
+			[
+				"input[type=\"text\"]",
+				"puppeteer-fetchbot aoepeople"
+			],
+
+			[
+				"input[type=\"text\"]",
+				"\n"
+			]
+		]
+	},
+	
+    "https://www.google.de/search": {
+		"fetch": {
+			"h3.r > a AS headlines": [],
+			"h3.r > a AS links": {
+			  "attr":"href",
+			  "type":[]
+			}
+		},
+
+		"waitFor": [
+			[
+				1000
+			]
+		]
+	}
+}
+````
+> Results in
+`````json
+{
+	"headlines": [
+		"GitHub - AOEpeople/puppeteer-fetchbot: Library and Shell command ...",
+		"AOE · GitHub",
+		"fetchbot - npm"
+	],
+	"links": [
+		"https://github.com/AOEpeople/puppeteer-fetchbot",
+		"https://github.com/AOEpeople",
+		"https://www.npmjs.com/package/fetchbot"
+	]
+}
+`````
 
 A complete list whats possible on a page is yet only available in the puppeteer documentation at 
 [Page API Chapter](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#class-page).
@@ -259,36 +301,27 @@ attribute. Then write instead of the defined data type an object containing a co
 
 
 > Fetch syntax
-
-    {
-        fetch:{
-            
-            {
-                "#myFirstSelector AS exists": false      // selector match becomes (true) 
-            },
-            {
-                "#mySecondSelector AS amount": 0         // selector match textContent is parsed as Number
-            },
-            {
-                "#myThirdSelector AS description": ""    // selector match textContent is stored
-            },
-            {
-                "#myFouthSelector AS pressReleases": []  // selector matches textContents are stored
-            },
-            {
-                "#myFifthSelector AS likes": null        // selector matches textContents are parsed to number 
-            },
-            {
-                "#mySixthelector AS links": {"attr":"href", "type": "ONE_OF_THE_PREVIOUS_FIVE_TYPES" }  // false, 0, "", [], null     
-            }
-        }
+````json
+{
+    "fetch": {
+        "#myFirstSelector AS exists": false,            // selector match becomes (true) 
+        "#mySecondSelector AS amount": 0                // selector match textContent is parsed as Number
+        "#myThirdSelector AS description": ""           // selector match textContent is stored
+        "#myFouthSelector AS pressReleases": []         // selector matches textContents are stored
+        "#myFifthSelector AS likes": null,               // selector matches textContents are parsed to number 
+        "#mySixthelector AS links": {
+            "attr": "href",
+            "type": "ONE_OF_THE_PREVIOUS_FIVE_TYPES"
+        }                                               // false, 0, "", [], null     
     }
+}
+````
         
     
 **The configuration above results in an object like in the example below**
     
 > Result
-
+````json
     {
         "exists":true,
         "amount":123,
@@ -301,56 +334,58 @@ attribute. Then write instead of the defined data type an object containing a co
         "likes":[
             132,
             2,
-            87,
+            87
         ],
         "links":[
             "http://www.foo.bar",
             "http://www.bar.foo",
-            "http://www.baz.bar",
+            "http://www.baz.bar"
         ]
     }    
-    
+ ````   
 > Syntax for element attributes
-
-    fetch: {
-        '#linkTargetResolved as completed': false,
-        '#linkTargetResolved as attributeIsWorking': {'attr': 'align', 'type': ''},
-        '#linkTargetResolved as attributeAlignExists': {'attr': 'align', 'type': false},
-        '#linkTargetResolved as dataTestIsWorking': {'attr': 'data-test', 'type': ''},
-        'h2.xyz as collectedIds': {'attr': 'id', 'type': null},
-        'h2.xyz as collectedClassNames': {'attr': 'class', 'type': []}
+````json
+{
+    "fetch": {
+        "#linkTargetResolved as completed": false,
+        "#linkTargetResolved as attributeIsWorking": {"attr": "align", "type":""},
+        "#linkTargetResolved as attributeAlignExists": {"attr": "align", "type": false},
+        "#linkTargetResolved as dataTestIsWorking": {"attr": "data-test", "type":""},
+        "h2.xyz as collectedIds": {"attr": "id", "type": null},
+        "h2.xyz as collectedClassNames": {"attr": "class", "type": []}
     }
-    
+}
+````    
 > Results in
-       
-       { 
-            completed: true,
-            attributeIsWorking: 'yes',
-            attributeAlignExists: true,
-            dataTestIsWorking: 'working',
-            collectedIds: [ 123, 456 ],
-            collectedClassNames: [ 'xyz', 'xyz' ]
-       }
-              
- ## Examples
+````json      
+{ 
+    "completed": true,
+    "attributeIsWorking": "yes",
+    "attributeAlignExists": true,
+    "dataTestIsWorking": "working",
+    "collectedIds": [ 123, 456 ],
+    "collectedClassNames": [ "xyz", "xyz" ]
+}
+````             
+## Examples
 ### Boilerplate (plain JS)
+````javascript
+var FetchBot = require('fetchbot'),
 
-    var FetchBot = require('fetchbot'),
-    
-        // Create an FetchBot instance whre entire config is passed in
-        myFetchBot = new FetchBot({"https://google.com": {root: true, waitFor: [[10000]]}}, {headles: false});
-    
-        // Or alternatively create an instance which tells FetchBot to load a JSON file as config
-        myFetchBot = new FetchBot('./path/to/my/config.json', {headles: false});
-    
-        myFetchBot
-            .run()
-            .then(function (result) {
-                console.log('Completed');
-            });
-         
+    // Create an FetchBot instance whre entire config is passed in
+    myFetchBot = new FetchBot({"https://google.com": {root: true, waitFor: [[10000]]}}, {headles: false});
+
+    // Or alternatively create an instance which tells FetchBot to load a JSON file as config
+    myFetchBot = new FetchBot('./path/to/my/config.json', {headles: false});
+
+    myFetchBot
+        .run()
+        .then(function (result) {
+            console.log('Completed');
+        });         
+````
+
 ### Conclusion
-
 FetchBot has been introduced to speed up the development process as a frontend engineer by stepping automatically over
 pages which are not part of the current user story. But during development more and more use cases were found and it
 made a lot of fun building "batch like" JSON files that turned the browser into a bot. FetchBot was written in [TypeScript](https://www.typescriptlang.org/) and is transpiled in build run. 
