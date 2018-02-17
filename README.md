@@ -53,7 +53,7 @@ From here on there are unlimited possibilities and a list of nice use cases will
     
 #### Pass options via command line 
 
-It's important to keep in mind that e.g on linux systems without a GUI (terminal clients), FetchBot always 
+It's important to keep in mind that e.g on linux systems without a GUI (terminal clients), FetchBot 
 must been started  using the `headless=true` or terminal `--headless` option enabled. An entire list of all command line 
 options can be obtained via
 
