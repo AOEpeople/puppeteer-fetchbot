@@ -1,4 +1,5 @@
 # FetchBot 1.2.8-alpha
+[![Build Status](https://travis-ci.org/AOEpeople/puppeteer-fetchbot.svg?branch=master)](https://travis-ci.org/AOEpeople/puppeteer-fetchbot)
 
 <img src="https://i.imgur.com/ntm3aNU.png" alt="FetchBot" width="200" align="center"/>
 
