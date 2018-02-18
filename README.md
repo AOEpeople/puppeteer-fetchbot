@@ -1,4 +1,4 @@
-# FetchBot 1.2.5-alpha
+# FetchBot 1.2.7-alpha
 
 <img src="https://i.imgur.com/ntm3aNU.png" alt="FetchBot" width="200" align="center"/>
 
@@ -18,7 +18,17 @@ From now on it's up to you to configure a friendly bot or a crazy zombie.
 
 **FetchBot is not running on ARM architectures**
 
+### Short installation (work well on a mac) 
 
+You can install via npm in your project using:
+```bash
+npm install --save fetchbot
+```
+```bash
+yarn add fetchbot
+```
+
+### Safe installation (For installs on Debian/Ubuntu or other linux systems)
 Ensure dependencies below are installed on Debian/Ubuntu systems
 
     apt-get install gconf-service libasound2 libatk1.0-0 libc6 libcairo2 libcups2 libdbus-1-3 libexpat1 libfontconfig1 libgcc1 libgconf-2-4 libgdk-pixbuf2.0-0 libglib2.0-0 libgtk-3-0 libnspr4 libpango-1.0-0 libpangocairo-1.0-0 libstdc++6 libx11-6 libx11-xcb1 libxcb1 libxcomposite1 libxcursor1 libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 libxtst6 ca-certificates fonts-liberation libappindicator1 libnss3 lsb-release xdg-utils wget    

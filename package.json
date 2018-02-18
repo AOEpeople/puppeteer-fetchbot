@@ -1,6 +1,6 @@
 {
   "name": "fetchbot",
-  "version": "1.2.5-alpha",
+  "version": "1.2.7-alpha",
   "description": "A library and shell command that provides a simple JSON-API to perform human like interactions and data extractions on any website. Built on top of puppeteer.",
   "engines": {
     "node": ">=6.0.0"
@@ -38,28 +38,27 @@
   "scripts": {
     "postinstall": "npm run build",
     "build": "./node_modules/.bin/tsc",
-    "test": "NODE_ENV=testing ./node_modules/.bin/mocha -r ts-node/register ./src/lib/**/*.spec.ts",
+    "test": "npm run build && NODE_ENV=testing ./node_modules/.bin/mocha ./dist/lib/**/*.spec.js",
     "cover": "./node_modules/.bin/nyc npm run test",
     "coveralls": "npm run cover && ./node_modules/.bin/coveralls < coverage/lcov.info",
-    "cli": "node ./dist/cli.js",
-    "cli:dev": "./node_modules/.bin/ts-node ./src/cli.ts"
+    "cli": "node ./dist/cli.js"
   },
   "nyc": {
     "include": [
-      "*.ts",
-      "**/*.ts"
+      "*.js",
+      "**/*.js"
     ],
     "exclude": [
       "./",
-      "*.spec.ts",
-      "**/*.spec.ts",
-      "src/lib/classes/fetcher.ts"
+      "*.spec.js",
+      "**/*.spec.js",
+      "dist/lib/classes/fetcher.js"
     ],
     "extension": [
-      ".ts"
+      ".js"
     ],
     "require": [
-      "ts-node/register"
+
     ],
     "reporter": [
       "lcov"

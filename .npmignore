@@ -8,3 +8,7 @@ fetchaoeimg.json
 Future-PLANS
 yarn-error.log
 coverage
+.nyc_output
+yarn.lock
+examples
+mocksclear
