@@ -40,7 +40,9 @@
     "postinstall": "npm run build",
     "build": "./node_modules/.bin/tsc",
     "test": "npm run build && NODE_ENV=testing ./node_modules/.bin/mocha ./dist/lib/**/*.spec.js",
-    "cover": "./node_modules/.bin/nyc npm run test &&  ./node_modules/.bin/cdecov",
+    "cover": "./node_modules/.bin/nyc npm run test",
+    "codecov": "./node_modules/.bin/codecov",
+
     "cli": "node ./dist/cli.js"
   },
   "nyc": {
