@@ -1,8 +1,5 @@
 language: node_js
 node_js:
   - "stable"
-install:
-  - npm install -g codecov
 script:
-  - npm run cover
-  - codecov
+  - npm run coveralls
