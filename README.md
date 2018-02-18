@@ -1,4 +1,4 @@
-# FetchBot 1.2.7-alpha
+# FetchBot 1.2.8-alpha
 
 <img src="https://i.imgur.com/ntm3aNU.png" alt="FetchBot" width="200" align="center"/>
 
@@ -18,7 +18,7 @@ From now on it's up to you to configure a friendly bot or a crazy zombie.
 
 **FetchBot is not running on ARM architectures**
 
-### Short installation (work well on a mac) 
+### Short installation (works well on a mac) 
 
 You can install via npm in your project using:
 ```bash
@@ -31,7 +31,9 @@ yarn add fetchbot
 ### Safe installation (For installs on Debian/Ubuntu or other linux systems)
 Ensure dependencies below are installed on Debian/Ubuntu systems
 
-    apt-get install gconf-service libasound2 libatk1.0-0 libc6 libcairo2 libcups2 libdbus-1-3 libexpat1 libfontconfig1 libgcc1 libgconf-2-4 libgdk-pixbuf2.0-0 libglib2.0-0 libgtk-3-0 libnspr4 libpango-1.0-0 libpangocairo-1.0-0 libstdc++6 libx11-6 libx11-xcb1 libxcb1 libxcomposite1 libxcursor1 libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 libxtst6 ca-certificates fonts-liberation libappindicator1 libnss3 lsb-release xdg-utils wget    
+````bash
+apt-get install gconf-service libasound2 libatk1.0-0 libc6 libcairo2 libcups2 libdbus-1-3 libexpat1 libfontconfig1 libgcc1 libgconf-2-4 libgdk-pixbuf2.0-0 libglib2.0-0 libgtk-3-0 libnspr4 libpango-1.0-0 libpangocairo-1.0-0 libstdc++6 libx11-6 libx11-xcb1 libxcb1 libxcomposite1 libxcursor1 libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 libxtst6 ca-certificates fonts-liberation libappindicator1 libnss3 lsb-release xdg-utils wget    
+````
 
 For other operating systems have a look in the 
 [troubleshooting section](https://github.com/GoogleChrome/puppeteer/blob/master/docs/troubleshooting.md) for puppeteer 
@@ -44,23 +46,23 @@ related problems.
 
 To get the most out of FetchBot it can be also integrated into a software project as a 3rd party library.
 From here on there are unlimited possibilities and a list of nice use cases will follow soon.
+````bash
+$ cd /my/existing/project/
+$ npm install fetchbot
 
-     $ cd /my/existing/project/
-     $ npm install fetchbot
-     
-     $ cd /my/existing/project/
-     $ yarn add fetchbot 
-     
+$ cd /my/existing/project/
+$ yarn add fetchbot 
+````    
 ### Use as global command
 
 **NOTICE:** 
 **Do not install globally via yarn because linking is not working there**
+````bash
+$ sudo npm install -g fetchbot --unsafe-perm=true
 
-    $ sudo npm install -g fetchbot --unsafe-perm=true
-      
-    # --unsafe-perm=true is required yet due to global install issues in puppeteer
-    # https://github.com/GoogleChrome/puppeteer/issues/375#issuecomment-363466257
-    
+# --unsafe-perm=true is required yet due to global install issues in puppeteer
+# https://github.com/GoogleChrome/puppeteer/issues/375#issuecomment-363466257
+````    
     
 ### Options
 It's important to keep in mind that e.g on linux systems without a GUI (terminal clients), FetchBot must been started
@@ -68,22 +70,23 @@ using the `headless=true` or in terminal `--headless` option enabled. Many optio
 configuration object to control browser and page behavior. All these options can be passed via command line too.  An
 entire list of all command line options can be obtained via:
  
- > To get a complete list whats possible via commandline just type
- 
-     $ fetchbot --help
-  
-  or in a local installation
-  
-     $ ./node_modules/.bin/fetchbot --help
- 
+> To get a complete list whats possible via commandline just type
+````bash 
+ $ fetchbot --help
+````  
+or in a local installation
+````bash
+$ ./node_modules/.bin/fetchbot --help
+````
+
 #### Options params
 ````text
- headless: boolean | default=false   Specifies if the browser window is shown or not
- trust: boolean    | default=false   Open unsecure https pages without a warning 
- width: number     | defautlt=800    The Browser and viewport width
- height: number    | default=600     The Browser and Viewport height
- slowmo:number     | default=0       Slowes down the execution in milliseconds
- debug: boolean    | default=false   Determine if debug/logging messages are shown
+headless: boolean | default=false   Specifies if the browser window is shown or not
+trust: boolean    | default=false   Open unsecure https pages without a warning 
+width: number     | defautlt=800    The Browser and viewport width
+height: number    | default=600     The Browser and Viewport height
+slowmo:number     | default=0       Slowes down the execution in milliseconds
+debug: boolean    | default=false   Determine if debug/logging messages are shown
  ````  
 
          
