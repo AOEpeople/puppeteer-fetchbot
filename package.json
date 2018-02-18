@@ -1,13 +1,13 @@
 {
   "name": "fetchbot",
-  "version": "1.2.3-alpha",
+  "version": "1.2.4-alpha",
   "description": "A library and shell command that provides a simple JSON-API to perform human like interactions and data extractions on any website. Built on top of pupeteerr.",
   "engines": {
     "node": ">=6.0.0"
   },
   "main": "dist/index.js",
   "author": "Bernhard Behrendt <bernhard.behrendt@aoe.com>",
-  "license": "GPL-3.0./bi ",
+  "license": "GPL-3.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/AOEpeople/puppeteer-fetchbot"

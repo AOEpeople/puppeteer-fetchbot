@@ -3,3 +3,8 @@ dist
 .gitattributes
 .idea
 .gitignore
+checkgoogle.json
+fetchaoeimg.json
+Future-PLANS
+yarn-error.log
+coverage
