@@ -15,5 +15,5 @@ describe('ProvisionedBrowser', () => {
 
         await  browserInstance.close();
         await  browserInstance.disconnect();
-    });
+    }).timeout(5000);
 });

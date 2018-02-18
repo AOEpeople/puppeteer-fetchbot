@@ -66,7 +66,7 @@ describe('Bot', () => {
         expect(data['collectedClassNames']).to.deep.equal(['xyz', 'xyz']);
         expect(data['dataTestIsWorking']).to.equal('working');
 
-    }).timeout(5000);
+    }).timeout(10000);
 
     it('Should fetch a set of data', async () => {
 
