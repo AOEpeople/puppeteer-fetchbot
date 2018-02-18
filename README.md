@@ -1,4 +1,4 @@
-# FetchBot 1.2.4-alpha
+# FetchBot 1.2.5-alpha
 
 <img src="https://i.imgur.com/ntm3aNU.png" alt="FetchBot" width="200" align="center"/>
 

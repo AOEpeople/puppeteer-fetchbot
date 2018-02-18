@@ -10,7 +10,7 @@ export function manPage() {
         },
         {
             header: 'FetchBot',
-            content: 'Library and shell-command that provides a simple JSON-API to perform human like interactions and data extractions on any website. Built on top of pupeteerr'
+            content: 'Library and shell-command that provides a simple JSON-API to perform human like interactions and data extractions on any website. Built on top of puppeteer'
         },
         {
             header: 'Options',
