@@ -24,7 +24,7 @@
     "@types/winston": "^2.3.8",
     "ansi-escape-sequences": "^4.0.0",
     "chai": "^4.1.2",
-    "codecov": "^3.0.0",
+    "codecov.io": "^0.1.6",
     "command-line-args": "^5.0.1",
     "command-line-usage": "^4.1.0",
     "coveralls": "^3.0.0",
@@ -41,8 +41,7 @@
     "build": "./node_modules/.bin/tsc",
     "test": "npm run build && NODE_ENV=testing ./node_modules/.bin/mocha ./dist/lib/**/*.spec.js",
     "cover": "./node_modules/.bin/nyc npm run test",
-    "codecov": "npm run cover && ./node_modules/.bin/codecov",
-
+    "codecov": "npm run cover && cat ./coverage/lcov.info | ./node_modules/.bin/codecov",
     "cli": "node ./dist/cli.js"
   },
   "nyc": {
