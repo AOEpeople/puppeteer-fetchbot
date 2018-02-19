@@ -1,5 +1,6 @@
 [![Build Status](https://travis-ci.org/AOEpeople/puppeteer-fetchbot.svg?branch=master)](https://travis-ci.org/AOEpeople/puppeteer-fetchbot)
 [![codecov](https://codecov.io/gh/AOEpeople/puppeteer-fetchbot/branch/master/graph/badge.svg)](https://codecov.io/gh/AOEpeople/puppeteer-fetchbot)
+[![Dependency Status](https://gemnasium.com/badges/github.com/AOEpeople/puppeteer-fetchbot.svg)](https://gemnasium.com/github.com/AOEpeople/puppeteer-fetchbot)
 
 # FetchBot 1.2.9-alpha
 
