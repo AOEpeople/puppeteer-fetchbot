@@ -53,8 +53,7 @@ export class Fetcher {
 
             const DOM = document.body;
 
-            let domAttrName: string,
-                isDataSet: boolean = false,
+            let isDataSet: boolean = false,
                 data = {};
 
             for (const originSelector of Object.keys(fetchItems)) {
@@ -71,68 +70,63 @@ export class Fetcher {
                 };
 
                 data[mapping.property] = fetchItems[originSelector];
-                domAttrName = 'textContent';
 
+                let target = [];
+
+                // Ensure prop name consistency (unstable)
+                // TODO stabilize
                 if (data[mapping.property] !== null && typeof data[mapping.property] === 'object' && !!data[mapping.property].attr) {
 
                     isDataSet = data[mapping.property].attr.match(/^data-/) !== null;
 
-                    domAttrName = data[mapping.property].attr || domAttrName;
+                    if (isDataSet) {
+                        target.push('dataset');
+                    }
 
-                    domAttrName = (isDataSet) ? domAttrName.replace(/^data-/, '') : domAttrName;
-                    domAttrName = (domAttrName === 'class') ? 'className' : domAttrName;
+                    target.push(data[mapping.property].attr.replace(/^data-/, ''));
 
+                    let last = target.pop();
+                    target.push((last === 'class') ? 'className' : last);
 
                     data[mapping.property] = (data[mapping.property].type !== false) ? data[mapping.property].type : false;
+                } else {
+                    target.push('textContent')
                 }
+
                 // TODO create a new function to grab the requested data and less complex
+                let SINGLE_DOM_ELEMENT_REFERENCE = DOM.querySelector(mapping.selector);
 
-                if (DOM.querySelector(mapping.selector) !== null) {
-
-                    const IS_NUM_ITERABLE = data[mapping.property] === null;
+                if (SINGLE_DOM_ELEMENT_REFERENCE !== null) {
+                    const IS_NUMBER_ITERABLE = data[mapping.property] === null;
                     const IS_STRING_ITERABLE = data[mapping.property] instanceof Array;
+                    const IS_NUMBER = typeof data[mapping.property] === 'number';
+                    const IS_BOOLEAN = data[mapping.property] === false;
+                    const IS_ITERABLE = (IS_NUMBER_ITERABLE || IS_STRING_ITERABLE);
+                    const SOURCE: any = (IS_ITERABLE) ? DOM.querySelectorAll(mapping.selector) : SINGLE_DOM_ELEMENT_REFERENCE;
 
-                    if (IS_NUM_ITERABLE || IS_STRING_ITERABLE) {
-                        const nodeList: any /*NodeList*/ = DOM.querySelectorAll(mapping.selector);
+                    if (IS_ITERABLE) {
                         data[mapping.property] = [];
-
-                        nodeList.forEach((node: any /*ChildNode*/) => {
-
-                            let target = [];
-
+                        let requestedDomProperty = target.pop();
+                        SOURCE.forEach((node: any /*ChildNode*/) => {
+                            target = [];
                             if (isDataSet) {
                                 target.push('dataset');
                             }
-
-                            target.push(domAttrName);
-
+                            target.push(requestedDomProperty);
                             data[mapping.property].push((extract(node, target) + '').trim());
-
-                            if (IS_NUM_ITERABLE) {
-                                data[mapping.property].push(parseInt(data[mapping.property].pop(), 10))
+                            if (IS_NUMBER_ITERABLE) {
+                                let last = data[mapping.property].pop();
+                                data[mapping.property].push(parseInt(last, 10));
                             }
                         });
-                    } else if (typeof data[mapping.property] === 'string') {
-                        const node: any /*ChildNode*/ = DOM.querySelector(mapping.selector);
-                        if (!isDataSet) {
-                            data[mapping.property] = (extract(node, [domAttrName]) + '').trim();
-                        } else {
-                            data[mapping.property] = (extract(node, ['dataset', domAttrName]) + '').trim();
-                        }
-                    } else if (typeof data[mapping.property] === 'number') {
-                        const node: any /*ChildNode*/ = DOM.querySelector(mapping.selector);
-                        if (!isDataSet) {
-                            data[mapping.property] = parseInt(extract(node, [domAttrName]), 10);
-                        } else {
-                            data[mapping.property] = parseInt(extract(node, ['dataset', domAttrName]), 10);
-                        }
-                    } else if (data[mapping.property] === false) {
-                        const node: any /*ChildNode */ = DOM.querySelector(mapping.selector);
+                    } else if (IS_BOOLEAN) {
+                        data[mapping.property] = !!extract(SOURCE, target);
+                    } else {
+                        // STRING or NUMBER
+                        data[mapping.property] = (extract(SOURCE, target) + '').trim();
 
-                        if (!isDataSet) {
-                            data[mapping.property] = !!extract(node, [domAttrName]);
-                        } else {
-                            data[mapping.property] = !!extract(node, ['dataset', domAttrName]);
+                        if (IS_NUMBER) {
+                            data[mapping.property] = parseInt(data[mapping.property], 10);
                         }
                     }
                 }
