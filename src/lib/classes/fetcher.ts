@@ -1,6 +1,5 @@
 import {Page} from "puppeteer";
-import {getSelectorAndPropertyName} from "../helpers/get-selector-and-property-name";
-import {hasDedicatedPropName} from "../helpers/has-dedicated-prop-name";
+
 import {SelectorAndPropertyInterface} from "../interfaces/selector-and-property";
 
 export class Fetcher {
@@ -16,7 +15,6 @@ export class Fetcher {
 
         return await this.page.evaluate((fetchItems) => {
 
-            // TODO IMPORTANT
             // TODO Determine how to use the helper functions here (Stackoverflow)!?!
             const getSelectorAndPropertyName = (key: string): SelectorAndPropertyInterface => {
 
@@ -28,6 +26,11 @@ export class Fetcher {
                 let selectorAndProperty = {
                     selector: key,
                     property: key
+                };
+
+                const hasDedicatedPropName = (key): boolean => {
+                    const hasDedicatedPropName: RegExp = new RegExp('\\S\\sas\\s\\S', 'i');
+                    return key.match(hasDedicatedPropName) !== null;
                 };
 
 
@@ -43,16 +46,10 @@ export class Fetcher {
                     } else {
                         throw new Error('SELECTOR_AS_PROPERTY_CUT_FAILED');
                     }
-
                 }
 
                 return selectorAndProperty;
             };
-            const hasDedicatedPropName = (key): boolean => {
-                const hasDedicatedPropName: RegExp = new RegExp('\\S\\sas\\s\\S', 'i');
-                return key.match(hasDedicatedPropName) !== null;
-            };
-
 
             const DOM = document.body;
 

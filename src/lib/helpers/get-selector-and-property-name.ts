@@ -1,4 +1,3 @@
-import {hasDedicatedPropName} from "./has-dedicated-prop-name";
 import {SelectorAndPropertyInterface} from "../interfaces/selector-and-property";
 
 export function getSelectorAndPropertyName(key: string): SelectorAndPropertyInterface {
@@ -22,6 +21,11 @@ export function getSelectorAndPropertyName(key: string): SelectorAndPropertyInte
     let selectorAndProperty = {
         selector: key,
         property: key
+    };
+
+    const hasDedicatedPropName = (key): boolean => {
+        const hasDedicatedPropName: RegExp = new RegExp('\\S\\sas\\s\\S', 'i');
+        return key.match(hasDedicatedPropName) !== null;
     };
 
 
