@@ -89,13 +89,27 @@ export class Fetcher {
 
                 if (DOM.querySelector(mapping.selector) !== null) {
 
-                    if (data[mapping.property] instanceof Array) {
+                    const IS_NUM_ITERABLE = data[mapping.property] === null;
+                    const IS_STRING_ITERABLE = data[mapping.property] instanceof Array;
+
+                    if (IS_NUM_ITERABLE || IS_STRING_ITERABLE) {
                         const nodeList: any /*NodeList*/ = DOM.querySelectorAll(mapping.selector);
+                        data[mapping.property] = [];
+
                         nodeList.forEach((node: any /*ChildNode*/) => {
-                            if (!isDataSet) {
-                                data[mapping.property].push((extract(node, [domAttrName]) + '').trim());
-                            } else {
-                                data[mapping.property].push((extract(node, ['dataset', domAttrName]) + '').trim());
+
+                            let target = [];
+
+                            if (isDataSet) {
+                                target.push('dataset');
+                            }
+
+                            target.push(domAttrName);
+
+                            data[mapping.property].push((extract(node, target) + '').trim());
+
+                            if (IS_NUM_ITERABLE) {
+                                data[mapping.property].push(parseInt(data[mapping.property].pop(), 10))
                             }
                         });
                     } else if (typeof data[mapping.property] === 'string') {
@@ -112,16 +126,6 @@ export class Fetcher {
                         } else {
                             data[mapping.property] = parseInt(extract(node, ['dataset', domAttrName]), 10);
                         }
-                    } else if (data[mapping.property] === null) {
-                        const nodeList: any /*NodeList*/ = DOM.querySelectorAll(mapping.selector);
-                        data[mapping.property] = [];
-                        nodeList.forEach((node: any /*ChildNode*/) => {
-                            if (!isDataSet) {
-                                data[mapping.property].push(parseInt(extract(node, [domAttrName]), 10));
-                            } else {
-                                data[mapping.property].push(parseInt(extract(node, ['dataset', domAttrName]), 10));
-                            }
-                        });
                     } else if (data[mapping.property] === false) {
                         const node: any /*ChildNode */ = DOM.querySelector(mapping.selector);
 
