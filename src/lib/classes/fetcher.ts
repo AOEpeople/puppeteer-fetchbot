@@ -60,6 +60,15 @@ export class Fetcher {
             for (const originSelector of Object.keys(fetchItems)) {
 
                 const mapping = getSelectorAndPropertyName(originSelector);
+                const extract = (rootDom, pathToData: string[] = []) => {
+                    let propCapture = rootDom;
+
+                    pathToData.forEach((pathNamePartial: string) => {
+                        propCapture = propCapture[pathNamePartial];
+                    });
+
+                    return propCapture;
+                };
 
                 data[mapping.property] = fetchItems[originSelector];
                 domAttrName = 'textContent';
@@ -75,8 +84,6 @@ export class Fetcher {
 
 
                     data[mapping.property] = (data[mapping.property].type !== false) ? data[mapping.property].type : false;
-
-
                 }
                 // TODO create a new function to grab the requested data and less complex
 
@@ -86,42 +93,42 @@ export class Fetcher {
                         const nodeList: any /*NodeList*/ = DOM.querySelectorAll(mapping.selector);
                         nodeList.forEach((node: any /*ChildNode*/) => {
                             if (!isDataSet) {
-                                data[mapping.property].push((node[domAttrName] + '').trim());
+                                data[mapping.property].push((extract(node, [domAttrName]) + '').trim());
                             } else {
-                                data[mapping.property].push((node.dataset[domAttrName] + '').trim());
+                                data[mapping.property].push((extract(node, ['dataset', domAttrName]) + '').trim());
                             }
                         });
                     } else if (typeof data[mapping.property] === 'string') {
                         const node: any /*ChildNode*/ = DOM.querySelector(mapping.selector);
                         if (!isDataSet) {
-                            data[mapping.property] = (node[domAttrName] + '').trim();
+                            data[mapping.property] = (extract(node, [domAttrName]) + '').trim();
                         } else {
-                            data[mapping.property] = (node.dataset[domAttrName] + '').trim();
+                            data[mapping.property] = (extract(node, ['dataset', domAttrName]) + '').trim();
                         }
                     } else if (typeof data[mapping.property] === 'number') {
                         const node: any /*ChildNode*/ = DOM.querySelector(mapping.selector);
                         if (!isDataSet) {
-                            data[mapping.property] = parseInt(node[domAttrName], 10);
+                            data[mapping.property] = parseInt(extract(node, [domAttrName]), 10);
                         } else {
-                            data[mapping.property] = parseInt(node.dataset[domAttrName], 10);
+                            data[mapping.property] = parseInt(extract(node, ['dataset', domAttrName]), 10);
                         }
                     } else if (data[mapping.property] === null) {
                         const nodeList: any /*NodeList*/ = DOM.querySelectorAll(mapping.selector);
                         data[mapping.property] = [];
                         nodeList.forEach((node: any /*ChildNode*/) => {
                             if (!isDataSet) {
-                                data[mapping.property].push(parseInt(node[domAttrName], 10));
+                                data[mapping.property].push(parseInt(extract(node, [domAttrName]), 10));
                             } else {
-                                data[mapping.property].push(parseInt(node.dataset[domAttrName], 10));
+                                data[mapping.property].push(parseInt(extract(node, ['dataset', domAttrName]), 10));
                             }
                         });
                     } else if (data[mapping.property] === false) {
                         const node: any /*ChildNode */ = DOM.querySelector(mapping.selector);
 
                         if (!isDataSet) {
-                            data[mapping.property] = !!node[domAttrName];
+                            data[mapping.property] = !!extract(node, [domAttrName]);
                         } else {
-                            data[mapping.property] = !!node.dataset[domAttrName];
+                            data[mapping.property] = !!extract(node, ['dataset', domAttrName]);
                         }
                     }
                 }
