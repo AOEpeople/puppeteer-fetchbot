@@ -10,3 +10,9 @@ node_js:
   - "stable"
 script:
   - npm run codecov
+deploy:
+  provider: npm
+  email: bernhard.bezdek@googlemail.com
+  api_key: $NPM_TOKEN
+  on:
+    branch: master
