@@ -89,6 +89,7 @@ headless: boolean | default=false   Specifies if the browser window is shown or 
 trust: boolean    | default=false   Open unsecure https pages without a warning 
 width: number     | defautlt=800    The Browser and viewport width
 height: number    | default=600     The Browser and Viewport height
+wait: number      | default=750     Delay after each command before execution continues
 slowmo:number     | default=0       Slowes down the execution in milliseconds
 debug: boolean    | default=false   Determine if debug/logging messages are shown
  ````  

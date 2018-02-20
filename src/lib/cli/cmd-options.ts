@@ -6,6 +6,7 @@ export function cmdOptions() {
         {name: 'width', type: Number},
         {name: 'height', type: Number},
 
+        {name: 'wait', type: Number},
 
         {name: 'slowmo', type: Number},
         {name: 'debug', type: Boolean},

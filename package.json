@@ -21,13 +21,11 @@
     "@types/mocha": "^2.2.48",
     "@types/node": "^9.4.6",
     "@types/puppeteer": "^1.0.0",
-    "@types/winston": "^2.3.8",
     "ansi-escape-sequences": "^4.0.0",
     "command-line-args": "^5.0.1",
     "command-line-usage": "^4.1.0",
     "puppeteer": "^1.0.0",
-    "typescript": "^2.6.2",
-    "winston": "^2.4.0"
+    "typescript": "^2.6.2"
   },
   "devDependencies": {
     "codecov.io": "^0.1.6",

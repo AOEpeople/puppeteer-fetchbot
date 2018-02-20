@@ -19,6 +19,7 @@ describe('Options', () => {
                 trust: false,
                 width: 800,
                 height: 600,
+                wait: 750,
                 slowmo: 250,
                 debug: false
             };
@@ -29,6 +30,7 @@ describe('Options', () => {
         expect(typeof DEFAULT_OPTIONS.trust).to.equal('boolean');
         expect(typeof DEFAULT_OPTIONS.width).to.equal('number');
         expect(typeof DEFAULT_OPTIONS.height).to.equal('number');
+        expect(typeof DEFAULT_OPTIONS.wait).to.equal('number');
         expect(typeof DEFAULT_OPTIONS.slowmo).to.equal('number');
 
     });

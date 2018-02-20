@@ -17,7 +17,7 @@ export class Bot extends OperationalPage {
 
     constructor(tour: Object | string, protected userOptions: OptionsInterface) {
 
-        super(userOptions);
+        super(userOptions)
 
         if (typeof tour === 'string') {
             try {
@@ -42,14 +42,8 @@ export class Bot extends OperationalPage {
         }
 
 
-        // let page = await this.getPageInstance();
+        await this.exit();
 
-        completed = await this.exit();
-
-
-        if (completed && this.options.debug) {
-            console.log('Bot completed');
-        }
 
         return this.fetchedData;
     }
@@ -89,8 +83,6 @@ export class Bot extends OperationalPage {
         const scope = await this.getPageInstance();
         const cmdType = await this._getCmdType(command, options);
 
-        // TODO More performant using enums?!?
-
         switch (cmdType) {
 
             case 'selector':
@@ -114,8 +106,6 @@ export class Bot extends OperationalPage {
             default:
                 break;
         }
-
-        // await scope.waitFor(1000);
     }
 
     private async _batchTask(task: any, gotoResource: boolean = false): Promise<Boolean> {
@@ -126,23 +116,15 @@ export class Bot extends OperationalPage {
             await page.goto(resource);
         }
 
-        // Listener mus be started here because once things will change bot must recognize that
-        // but first we apply commands for currently applied domain
-
         await this._execution(task[resource]);
 
-        // Todo optimize that e.g. via task[resource].delayAfterAppliance
-        await page.waitFor(750);
+        await page.waitFor(this.options.wait);
 
         return true;
     }
 
     private async _batchTasks(tasks: any[], root: boolean = false): Promise<boolean> {
         const currentTasks = tasks.pop();
-
-        if (this.options.debug === true) {
-            console.log('Process root task ' + tasks.length + ' tasks remaining');
-        }
 
         await this._batchTask(currentTasks, root);
 
@@ -203,18 +185,19 @@ export class Bot extends OperationalPage {
 
         tasks = tasks
             .filter((task: Object) => {
-                // TODO implement RegExp matching here as wells
-                const taskApliancePattern = Object.keys(task)[0];
-                const urlHasMatch = url.toLocaleLowerCase().indexOf(taskApliancePattern.toLocaleLowerCase()) === 0;
+                const taskAppliancePattern: string = Object.keys(task)[0];
+
+                const urlHasMatch = url.toLocaleLowerCase().indexOf(taskAppliancePattern.toLocaleLowerCase()) === 0;
+                const urlHasRegExpMatch = url.match(new RegExp(taskAppliancePattern, 'i')) !== null;
 
 
-                if (!urlHasMatch) {
+                if (!urlHasMatch && !urlHasRegExpMatch) {
                     return false;
                 }
 
-                this._deleteJob(taskApliancePattern);
+                this._deleteJob(taskAppliancePattern);
 
-                return urlHasMatch
+                return urlHasMatch || urlHasRegExpMatch
             });
 
         return tasks;

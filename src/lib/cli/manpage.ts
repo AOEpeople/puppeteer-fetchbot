@@ -41,6 +41,13 @@ export function manPage() {
                 },
 
                 {
+                    name: 'wait',
+                    typeLabel: '[underline]{Number}',
+                    description: 'Time  in ms to delay execution after each command (optional | default=750)'
+
+                },
+
+                {
                     name: 'headless',
                     typeLabel: '[underline]{Boolean}',
                     description: 'specifies if Chrome should run in headless (silent) mode (optional | default=true)'

@@ -5,7 +5,7 @@ import {Options} from "./options";
 
 describe('Bot', () => {
     const fakeUrl = 'file://' + realpathSync(__dirname + '"/../../../mocks/gitHubPage.htm');
-    const targetUrl = 'file://' + realpathSync(__dirname + '"/../../../mocks/link-target.html');
+    const targetUrl = 'file://';// + realpathSync(__dirname + '"/../../../mocks/link-target.html');
     const options = {headless: true};
     const expectedData = {
         booleanExample: true,

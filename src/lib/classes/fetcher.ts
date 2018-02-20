@@ -9,13 +9,9 @@ export class Fetcher {
     }
 
     public async pull(adapter: Object): Promise<Object> {
-        // TODO evaluate if it's somehomw/practical possible to deduplicate getSelectorAndPropertyName and  hasDedicatedPropName functions
-        //await page.exposeFunction("add", (a, b) => a + b);
-        //await this.page.addScriptTag({content: '${getSelectorAndPropertyName} ${hasDedicatedPropName}});
 
         return await this.page.evaluate((fetchItems) => {
 
-            // TODO Determine how to use the helper functions here (Stackoverflow)!?!
             const getSelectorAndPropertyName = (key: string): SelectorAndPropertyInterface => {
 
                 const regExpString: string = '([\\[.#a-z][\\[#a-zA-Z0-9\\s()>\\.:_"\'\\-=\\]]+|[a-z])\\sas\\s([a-z][a-zA-Z0-9]+|[a-z])';
@@ -71,10 +67,10 @@ export class Fetcher {
 
                 data[mapping.property] = fetchItems[originSelector];
 
-                let target = [];
+                let last,
+                    target = [];
 
                 // Ensure prop name consistency (unstable)
-                // TODO stabilize
                 if (data[mapping.property] !== null && typeof data[mapping.property] === 'object' && !!data[mapping.property].attr) {
 
                     isDataSet = data[mapping.property].attr.match(/^data-/) !== null;
@@ -85,7 +81,7 @@ export class Fetcher {
 
                     target.push(data[mapping.property].attr.replace(/^data-/, ''));
 
-                    let last = target.pop();
+                    last = target.pop();
                     target.push((last === 'class') ? 'className' : last);
 
                     data[mapping.property] = (data[mapping.property].type !== false) ? data[mapping.property].type : false;
@@ -93,10 +89,10 @@ export class Fetcher {
                     target.push('textContent')
                 }
 
-                // TODO create a new function to grab the requested data and less complex
                 let SINGLE_DOM_ELEMENT_REFERENCE = DOM.querySelector(mapping.selector);
 
                 if (SINGLE_DOM_ELEMENT_REFERENCE !== null) {
+
                     const IS_NUMBER_ITERABLE = data[mapping.property] === null;
                     const IS_STRING_ITERABLE = data[mapping.property] instanceof Array;
                     const IS_NUMBER = typeof data[mapping.property] === 'number';
