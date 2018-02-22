@@ -41,6 +41,10 @@ describe('getSelectorAndPropertyName', () => {
         {
             selector: "table#currencies tr > .sorting_1",
             property: 'currencySorting'
+        },
+        {
+            selector: "[data-test-action=\"Some Weird Attribute Value 1\"]",
+            property: 'selectorWithWhitespace'
         }
     ];
 

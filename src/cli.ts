@@ -22,7 +22,7 @@ if (!existsSync(options.job)) {
 try {
     job = JSON.parse(readFileSync(options.job, 'utf-8'));
 } catch (error) {
-    throw new Error('No job file specified');
+    throw new Error('Failed to parse specified job file as JSON (' + options.job + ')');
 }
 
 let bot = new Bot(job, options);
