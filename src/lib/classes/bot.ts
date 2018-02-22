@@ -116,7 +116,16 @@ export class Bot extends OperationalPage {
             await page.goto(resource);
         }
 
-        await this._execution(task[resource]);
+        if (task[resource] instanceof Array && task[resource].length > 0) {
+            for (const subTask of task[resource]) {
+                let standardizedSubTask = {};
+                    standardizedSubTask[resource] = subTask;
+
+                await this._batchTask(standardizedSubTask);
+            }
+        } else {
+            await this._execution(task[resource]);
+        }
 
         await page.waitFor(this.options.wait);
 

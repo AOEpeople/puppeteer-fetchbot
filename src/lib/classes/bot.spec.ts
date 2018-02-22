@@ -41,20 +41,29 @@ describe('Bot', () => {
             ],
             click: 'a.header-logo-invertocat'
         };
-        tour[targetUrl] = {
-            reload: null,
-            waitFor: [
-                [delay]
-            ],
-            fetch: {
-                '#linkTargetResolved as completed': false,
-                '#linkTargetResolved as attributeIsWorking': {'attr': 'align', 'type': ''},
-                '#linkTargetResolved as attributeAlignExists': {'attr': 'align', 'type': false},
-                '#linkTargetResolved as dataTestIsWorking': {'attr': 'data-test', 'type': ''},
-                'h2.xyz as collectedIds': {'attr': 'id', 'type': null},
-                'h2.xyz as collectedClassNames': {'attr': 'class', 'type': []}
+        tour[targetUrl] = [
+            {
+                reload: null,
+                waitFor: [
+                    [delay]
+                ],
+                fetch: {
+                    '#linkTargetResolved as completed': false,
+                    '#linkTargetResolved as attributeIsWorking': {'attr': 'align', 'type': ''},
+                    '#linkTargetResolved as attributeAlignExists': {'attr': 'align', 'type': false},
+                    '#linkTargetResolved as dataTestIsWorking': {'attr': 'data-test', 'type': ''}
+                }
+            },
+            {
+                waitFor: [
+                    [delay / 10]
+                ],
+                fetch: {
+                    'h2.xyz as collectedIds': {'attr': 'id', 'type': null},
+                    'h2.xyz as collectedClassNames': {'attr': 'class', 'type': []}
+                }
             }
-        };
+        ];
 
         bot = new Bot(tour, options);
         data = await bot.run();
