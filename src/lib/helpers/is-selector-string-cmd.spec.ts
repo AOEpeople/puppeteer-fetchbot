@@ -1,6 +1,6 @@
 import {expect} from 'chai';
 import {isSelectorStringCmd} from "./is-selector-string-cmd";
-import {Bot} from "../classes/bot";
+import {FetchBot} from "../classes/fetch-bot";
 
 describe('isSelectorStringCmd', function () {
     const isPageCommand = true;

@@ -4,7 +4,7 @@ import {existsSync, readFileSync, writeFileSync} from "fs";
 
 import * as commandLineArgs from 'command-line-args';
 import *  as getUsage from 'command-line-usage'
-import {Bot} from "./lib/classes/bot";
+import {FetchBot} from "./lib/classes/fetch-bot";
 
 const options = commandLineArgs(cmdOptions());
 let job;
@@ -25,13 +25,13 @@ try {
     throw new Error('Failed to parse specified job file as JSON (' + options.job + ')');
 }
 
-let bot = new Bot(job, options);
+let fetchBot = new FetchBot(job, options);
 
 console.log('🚀  FetchBot is launching...');
 console.log('🕘  Please wait a moment...');
 
 
-bot.run()
+fetchBot.run()
     .then((fetchedData) => {
 
         console.log('🏁  Completed');

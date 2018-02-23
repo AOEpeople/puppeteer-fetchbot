@@ -1,9 +1,9 @@
 import {expect} from 'chai';
-import {Bot} from "./bot";
+import {FetchBot} from "./fetch-bot";
 import {realpathSync} from "fs";
 import {Options} from "./options";
 
-describe('Bot', () => {
+describe('FetchBot', () => {
     const fakeUrl = 'file://' + realpathSync(__dirname + '"/../../../mocks/gitHubPage.htm');
     const targetUrl = 'file://';// + realpathSync(__dirname + '"/../../../mocks/link-target.html');
     const options = {headless: true};
@@ -65,7 +65,7 @@ describe('Bot', () => {
             }
         ];
 
-        bot = new Bot(tour, options);
+        bot = new FetchBot(tour, options);
         data = await bot.run();
 
         expect(data['completed']).to.equal(true);
@@ -93,7 +93,7 @@ describe('Bot', () => {
         };
 
         let data,
-            bot = new Bot(tour, options);
+            bot = new FetchBot(tour, options);
 
         data = await bot.run();
 
@@ -120,7 +120,7 @@ describe('Bot', () => {
         };
 
 
-        let bot = new Bot(tour, options);
+        let bot = new FetchBot(tour, options);
 
         await bot.run();
 
@@ -128,9 +128,59 @@ describe('Bot', () => {
 
     }).timeout(5000);
 
+    it('Should resolve the root tours and then match the followed url by RegExp', async () => {
+
+        tour = {};
+
+        tour[fakeUrl] = {
+            root: true,
+            click: 'a.header-logo-invertocat'
+        };
+
+        tour['.html'] = {
+            fetch: {
+                "#uniqueId as uid": ''
+            }
+        };
+
+
+        let bot = new FetchBot(tour, options);
+
+        let result:any = await bot.run();
+
+        expect(result.uid).to.equal('BBB');
+
+    }).timeout(5000);
+
+    it('Should resolve the root and finally have one non matching item in the job list', async () => {
+
+        tour = {};
+
+        tour[fakeUrl] = {
+            root: true,
+            lalala: [
+                ['#sdfdsd']
+            ]
+        };
+
+        tour['http://some.fantasy.domain.com/never-matching.html'] = {
+            lalala: [
+                ['#sdfdsd']
+            ]
+        };
+
+
+        let bot = new FetchBot(tour, options);
+
+        await bot.run();
+
+        expect(Object.keys(tour).length).to.equal(1);
+
+    }).timeout(5000);
+
     it('Should load an existing config via file (from examples folder)', async () => {
         //TODO This tests isn't working in headless mode
-        let bot = new Bot(realpathSync(__dirname + '/../../../examples/tour-via-file-for-tests.json'), options);
+        let bot = new FetchBot(realpathSync(__dirname + '/../../../examples/tour-via-file-for-tests.json'), options);
 
         let result = await bot.run();
 
@@ -144,11 +194,22 @@ describe('Bot', () => {
     it('Should fail when loading a not existing config file', async () => {
 
         try {
-            new Bot('this-file-does-not-exist.json', options);
+            new FetchBot('this-file-does-not-exist.json', options);
         } catch (error) {
             expect(error.message).to.equal('Cannot read tour file (Does it exist or is it valid JSON?)');
         }
 
 
     }).timeout(5000);
+
+    it('Should fail when no root object is present', async () => {
+        try {
+            let fetchBot = new FetchBot({"https://some.sub.domain/page.html": {}}, options);
+
+            await fetchBot.run();
+
+        } catch (error) {
+            expect(error.message).to.equal('The configuration job configuration has no root jobs');
+        }
+    });
 });

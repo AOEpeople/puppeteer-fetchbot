@@ -1,12 +1,12 @@
 import {readFileSync} from "fs";
 import {Options} from "./lib/classes/options";
-import {Bot} from "./lib/classes/bot";
+import {FetchBot} from "./lib/classes/fetch-bot";
 
 console.log('🤖  Start a journey that my tour guide has planned for me  => "../examples/aoe.people.and.languages.json"\n');
 
 let tour = JSON.parse(readFileSync(__dirname + '/../examples/aoe.people.and.languages.json', 'utf-8'));
 
-let bot = new Bot(tour, new Options({
+let bot = new FetchBot(tour, new Options({
     debug: false, headless: false
 }));
 

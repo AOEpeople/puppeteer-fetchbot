@@ -1,1 +1,1 @@
-module.exports = require('./lib/classes/bot').Bot;
+module.exports = require('./lib/classes/fetch-bot').FetchBot;

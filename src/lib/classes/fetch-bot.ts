@@ -9,7 +9,7 @@ import {Fetcher} from "./fetcher";
 import {OptionsInterface} from "../interfaces/options";
 import {readFileSync} from "fs";
 
-export class Bot extends OperationalPage {
+export class FetchBot extends OperationalPage {
 
     public tour: Object;
 
@@ -17,22 +17,25 @@ export class Bot extends OperationalPage {
 
     constructor(tour: Object | string, protected userOptions: OptionsInterface) {
 
-        super(userOptions)
+        super(userOptions);
 
         if (typeof tour === 'string') {
-            try {
-                this.tour = JSON.parse(readFileSync(tour, 'utf-8'));
-            } catch (error) {
-                throw new Error('Cannot read tour file (Does it exist or is it valid JSON?)')
-            }
+            this._load(tour);
         } else {
             this.tour = tour;
         }
     }
 
+    private _load(fileName: string) {
+        try {
+            this.tour = JSON.parse(readFileSync(fileName, 'utf-8'));
+        } catch (error) {
+            throw new Error('Cannot read tour file (Does it exist or is it valid JSON?)')
+        }
+    }
+
     public async run() {
 
-        let completed;
         try {
             await this._batchTasks(this._getTasks(true), true);
         } catch (error) {
@@ -41,9 +44,7 @@ export class Bot extends OperationalPage {
             }
         }
 
-
         await this.exit();
-
 
         return this.fetchedData;
     }
@@ -119,7 +120,7 @@ export class Bot extends OperationalPage {
         if (task[resource] instanceof Array && task[resource].length > 0) {
             for (const subTask of task[resource]) {
                 let standardizedSubTask = {};
-                    standardizedSubTask[resource] = subTask;
+                standardizedSubTask[resource] = subTask;
 
                 await this._batchTask(standardizedSubTask);
             }
