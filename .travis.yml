@@ -6,13 +6,11 @@ node_js:
   - "7"
   - "8"
   - "stable"
+script:
+  - npm run codecov
 deploy:
   provider: npm
   email: bernhard.bezdek@googlemail.com
   api_key: $NPM_TOKEN
   on:
     branch: master
-script:
-  on:
-    branch: master
-  - npm run codecov
