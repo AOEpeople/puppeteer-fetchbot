@@ -9,7 +9,7 @@ export function manPage() {
             raw: true
         },
         {
-            header: 'FetchBot',
+            header: 'FetchBot (1.3.0)',
             content: 'Library and shell-command that provides a simple JSON-API to perform human like interactions and data extractions on any website. Built on top of puppeteer'
         },
         {
@@ -48,9 +48,9 @@ export function manPage() {
                 },
 
                 {
-                    name: 'headless',
+                    name: 'attached',
                     typeLabel: '[underline]{Boolean}',
-                    description: 'specifies if Chrome should run in headless (silent) mode (optional | default=true)'
+                    description: 'Specifies if Chromium/Chrome should run in attached mode (non headless) (optional | default=false)'
                 },
 
                 {

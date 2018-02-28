@@ -2,7 +2,7 @@
 [![codecov](https://codecov.io/gh/AOEpeople/puppeteer-fetchbot/branch/master/graph/badge.svg)](https://codecov.io/gh/AOEpeople/puppeteer-fetchbot)
 [![Dependency Status](https://gemnasium.com/badges/github.com/AOEpeople/puppeteer-fetchbot.svg)](https://gemnasium.com/github.com/AOEpeople/puppeteer-fetchbot)
 
-# FetchBot 1.2.13
+# FetchBot 1.3.0
 
 <img src="https://i.imgur.com/ntm3aNU.png" alt="FetchBot" width="200" align="center"/>
 
@@ -69,10 +69,8 @@ $ sudo npm install -g fetchbot --unsafe-perm=true
 ````    
     
 ### Options
-It's important to keep in mind that e.g on linux systems without a GUI (terminal clients), FetchBot must been started
-using the `headless=true` or in terminal `--headless` option enabled. Many options can be applied directly via passed 
-configuration object to control browser and page behavior. All these options can be passed via command line too.  An
-entire list of all command line options can be obtained via:
+Many options can be applied directly via passed configuration object to control browser and page behavior. 
+All these options can be passed via command line too.  An entire list of all command line options can be obtained via:
  
 > To get a complete list whats possible via commandline just type
 ````bash 
@@ -85,7 +83,7 @@ $ ./node_modules/.bin/fetchbot --help
 
 #### Options params
 ````text
-headless: boolean | default=false   Specifies if the browser window is shown or not
+attached: boolean | default=false   Specifies if the browser window is shown or not
 trust: boolean    | default=false   Open unsecure https pages without a warning 
 width: number     | defautlt=800    The Browser and viewport width
 height: number    | default=600     The Browser and Viewport height
@@ -98,7 +96,7 @@ debug: boolean    | default=false   Determine if debug/logging messages are show
 #### Pass options via command line 
 > Command line input example
 ````bash
-$ fetchbot --job=./path/to/job/file.json --slowmo=250 --output=a-json-file.json --headless --debug
+$ fetchbot --job=./path/to/job/file.json --slowmo=250 --output=a-json-file.json --attached --debug
 ````   
 
 #### Pass options as configuration object in the library
@@ -107,7 +105,7 @@ const FetchBot = require('fetchbot');
 
 // Pass a path to a job configuration file
 (async () => {
- const fetchbot = new FetchBot('./path/to/job/file.json', {headless: true});
+ const fetchbot = new FetchBot('./path/to/job/file.json', {attached: false});
  fetchBotData = await fetchbot.run();  
  
  console.log(fetchBotData);
@@ -129,7 +127,7 @@ const FetchBot = require('fetchbot');
                     ]
                 ]
             },
-            "https://www.google.de/search": {
+            "/search": {
                 "fetch": {
                     "h3.r > a AS headlines": [],
                     "h3.r > a AS links": {
@@ -147,7 +145,7 @@ const FetchBot = require('fetchbot');
 
         // The options object is here
         {
-            "headless": true,
+            "attached": false,
             "slowmo": 250,
             "width": 1280,
             "height": 1024,
@@ -376,7 +374,7 @@ Feel free to copy this example below, save to a file e.g. googlesearch.json and 
       ]
     ]
   },
-  "https://www.google.de/search": {
+  "/search": {
     "fetch": {
       "h3.r > a AS headlines": [],
       "h3.r > a AS links": {
@@ -417,10 +415,10 @@ A complete list whats possible on a page is yet only available in the puppeteer 
 var FetchBot = require('fetchbot'),
 
     // Create an FetchBot instance whre entire config is passed in
-    myFetchBot = new FetchBot({"https://google.com": {root: true, waitFor: [[10000]]}}, {headless: false, debug:true});
+    myFetchBot = new FetchBot({"https://google.com": {root: true, waitFor: [[10000]]}}, {attached: true, debug:true});
 
     // Or alternatively create an instance which tells FetchBot to load a JSON file as config
-    myFetchBot = new FetchBot('googlesearch.json', {headless: false, debug:true});
+    myFetchBot = new FetchBot('googlesearch.json', {attached: true, debug:true});
 
     myFetchBot
         .run()

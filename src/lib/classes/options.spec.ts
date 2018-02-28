@@ -15,18 +15,18 @@ describe('Options', () => {
 
         let DEFAULT_OPTIONS = options.getAll(),
             EXPECTED_OPTIONS = {
-                headless: false,
+                attached: false,
                 trust: false,
-                width: 800,
-                height: 600,
+                width: 1024,
+                height: 768,
                 wait: 750,
-                slowmo: 250,
+                slowmo: 0,
                 debug: false
             };
 
-        expect(Object.keys(DEFAULT_OPTIONS).sort()).to.deep.equal(Object.keys(EXPECTED_OPTIONS).sort());
+        expect(DEFAULT_OPTIONS).to.deep.equal(EXPECTED_OPTIONS);
 
-        expect(typeof DEFAULT_OPTIONS.headless).to.equal('boolean');
+        expect(typeof DEFAULT_OPTIONS.attached).to.equal('boolean');
         expect(typeof DEFAULT_OPTIONS.trust).to.equal('boolean');
         expect(typeof DEFAULT_OPTIONS.width).to.equal('number');
         expect(typeof DEFAULT_OPTIONS.height).to.equal('number');
@@ -46,7 +46,7 @@ describe('Options', () => {
     });
 
     it('Should get the current run mode default', () => {
-        expect(options.getRunMode()).to.equal(false);
+        expect(options.isAttached()).to.equal(false);
     });
 
     it('Should get the current ignoreHttpErrors default', () => {

@@ -5,7 +5,7 @@ import {Options} from "./options";
 
 describe('ProvisionedBrowser', () => {
 
-    const provisionedBrowser = new ProvisionedBrowser(new Options({headless: true}));
+    const provisionedBrowser = new ProvisionedBrowser(new Options({}));
 
 
     it('Should fetch a new browser instance and close these immediately', async () => {

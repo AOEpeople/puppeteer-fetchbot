@@ -6,7 +6,7 @@ import {Options} from "./options";
 describe('FetchBot', () => {
     const fakeUrl = 'file://' + realpathSync(__dirname + '"/../../../mocks/gitHubPage.htm');
     const targetUrl = 'file://';// + realpathSync(__dirname + '"/../../../mocks/link-target.html');
-    const options = {headless: true};
+    const options = {};
     const expectedData = {
         booleanExample: true,
         stringExample: '@AOEpeople',
