@@ -99,7 +99,7 @@ describe('FetchBot', () => {
 
         expect(data).to.deep.equal(expectedData);
 
-    }).timeout(50000);
+    }).timeout(30000);
 
     it('Should resolve all root tours and finally have an empty tour list', async () => {
 
@@ -126,7 +126,7 @@ describe('FetchBot', () => {
 
         expect(Object.keys(tour).length).to.equal(0);
 
-    }).timeout(5000);
+    }).timeout(10000);
 
     it('Should resolve the root tours and then match the followed url by RegExp', async () => {
 
@@ -150,7 +150,7 @@ describe('FetchBot', () => {
 
         expect(result.uid).to.equal('BBB');
 
-    }).timeout(5000);
+    }).timeout(10000);
 
     it('Should resolve the root and finally have one non matching item in the job list', async () => {
 
@@ -176,7 +176,7 @@ describe('FetchBot', () => {
 
         expect(Object.keys(tour).length).to.equal(1);
 
-    }).timeout(5000);
+    }).timeout(10000);
 
     it('Should load an existing config via file (from examples folder)', async () => {
         //TODO This tests isn't working in headless mode
@@ -189,7 +189,7 @@ describe('FetchBot', () => {
         // expect(result['links'].length).to.be.greaterThan(0);
         expect(Object.keys(result).length).to.equal(0);
 
-    }).timeout(5000);
+    }).timeout(10000);
 
     it('Should fail when loading a not existing config file', async () => {
 
@@ -200,7 +200,7 @@ describe('FetchBot', () => {
         }
 
 
-    }).timeout(5000);
+    }).timeout(10000);
 
     it('Should fail when no root object is present', async () => {
         try {

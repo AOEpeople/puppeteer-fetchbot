@@ -14,5 +14,5 @@ describe('OperationalPage', () => {
         await page.exit();
 
         expect(typeof pageInstance.waitFor).to.equal('function');
-    }).timeout(5000);
+    }).timeout(10000);
 });

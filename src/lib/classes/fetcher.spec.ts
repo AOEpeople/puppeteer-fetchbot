@@ -42,7 +42,7 @@ describe('Fetcher', () => {
 
         await operationalPage.exit();
 
-    }).timeout(5000);
+    }).timeout(10000);
 
     it('Should pull specified data (via selector) from page and provide as "string" [excluded from coverage]', async () => {
 
@@ -65,7 +65,7 @@ describe('Fetcher', () => {
 
         await operationalPage.exit();
 
-    }).timeout(5000);
+    }).timeout(10000);
 
     it('Should pull specified data (via selector) from page and provide as "number" [excluded from coverage]', async () => {
 
@@ -87,7 +87,7 @@ describe('Fetcher', () => {
 
         await operationalPage.exit();
 
-    }).timeout(5000);
+    }).timeout(10000);
 
     it('Should pull specified data (via selector) from page and provide as "array of string(s)" [excluded from coverage]', async () => {
 
@@ -113,7 +113,7 @@ describe('Fetcher', () => {
 
         await operationalPage.exit();
 
-    }).timeout(5000);
+    }).timeout(10000);
 
     it('Should pull specified data (via selector) from page and provide as "array of number(s)" [excluded from coverage]', async () => {
 
@@ -137,5 +137,5 @@ describe('Fetcher', () => {
 
         await operationalPage.exit();
 
-    }).timeout(5000);
+    }).timeout(10000);
 });
