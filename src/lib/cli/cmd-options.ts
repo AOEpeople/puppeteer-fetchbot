@@ -14,7 +14,7 @@ export function cmdOptions() {
         {name: 'output', type: String},
 
         {name: 'trust', type: Boolean},
-        {name: 'headless', type: Boolean},
+        {name: 'attached', type: Boolean},
         {name: 'help', type: Boolean},
     ];
 }

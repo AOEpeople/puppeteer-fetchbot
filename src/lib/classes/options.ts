@@ -2,7 +2,7 @@ import {OptionsInterface} from "../interfaces/options";
 
 export class Options implements OptionsInterface {
 
-    headless: boolean;
+    attached: boolean;
     trust: boolean;
     width: number;
     height: number;
@@ -11,10 +11,10 @@ export class Options implements OptionsInterface {
     slowmo: number;
 
     constructor(options) {
-        this.headless = options.headless === true;
+        this.attached  = options.attached  === true || false;
         this.trust = options.trust === true;
-        this.width = (typeof options.width === 'number') ? options.width : 800;
-        this.height = (typeof options.height === 'number') ? options.height : 600;
+        this.width = (typeof options.width === 'number') ? options.width : 1024;
+        this.height = (typeof options.height === 'number') ? options.height : 768;
         this.wait = (typeof options.wait === 'number') ? options.wait : 750;
         this.slowmo = (typeof options.slowmo === 'number') ? options.slowmo : 0;
         this.debug = options.debug === true;
@@ -22,7 +22,7 @@ export class Options implements OptionsInterface {
 
     public getAll(): OptionsInterface {
         return {
-            headless: this.headless,
+            attached: this.attached,
             trust: this.trust,
             width: this.width,
             height: this.height,
@@ -44,8 +44,8 @@ export class Options implements OptionsInterface {
         return this.getAll().height;
     }
 
-    public getRunMode(): boolean {
-        return this.getAll().headless;
+    public isAttached(): boolean {
+        return this.getAll().attached;
     }
 
     public ignoreHttpErrors(): boolean {

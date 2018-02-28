@@ -26,7 +26,7 @@ describe('Fetcher', () => {
         // TODO Excluded yet in coverage reports (@see package.json nyc config)
         // TODO due to context/evaluation issues
         // Maybe solvable by https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#class-coverage
-        const operationalPage = new OperationalPage(new Options({headless: true}));
+        const operationalPage = new OperationalPage(new Options({}));
         const page = await operationalPage.getPageInstance();
         const fetcher = new Fetcher(page);
 
@@ -49,7 +49,7 @@ describe('Fetcher', () => {
         // TODO Excluded yet in coverage reports (@see package.json nyc config)
         // TODO due to context/evaluation issues
         // Maybe solvable by https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#class-coverage
-        const operationalPage = new OperationalPage(new Options({headless: true}));
+        const operationalPage = new OperationalPage(new Options({}));
         const page = await operationalPage.getPageInstance();
         const fetcher = new Fetcher(page);
         let data,
@@ -72,7 +72,7 @@ describe('Fetcher', () => {
         // TODO Excluded yet in coverage reports (@see package.json nyc config)
         // TODO due to context/evaluation issues
         // Maybe solvable by https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#class-coverage
-        const operationalPage = new OperationalPage(new Options({headless: true}));
+        const operationalPage = new OperationalPage(new Options({}));
         const page = await operationalPage.getPageInstance();
         const fetcher = new Fetcher(page);
         let data,
@@ -94,7 +94,7 @@ describe('Fetcher', () => {
         // TODO Excluded yet in coverage reports (@see package.json nyc config)
         // TODO due to context/evaluation issues
         // Maybe solvable by https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#class-coverage
-        const operationalPage = new OperationalPage(new Options({headless: true}));
+        const operationalPage = new OperationalPage(new Options({}));
         const page = await operationalPage.getPageInstance();
         const fetcher = new Fetcher(page);
         let data,
@@ -120,7 +120,7 @@ describe('Fetcher', () => {
         // TODO Excluded yet in coverage reports (@see package.json nyc config)
         // TODO due to context/evaluation issues
         // Maybe solvable by https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#class-coverage
-        const operationalPage = new OperationalPage(new Options({headless: true}));
+        const operationalPage = new OperationalPage(new Options({}));
         const page = await operationalPage.getPageInstance();
         const fetcher = new Fetcher(page);
         let data,

@@ -1,5 +1,5 @@
 export interface OptionsInterface {
-    headless?: boolean;
+    attached?: boolean;
     trust?: boolean;
     width?: number;
     height?: number;
