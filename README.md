@@ -2,7 +2,7 @@
 [![codecov](https://codecov.io/gh/AOEpeople/puppeteer-fetchbot/branch/master/graph/badge.svg)](https://codecov.io/gh/AOEpeople/puppeteer-fetchbot)
 [![Dependency Status](https://gemnasium.com/badges/github.com/AOEpeople/puppeteer-fetchbot.svg)](https://gemnasium.com/github.com/AOEpeople/puppeteer-fetchbot)
 
-# FetchBot 1.3.0
+# FetchBot 1.3.2
 
 <img src="https://i.imgur.com/ntm3aNU.png" alt="FetchBot" width="200" align="center"/>
 
