@@ -56,7 +56,7 @@ describe('FetchBot', () => {
             },
             {
                 waitFor: [
-                    [delay / 10]
+                    [delay]
                 ],
                 fetch: {
                     'h2.xyz as collectedIds': {'attr': 'id', 'type': null},
@@ -75,7 +75,7 @@ describe('FetchBot', () => {
         expect(data['collectedClassNames']).to.deep.equal(['xyz', 'xyz']);
         expect(data['dataTestIsWorking']).to.equal('working');
 
-    }).timeout(10000);
+    }).timeout(20000);
 
     it('Should fetch a set of data', async () => {
 
