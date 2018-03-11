@@ -9,14 +9,16 @@ export class Options implements OptionsInterface {
     wait: number;
     debug: boolean;
     slowmo: number;
+    agent: string;
 
     constructor(options) {
-        this.attached  = options.attached  === true || false;
+        this.attached = options.attached === true || false;
         this.trust = options.trust === true;
         this.width = (typeof options.width === 'number') ? options.width : 1024;
         this.height = (typeof options.height === 'number') ? options.height : 768;
         this.wait = (typeof options.wait === 'number') ? options.wait : 750;
         this.slowmo = (typeof options.slowmo === 'number') ? options.slowmo : 0;
+        this.agent = (typeof options.agent === 'string') ? options.agent : 'FetchBot-1.4.0';
         this.debug = options.debug === true;
     }
 
@@ -28,6 +30,7 @@ export class Options implements OptionsInterface {
             height: this.height,
             wait: this.wait,
             slowmo: this.slowmo,
+            agent: this.agent,
             debug: this.debug
         };
     }
@@ -42,6 +45,10 @@ export class Options implements OptionsInterface {
 
     public getHeight(): number {
         return this.getAll().height;
+    }
+
+    public getUserAgent(): string {
+        return this.agent;
     }
 
     public isAttached(): boolean {

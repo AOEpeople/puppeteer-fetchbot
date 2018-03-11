@@ -9,16 +9,30 @@ import {Fetcher} from "./fetcher";
 import {OptionsInterface} from "../interfaces/options";
 import {readFileSync} from "fs";
 
+let deprecationWarningShown = false;
+
 export class FetchBot extends OperationalPage {
 
     public tour: Object;
 
     private fetchedData = {};
 
-    constructor(tour: Object | string, protected userOptions: OptionsInterface) {
+    constructor(tour: Object | string = '', protected userOptions: OptionsInterface) {
 
         super(userOptions);
 
+        if (!deprecationWarningShown && tour !== '') {
+            deprecationWarningShown = true;
+            console.warn('Deprecation of "tour" param. Parameter has to been provided to runAndExit or runAndStandBy method from version 1.5.x');
+        }
+
+        if (tour !== '') {
+            this._setTour(tour);
+        }
+    }
+
+
+    private _setTour(tour: string | Object) {
         if (typeof tour === 'string') {
             this._load(tour);
         } else {
@@ -34,6 +48,10 @@ export class FetchBot extends OperationalPage {
         }
     }
 
+    /**
+     * @deprecated In future the job must be provided to avoid restarting browser instance over and over
+     * @return {Promise<{}>}
+     */
     public async run() {
 
         try {
@@ -45,6 +63,28 @@ export class FetchBot extends OperationalPage {
         }
 
         await this.exit();
+
+        return this.fetchedData;
+    }
+
+    public async runAndExit(tour: string | Object) {
+        this._setTour(tour);
+        return this.run();
+    }
+
+    public async runAndStandby(tour: string | Object) {
+
+        this.fetchedData = {};
+
+        this._setTour(tour);
+
+        try {
+            await this._batchTasks(this._getTasks(true), true);
+        } catch (error) {
+            if (this.options.debug === true) {
+                console.log(error);
+            }
+        }
 
         return this.fetchedData;
     }

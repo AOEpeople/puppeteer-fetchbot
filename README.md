@@ -2,7 +2,7 @@
 [![codecov](https://codecov.io/gh/AOEpeople/puppeteer-fetchbot/branch/master/graph/badge.svg)](https://codecov.io/gh/AOEpeople/puppeteer-fetchbot)
 [![Dependency Status](https://gemnasium.com/badges/github.com/AOEpeople/puppeteer-fetchbot.svg)](https://gemnasium.com/github.com/AOEpeople/puppeteer-fetchbot)
 
-# FetchBot 1.3.2
+# FetchBot 1.4.0
 
 <img src="https://i.imgur.com/ntm3aNU.png" alt="FetchBot" width="200" align="center"/>
 
@@ -11,12 +11,37 @@ FetchBot is a library and shell command that provides a simple JSON-API to perfo
 data extractions on any website and was built on top of [puppeteer](https://github.com/GoogleChrome/puppeteer).
 
 **Using FetchBot you can do both:**
- - Automize website interactions like a human
- - Treat website(s) like an API and use fetched data in your own application.
+ - automise website interactions like a human
+ - treat website(s) like an API and use fetched data in your own application.
  
 FetchBot also has an "event listener like" system that turns your browser into a
 bot who knows what to do when the url changes. 
 From now on it's up to you to configure a friendly bot or a crazy zombie.
+
+## For upgrades from 1.3.x or older versions
+The .run() method is deprecated from now on and removed in 1.5.x versions.
+
+**Two new Methods have been introduced:**
+- `runAndExit(pathToJobFile or job object)`
+- `runAndStandby(pathToJobFile or job object)`
+
+To make both methods working in 1.4.x, replace the first param (pathToJobFile or job object) when constructing an by an 
+empty string (see examples below) and pass the prior path or object to one of the newly introduced methods.
+
+Using `runAndExit` the behavior stays the same as today (Fetchbot quits after completion). 
+Using the new method `runAndStandby` the Chromium process is not killed so that there is a huge performance increase 
+(29sec less time consumption in the unit tests **before 1.4.x**:43s / **since 1.4.x**14s) when many jobs should been processed (Because the browser does not need to be re-restarted).
+
+Using `runAndStandby` method make it necessary to exit the browser once operations are done by executing
+
+````javascript
+const myFetchBotInstance = new FetchBot('',{attached:true});
+
+await myFetchBotInstance.runAndStandby('/path/to/job1.json');
+await myFetchBotInstance.runAndStandby('/path/to/job2.json');
+
+await myFetchBotInstance.exit();
+````
 
 ## Installation
 
@@ -83,13 +108,14 @@ $ ./node_modules/.bin/fetchbot --help
 
 #### Options params
 ````text
-attached: boolean | default=false   Specifies if the browser window is shown or not
-trust: boolean    | default=false   Open unsecure https pages without a warning 
-width: number     | defautlt=800    The Browser and viewport width
-height: number    | default=600     The Browser and Viewport height
-wait: number      | default=750     Delay after each command before execution continues
-slowmo:number     | default=0       Slowes down the execution in milliseconds
-debug: boolean    | default=false   Determine if debug/logging messages are shown
+attached: boolean | default=false           Specifies if the browser window is shown or not
+trust: boolean    | default=false           Open unsecure https pages without a warning 
+width: number     | defautlt=800            Browser and view port width
+height: number    | default=600             Browser and view port height
+wait: number      | default=750             Delay after each command before execution continues
+slowmo:number     | default=0               Slowes down the execution in milliseconds
+agent:string      | default=Fetchbot-1.4.0  User agent string
+debug: boolean    | default=false           Determine if debug/logging messages are shown
  ````  
 
          
@@ -105,57 +131,53 @@ const FetchBot = require('fetchbot');
 
 // Pass a path to a job configuration file
 (async () => {
- const fetchbot = new FetchBot('./path/to/job/file.json', {attached: false});
- fetchBotData = await fetchbot.run();  
+ const fetchbot = new FetchBot('', {attached: false});
+ fetchBotData = await fetchbot.runAndExit('./path/to/job/file.json');  
  
  console.log(fetchBotData);
 })();
 
 // Or by passing a configuration opject directly
-(async () => {
-    const fetchbot = new FetchBot({
-            "https://google.com": {
-                "root": true,
-                "type": [
-                    [
-                        "input[type=\"text\"]",
-                        "puppeteer-fetchbot aoepeople"
-                    ],
-                    [
-                        "input[type=\"text\"]",
-                        "\n"
-                    ]
-                ]
-            },
-            "/search": {
-                "fetch": {
-                    "h3.r > a AS headlines": [],
-                    "h3.r > a AS links": {
-                        "attr": "href",
-                        "type": []
-                    }
-                },
-                "waitFor": [
-                    [
-                        1000
-                    ]
-                ]
+(async() = > {
+    const fetchbot = new FetchBot('', {
+        "attached": false,
+        "slowmo": 250,
+        "width": 1280,
+        "height": 1024,
+        "trust": true
+    });
+
+fetchBotData = await
+fetchbot.runAndStandby({
+    "https://google.com": {
+        "root": true,
+        "type": [
+            [
+                "input[type=\"text\"]",
+                "puppeteer-fetchbot aoepeople"
+            ],
+            [
+                "input[type=\"text\"]",
+                "\n"
+            ]
+        ]
+    },
+    "/search": {
+        "fetch": {
+            "h3.r > a AS headlines": [],
+            "h3.r > a AS links": {
+                "attr": "href",
+                "type": []
             }
         },
-
-        // The options object is here
-        {
-            "attached": false,
-            "slowmo": 250,
-            "width": 1280,
-            "height": 1024,
-            "trust": true
-        }
-    );
-
-    fetchBotData = await
-        fetchbot.run();
-    console.log(fetchBotData);
+        "waitFor": [
+            [
+                1000
+            ]
+        ]
+    }
+});
+console.log(fetchBotData);
 })();
 ````  
 
@@ -418,10 +440,10 @@ var FetchBot = require('fetchbot'),
     myFetchBot = new FetchBot({"https://google.com": {root: true, waitFor: [[10000]]}}, {attached: true, debug:true});
 
     // Or alternatively create an instance which tells FetchBot to load a JSON file as config
-    myFetchBot = new FetchBot('googlesearch.json', {attached: true, debug:true});
+    myFetchBot = new FetchBot('', {attached: true, debug:true});
 
     myFetchBot
-        .run()
+        .runAndExit('googlesearch.json')
         .then(function (result) {
             console.log(result);
             // {
