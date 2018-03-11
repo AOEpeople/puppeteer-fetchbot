@@ -1,7 +1,6 @@
 import {expect} from 'chai';
 import {FetchBot} from "./fetch-bot";
 import {realpathSync} from "fs";
-import {Options} from "./options";
 
 describe('FetchBot', () => {
     const fakeUrl = 'file://' + realpathSync(__dirname + '"/../../../mocks/gitHubPage.htm');
@@ -23,6 +22,7 @@ describe('FetchBot', () => {
 
     let tour = {};
 
+    let fetchBot = new FetchBot('', options);
 
     it('Should open the mock page, fill the input, click the logo and navigate to target page where content is verified', async () => {
         //unit-test.via.config-file.json
@@ -65,8 +65,7 @@ describe('FetchBot', () => {
             }
         ];
 
-        bot = new FetchBot(tour, options);
-        data = await bot.run();
+        data = await fetchBot.runAndStandby(tour);
 
         expect(data['completed']).to.equal(true);
         expect(data['attributeIsWorking']).to.equal('yes');
@@ -80,7 +79,6 @@ describe('FetchBot', () => {
     it('Should fetch a set of data', async () => {
 
         tour = {};
-
         tour[fakeUrl] = {
             root: true,
             fetch: {
@@ -92,14 +90,13 @@ describe('FetchBot', () => {
             }
         };
 
-        let data,
-            bot = new FetchBot(tour, options);
+        let data;
 
-        data = await bot.run();
+        data = await fetchBot.runAndStandby(tour);
 
         expect(data).to.deep.equal(expectedData);
 
-    }).timeout(30000);
+    }).timeout(50000);
 
     it('Should resolve all root tours and finally have an empty tour list', async () => {
 
@@ -119,14 +116,11 @@ describe('FetchBot', () => {
             ]
         };
 
-
-        let bot = new FetchBot(tour, options);
-
-        await bot.run();
+        await fetchBot.runAndStandby(tour);
 
         expect(Object.keys(tour).length).to.equal(0);
 
-    }).timeout(10000);
+    }).timeout(5000);
 
     it('Should resolve the root tours and then match the followed url by RegExp', async () => {
 
@@ -143,14 +137,10 @@ describe('FetchBot', () => {
             }
         };
 
-
-        let bot = new FetchBot(tour, options);
-
-        let result:any = await bot.run();
-
+        let result: any = await fetchBot.runAndStandby(tour);
         expect(result.uid).to.equal('BBB');
 
-    }).timeout(10000);
+    }).timeout(5000);
 
     it('Should resolve the root and finally have one non matching item in the job list', async () => {
 
@@ -169,45 +159,33 @@ describe('FetchBot', () => {
             ]
         };
 
-
-        let bot = new FetchBot(tour, options);
-
-        await bot.run();
+        await fetchBot.runAndExit(tour);
 
         expect(Object.keys(tour).length).to.equal(1);
 
-    }).timeout(10000);
+    }).timeout(5000);
 
     it('Should load an existing config via file (from examples folder)', async () => {
-        //TODO This tests isn't working in headless mode
-        let bot = new FetchBot(realpathSync(__dirname + '/../../../examples/tour-via-file-for-tests.json'), options);
+        let result = await fetchBot.runAndStandby(realpathSync(__dirname + '/../../../examples/tour-via-file-for-tests.json'));
 
-        let result = await bot.run();
-
-        // TODO This test isn't working in headless mode because "chrome://credits/" is served as blank page
-        // expect(result['links'] instanceof Array).to.equal(true);
-        // expect(result['links'].length).to.be.greaterThan(0);
         expect(Object.keys(result).length).to.equal(0);
 
-    }).timeout(10000);
+    }).timeout(5000);
 
     it('Should fail when loading a not existing config file', async () => {
 
         try {
-            new FetchBot('this-file-does-not-exist.json', options);
+            await fetchBot.runAndExit('this-file-does-not-exist.json');
         } catch (error) {
             expect(error.message).to.equal('Cannot read tour file (Does it exist or is it valid JSON?)');
         }
 
-
-    }).timeout(10000);
+    }).timeout(5000);
 
     it('Should fail when no root object is present', async () => {
         try {
-            let fetchBot = new FetchBot({"https://some.sub.domain/page.html": {}}, options);
-
+            fetchBot = new FetchBot({"https://some.sub.domain/page.html": {}}, options);
             await fetchBot.run();
-
         } catch (error) {
             expect(error.message).to.equal('The configuration job configuration has no root jobs');
         }

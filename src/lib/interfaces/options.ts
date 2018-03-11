@@ -6,4 +6,5 @@ export interface OptionsInterface {
     wait?: number;
     debug?: boolean;
     slowmo?: number;
+    agent?:string;
 }

@@ -22,7 +22,11 @@ export class ProvisionedBrowser {
                 ignoreHTTPSErrors: this.options.ignoreHttpErrors(),
                 slowMo: this.options.slowmo || 0,
                 timeout: 0,
+
+                // More useful args which could be applied here
+                // https://peter.sh/experiments/chromium-command-line-switches/
                 args: [
+                    `--user-agent=${this.options.getUserAgent()}`,
                     '--window-position=0,0',
                     `--window-size=${this.options.getDimensions().width},${this.options.getDimensions().height}`,
                     '--no-sandbox',

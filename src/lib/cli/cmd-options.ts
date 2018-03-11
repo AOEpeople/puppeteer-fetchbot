@@ -2,6 +2,8 @@ export function cmdOptions() {
     return [
         {name: 'job', type: String},
 
+        {name: 'agent', type: String},
+
 
         {name: 'width', type: Number},
         {name: 'height', type: Number},
