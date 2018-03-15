@@ -1,6 +1,6 @@
 {
   "name": "fetchbot",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "A library and shell command that provides a simple JSON-API to perform human like interactions and data extractions on any website. Built on top of puppeteer.",
   "engines": {
     "node": ">=6.0.0"
