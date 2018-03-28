@@ -19,12 +19,12 @@
   resolved "https://registry.yarnpkg.com/@types/mocha/-/mocha-2.2.48.tgz#3523b126a0b049482e1c3c11877460f76622ffab"
 
 "@types/node@*", "@types/node@^9.4.6":
-  version "9.4.7"
-  resolved "http://registry.npmjs.org/@types/node/-/node-9.4.7.tgz#57d81cd98719df2c9de118f2d5f3b1120dcd7275"
+  version "9.6.1"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-9.6.1.tgz#e2d374ef15b315b48e7efc308fa1a7cd51faa06c"
 
 "@types/puppeteer@^1.0.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@types/puppeteer/-/puppeteer-1.1.0.tgz#83cd9e053dd1b8a6bcc694abeee7f8543735c813"
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@types/puppeteer/-/puppeteer-1.2.0.tgz#99f1c05115e98254dacab856851878aba643cbde"
   dependencies:
     "@types/events" "*"
     "@types/node" "*"
@@ -180,8 +180,8 @@ asynckit@^0.4.0:
   resolved "https://registry.yarnpkg.com/asynckit/-/asynckit-0.4.0.tgz#c79ed97f7f34cb8f2ba1bc9790bcc366474b4b79"
 
 atob@^2.0.0:
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/atob/-/atob-2.0.3.tgz#19c7a760473774468f20b2d2d03372ad7d4cbf5d"
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/atob/-/atob-2.1.0.tgz#ab2b150e51d7b122b9efc8d7340c06b6c41076bc"
 
 aws-sign2@~0.5.0:
   version "0.5.0"
@@ -509,9 +509,9 @@ command-line-args@^5.0.2:
     lodash.camelcase "^4.3.0"
     typical "^2.6.1"
 
-command-line-usage@^5.0.3:
-  version "5.0.3"
-  resolved "https://registry.yarnpkg.com/command-line-usage/-/command-line-usage-5.0.3.tgz#abc62a2fd650eca3f4a692bd524bf1989a62f1b6"
+command-line-usage@^5.0.4:
+  version "5.0.4"
+  resolved "https://registry.yarnpkg.com/command-line-usage/-/command-line-usage-5.0.4.tgz#d6d910c249d5c39e908af23b1aa769487de2f74d"
   dependencies:
     array-back "^2.0.0"
     chalk "^2.3.2"
@@ -551,8 +551,8 @@ copy-descriptor@^0.1.0:
   resolved "https://registry.yarnpkg.com/copy-descriptor/-/copy-descriptor-0.1.1.tgz#676f6eb3c39997c2ee1ac3a924fd6124748f578d"
 
 core-js@^2.4.0:
-  version "2.5.3"
-  resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.5.3.tgz#8acc38345824f16d8365b7c9b4259168e8ed603e"
+  version "2.5.4"
+  resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.5.4.tgz#f2c8bf181f2a80b92f360121429ce63a2f0aeae0"
 
 core-util-is@1.0.2, core-util-is@~1.0.0:
   version "1.0.2"
@@ -1543,8 +1543,8 @@ micromatch@^2.3.11:
     regex-cache "^0.4.2"
 
 micromatch@^3.1.8:
-  version "3.1.9"
-  resolved "https://registry.yarnpkg.com/micromatch/-/micromatch-3.1.9.tgz#15dc93175ae39e52e93087847096effc73efcf89"
+  version "3.1.10"
+  resolved "https://registry.yarnpkg.com/micromatch/-/micromatch-3.1.10.tgz#70859bc95c9840952f359a068a3fc49f9ecfac23"
   dependencies:
     arr-diff "^4.0.0"
     array-unique "^0.3.2"
@@ -1558,7 +1558,7 @@ micromatch@^3.1.8:
     object.pick "^1.3.0"
     regex-not "^1.0.0"
     snapdragon "^0.8.1"
-    to-regex "^3.0.1"
+    to-regex "^3.0.2"
 
 mime-db@~1.33.0:
   version "1.33.0"
@@ -1623,9 +1623,9 @@ mkdirp@0.5.1, mkdirp@^0.5.0, mkdirp@^0.5.1:
   dependencies:
     minimist "0.0.8"
 
-mocha@^5.0.4:
-  version "5.0.4"
-  resolved "https://registry.yarnpkg.com/mocha/-/mocha-5.0.4.tgz#6b7aa328472da1088e69d47e75925fd3a3bb63c6"
+mocha@^5.0.5:
+  version "5.0.5"
+  resolved "https://registry.yarnpkg.com/mocha/-/mocha-5.0.5.tgz#e228e3386b9387a4710007a641f127b00be44b52"
   dependencies:
     browser-stdout "1.3.1"
     commander "2.11.0"
@@ -1871,7 +1871,7 @@ pify@^2.0.0:
 
 pinkie-promise@^2.0.0:
   version "2.0.1"
-  resolved "http://registry.npmjs.org/pinkie-promise/-/pinkie-promise-2.0.1.tgz#2135d6dfa7a358c069ac9b178776288228450ffa"
+  resolved "https://registry.yarnpkg.com/pinkie-promise/-/pinkie-promise-2.0.1.tgz#2135d6dfa7a358c069ac9b178776288228450ffa"
   dependencies:
     pinkie "^2.0.0"
 
@@ -1913,9 +1913,9 @@ punycode@^1.4.1:
   version "1.4.1"
   resolved "https://registry.yarnpkg.com/punycode/-/punycode-1.4.1.tgz#c0d5a63b2718800ad8e1eb0fa5269c84dd41845e"
 
-puppeteer@^1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/puppeteer/-/puppeteer-1.1.1.tgz#adbf25e49f5ef03443c10ab8e09a954ca0c7bfee"
+puppeteer@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/puppeteer/-/puppeteer-1.2.0.tgz#6a8a1c618af073dfcf6fc7c7e3c12e54129ffa98"
   dependencies:
     debug "^2.6.8"
     extract-zip "^1.6.5"
@@ -2433,7 +2433,7 @@ to-regex-range@^2.1.0:
     is-number "^3.0.0"
     repeat-string "^1.6.1"
 
-to-regex@^3.0.1:
+to-regex@^3.0.1, to-regex@^3.0.2:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/to-regex/-/to-regex-3.0.2.tgz#13cfdd9b336552f30b51f33a8ae1b42a7a7599ce"
   dependencies:
@@ -2474,9 +2474,9 @@ typedarray@^0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
 
-typescript@^2.7.2:
-  version "2.7.2"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-2.7.2.tgz#2d615a1ef4aee4f574425cdff7026edf81919836"
+typescript@^2.8.1:
+  version "2.8.1"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-2.8.1.tgz#6160e4f8f195d5ba81d4876f9c0cc1fbc0820624"
 
 typical@^2.6.1:
   version "2.6.1"
