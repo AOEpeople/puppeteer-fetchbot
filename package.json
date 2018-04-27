@@ -1,6 +1,6 @@
 {
   "name": "fetchbot",
-  "version": "1.4.4",
+  "version": "1.4.5",
   "description": "A library and shell command that provides a simple JSON-API to perform human like interactions and data extractions on any website. Built on top of puppeteer.",
   "engines": {
     "node": ">=6.0.0"
@@ -42,6 +42,17 @@
     "codecov": "npm run cover && cat ./coverage/lcov.info | ./node_modules/.bin/codecov",
     "cli": "node ./dist/cli.js"
   },
+  "keywords":[
+    "automation",
+    "workflow",
+    "declarative",
+    "JSON API",
+    "crawler",
+    "puppeteer",
+    "browser",
+    "chrome",
+    "chromium"
+  ],
   "nyc": {
     "include": [
       "*.js",

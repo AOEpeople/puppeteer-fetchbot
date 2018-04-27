@@ -18,7 +18,7 @@ export class Options implements OptionsInterface {
         this.height = (typeof options.height === 'number') ? options.height : 768;
         this.wait = (typeof options.wait === 'number') ? options.wait : 750;
         this.slowmo = (typeof options.slowmo === 'number') ? options.slowmo : 0;
-        this.agent = (typeof options.agent === 'string') ? options.agent : 'FetchBot-1.4.4';
+        this.agent = (typeof options.agent === 'string') ? options.agent : 'FetchBot-1.4.5';
         this.debug = options.debug === true;
     }
 
