@@ -2,7 +2,7 @@
 [![codecov](https://codecov.io/gh/AOEpeople/puppeteer-fetchbot/branch/master/graph/badge.svg)](https://codecov.io/gh/AOEpeople/puppeteer-fetchbot)
 [![Dependency Status](https://gemnasium.com/badges/github.com/AOEpeople/puppeteer-fetchbot.svg)](https://gemnasium.com/github.com/AOEpeople/puppeteer-fetchbot)
 
-# FetchBot 1.4.5
+# FetchBot 1.4.6
 
 
 <img src="https://i.imgur.com/ntm3aNU.png" alt="FetchBot" width="200" align="center"/>
@@ -12,12 +12,15 @@ FetchBot is a library and shell command that provides a simple JSON-API to perfo
 data extractions on any website and was built on top of [puppeteer](https://github.com/GoogleChrome/puppeteer).
 
 **Using FetchBot you can do both:**
- - automate website interactions like a human
- - treat website(s) like an API and use fetched data in your own application.
- 
+- automate website interactions like a human
+- treat website(s) like an API and use fetched data in your own application.
+
+**Basic working principle:**
+<img src="https://i.imgur.com/4wpiSgc.png" alt="Fetchbot working principle" align="center"/>
+
 FetchBot also has an "event listener like" system that turns your browser into a
-bot who knows what to do when the url changes. 
-From now on it's up to you to configure a friendly bot or a crazy zombie.
+bot who knows what to do when the url changes. The "event" is an url/regex and it's configuration is executed, once the
+url/pattern matches the currently opened one. Now on it's up to you to configure a friendly bot or a crazy zombie.
 
 ## For upgrades from 1.3.x or older versions
 The .run() method is deprecated from now on and removed in 1.5.x versions.
@@ -115,7 +118,7 @@ width: number     | defautlt=800            Browser and view port width
 height: number    | default=600             Browser and view port height
 wait: number      | default=750             Delay after each command before execution continues
 slowmo:number     | default=0               Slowes down the execution in milliseconds
-agent:string      | default=Fetchbot-1.4.5  User agent string
+agent:string      | default=Fetchbot-1.4.6  User agent string
 debug: boolean    | default=false           Determine if debug/logging messages are shown
  ````  
 
