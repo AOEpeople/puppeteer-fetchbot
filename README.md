@@ -2,7 +2,7 @@
 [![codecov](https://codecov.io/gh/AOEpeople/puppeteer-fetchbot/branch/master/graph/badge.svg)](https://codecov.io/gh/AOEpeople/puppeteer-fetchbot)
 [![Dependency Status](https://gemnasium.com/badges/github.com/AOEpeople/puppeteer-fetchbot.svg)](https://gemnasium.com/github.com/AOEpeople/puppeteer-fetchbot)
 
-# FetchBot1.4.9
+# FetchBot1.4.10
 
 
 <img src="https://i.imgur.com/ntm3aNU.png" alt="FetchBot" width="200" align="center"/>
@@ -307,74 +307,13 @@ Fetching the `textContent` attribute is the default behavior but it's possible a
 attribute. Then write instead of the defined data type an object containing a configuration of `type` and `attr`.
 `type` is the data type as previously explained and `attr` is the attribute to fetch.
 
-> Fetch syntax
-````json
-{
-    "fetch": {
-        "#myFirstSelector AS exists": false,           
-        "#mySecondSelector AS amount": 0,               
-        "#myThirdSelector AS description": "",          
-        "#myFouthSelector AS pressReleases": [],      
-        "#myFifthSelector AS likes": null,             
-        "#linkTargetResolved as attributeIsWorking": {
-              "attr": "align",
-              "type": ""
-            },
-            "#linkTargetResolved as attributeAlignExists": {
-              "attr": "align",
-              "type": false
-            },
-            "#linkTargetResolved as dataTestIsWorking": {
-              "attr": "data-test",
-              "type": ""
-            },
-            "h2.xyz as collectedIds": {
-              "attr": "id",
-              "type": null
-            },
-            "h2.xyz as collectedClassNames": {
-              "attr": "class",
-              "type": []
-            }
-    }
-}
-````  
+**Fetch syntax**
+<img src="https://i.imgur.com/B0JNVQR.png" alt="Fetchbot Fetch command principle" align="center">
+
 **The configuration above results in an object like in the example below**
-    
-> Result
-````json
-{
-	"exists": true,
-	"amount": 123,
-	"description": "Some fetched text content",
-	"pressReleases": [
-		"Foo",
-		"Bar",
-		"Baz"
-	],
-	"likes": [
-		132,
-		2,
-		87
-	],
-	"links": [
-		"http://www.foo.bar",
-		"http://www.bar.foo",
-		"http://www.baz.bar"
-	],
-	"attributeIsWorking": "yes",
-	"attributeAlignExists": true,
-	"dataTestIsWorking": "working",
-	"collectedIds": [
-		123,
-		456
-	],
-	"collectedClassNames": [
-		"xyz",
-		"xyz"
-	]
-} 
-````  
+<img src="https://i.imgur.com/TmmbpVZ.png" alt="Fetchbot Fetch command result" align="center">
+  
+  
 ### And now it's time to start interaction with a website
 
 Feel free to copy this example below, save to a file e.g. googlesearch.json and execute using the cli tool.
@@ -415,7 +354,7 @@ Feel free to copy this example below, save to a file e.g. googlesearch.json and 
   }
 }
 ````
-> Results in
+> Results in something like this
 `````json
 {
   "headlines": [
