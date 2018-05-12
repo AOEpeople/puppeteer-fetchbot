@@ -8,6 +8,7 @@ node_js:
   - "stable"
 script:
   - npm run codecov
+  - echo $NPM_TOKEN
 deploy:
   provider: npm
   email: bernhard.bezdek@googlemail.com
