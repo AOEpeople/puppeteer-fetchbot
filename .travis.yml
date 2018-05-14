@@ -6,6 +6,8 @@ node_js:
   - "7"
   - "8"
   - "stable"
+git:
+  depth: 5
 cache: yarn
 script:
   - npm run codecov
