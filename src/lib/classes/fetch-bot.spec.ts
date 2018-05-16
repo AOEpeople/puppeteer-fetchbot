@@ -22,7 +22,7 @@ describe('FetchBot', () => {
 
     let tour = {};
 
-    let fetchBot = new FetchBot('', options);
+    let fetchBot = new FetchBot(options);
 
     it('Should open the mock page, fill the input, click the logo and navigate to target page where content is verified', async () => {
         //unit-test.via.config-file.json
@@ -184,8 +184,8 @@ describe('FetchBot', () => {
 
     it('Should fail when no root object is present', async () => {
         try {
-            fetchBot = new FetchBot({"https://some.sub.domain/page.html": {}}, options);
-            await fetchBot.run();
+            fetchBot = new FetchBot(options);
+            await fetchBot.runAndExit({"https://some.sub.domain/page.html": {}});
         } catch (error) {
             expect(error.message).to.equal('The configuration job configuration has no root jobs');
         }

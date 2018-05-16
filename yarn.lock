@@ -6,9 +6,9 @@
   version "4.1.2"
   resolved "https://registry.yarnpkg.com/@types/chai/-/chai-4.1.2.tgz#f1af664769cfb50af805431c407425ed619daa21"
 
-"@types/command-line-args@^4.0.2":
-  version "4.0.2"
-  resolved "https://registry.yarnpkg.com/@types/command-line-args/-/command-line-args-4.0.2.tgz#bbb7568685bbcd9c69b46c9e6a3f6411890735c8"
+"@types/command-line-args@^5.0.0":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@types/command-line-args/-/command-line-args-5.0.0.tgz#484e704d20dbb8754a8f091eee45cdd22bcff28c"
 
 "@types/events@*":
   version "1.2.0"
@@ -18,9 +18,13 @@
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/@types/mocha/-/mocha-5.0.0.tgz#a3014921991066193f6c8e47290d4d598dfd19e6"
 
-"@types/node@*", "@types/node@^9.6.4":
+"@types/node@*":
   version "9.6.4"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-9.6.4.tgz#0ef7b4cfc3499881c81e0ea1ce61a23f6f4f5b42"
+
+"@types/node@^10.1.0":
+  version "10.1.0"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.1.0.tgz#2783ee1b6c47cbd4044f4a233976c1ac5fa9e942"
 
 "@types/puppeteer@^1.2.1":
   version "1.2.1"

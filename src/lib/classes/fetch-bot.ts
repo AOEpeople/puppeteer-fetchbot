@@ -9,26 +9,14 @@ import {Fetcher} from "./fetcher";
 import {OptionsInterface} from "../interfaces/options";
 import {readFileSync} from "fs";
 
-let deprecationWarningShown = false;
-
 export class FetchBot extends OperationalPage {
 
     public tour: Object;
 
     private fetchedData = {};
 
-    constructor(tour: Object | string = '', protected userOptions: OptionsInterface) {
-
+    constructor(protected userOptions: OptionsInterface) {
         super(userOptions);
-
-        if (!deprecationWarningShown && tour !== '') {
-            deprecationWarningShown = true;
-            console.warn('Deprecation of "tour" param. Parameter has to been provided to runAndExit or runAndStandBy method from version 1.5.x');
-        }
-
-        if (tour !== '') {
-            this._setTour(tour);
-        }
     }
 
 
