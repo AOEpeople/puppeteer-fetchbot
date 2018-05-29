@@ -1,7 +1,9 @@
-[![Build Status](https://travis-ci.org/AOEpeople/puppeteer-fetchbot.svg?branch=master)](https://travis-ci.org/AOEpeople/puppeteer-fetchbot)
-[![codecov](https://codecov.io/gh/AOEpeople/puppeteer-fetchbot/branch/master/graph/badge.svg)](https://codecov.io/gh/AOEpeople/puppeteer-fetchbot)
+[![Build status — Travis-CI][travis-icon]][travis]
+[![Code coverage — Code-Cov][codecov-icon]][codecov]
+[![cookie-notice on Npmjs][npm-icon]][npm]
+[![Total downloads ~ Npmjs][downl-icon]][npm]
 
-# FetchBot1.5.0
+# FetchBot1.5.1
 
 <img src="https://i.imgur.com/ntm3aNU.png" alt="FetchBot" width="200" align="center"/>
 
@@ -107,7 +109,7 @@ width: number     | defautlt=800            Browser and view port width
 height: number    | default=600             Browser and view port height
 wait: number      | default=750             Delay after each command before execution continues
 slowmo:number     | default=0               Slowes down the execution in milliseconds
-agent:string      | default=Fetchbot-1.5.0  User agent string
+agent:string      | default=Fetchbot-1.5.1  User agent string
 debug: boolean    | default=false           Determine if debug/logging messages are shown
  ````  
 
@@ -395,6 +397,20 @@ It's normally automatically built during installation.
 
 Now it's time to thank all the people who had an open ear and a different perspective than myself and yeah all in all
 made FetchBot much better. 
+
+
+[travis-icon]: https://travis-ci.org/AOEpeople/puppeteer-fetchbot.svg?branch=master
+[travis]: https://travis-ci.org/AOEpeople/puppeteer-fetchbot "Build status – Travis-CI"
+
+[codecov]: https://codecov.io/gh/AOEpeople/puppeteer-fetchbot "Code Coverage – Codecov"
+[codecov-icon]: https://codecov.io/gh/AOEpeople/puppeteer-fetchbot/branch/master/graph/badge.svg "Code Coverage – Codecov"
+
+[npm]: https://npmjs.com/package/fetchbot "FetchBot – on NPM"
+[npm-icon]: https://img.shields.io/npm/v/fetchbot.svg
+[license-icon]: https://img.shields.io/npm/l/fetchbot.svg
+[downl-icon]: https://img.shields.io/npm/dt/fetchbot.svg "Count of total downloads – NPM"
+[build]: https://github.com/AOEpeople/puppeteer-fetchbot/tree/master/dist
+
 
 
 
