@@ -9,7 +9,7 @@ export function manPage() {
             raw: true
         },
         {
-            header: 'FetchBot (1.5.1)',
+            header: 'FetchBot (1.5.2)',
             content: 'Library and shell-command that provides a simple JSON-API to perform human like interactions and data extractions on any website. Built on top of puppeteer'
         },
         {
@@ -25,7 +25,7 @@ export function manPage() {
                 {
                     name: 'agent',
                     typeLabel: '{underline String}',
-                    description: 'The user agent string (default FetchBot-1.5.1)'
+                    description: 'The user agent string (default FetchBot-1.5.2)'
                 },
 
                 {
