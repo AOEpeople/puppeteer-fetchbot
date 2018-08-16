@@ -15,7 +15,7 @@ describe('Options', () => {
 
         let DEFAULT_OPTIONS = options.getAll(),
             EXPECTED_OPTIONS = {
-                agent: 'FetchBot-1.5.2',
+                agent: 'FetchBot-1.5.3',
                 attached: false,
                 trust: false,
                 width: 1024,

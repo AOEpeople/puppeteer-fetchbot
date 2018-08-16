@@ -4,3 +4,4 @@
 20180215 1.2.0-alpha Attribute support (prev. only textContent was accessible)
 20180215 1.2.1-alpha Selector to property name regexp improvements
 20180810 1.5.2 Dependency update to fix rendering/locale issues
+20180810 1.5.3 Better image for working principle explanation
