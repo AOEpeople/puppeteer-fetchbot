@@ -6,3 +6,4 @@
 20180810 1.5.2 Dependency update to fix rendering/locale issues
 20180810 1.5.3 Better image for working principle explanation
 20181024 1.5.4 Dependency upgrades
+20181024 1.5.5 Dependency upgrades
