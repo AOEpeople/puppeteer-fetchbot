@@ -4,9 +4,9 @@ os:
 node_js:
   - "8"
   - "9"
-  - "stable"
+  - "10"
   - "11"
-  - "12"
+  - "stable"
 git:
   depth: 5
 cache: yarn
