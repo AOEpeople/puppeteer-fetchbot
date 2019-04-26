@@ -7,3 +7,4 @@
 20180810 1.5.3 Better image for working principle explanation
 20181024 1.5.4 Dependency upgrades
 20181024 1.5.5 Dependency upgrades
+20181024 1.5.6 Dependency upgrades and interface adjustments

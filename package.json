@@ -1,6 +1,6 @@
 {
   "name": "fetchbot",
-  "version": "1.5.5",
+  "version": "1.5.6",
   "description": "A library and shell command that provides a simple JSON-API to perform human like interactions and data extractions on any website. Built on top of puppeteer.",
   "engines": {
     "node": ">=6.0.0"
@@ -18,21 +18,21 @@
   "dependencies": {
     "@types/chai": "^4.1.7",
     "@types/command-line-args": "^5.0.0",
-    "@types/mocha": "^5.2.5",
-    "@types/node": "^10.12.18",
-    "@types/puppeteer": "^1.11.1",
-    "ansi-escape-sequences": "^4.0.1",
-    "command-line-args": "^5.0.2",
+    "@types/mocha": "^5.2.6",
+    "@types/node": "^11.13.7",
+    "@types/puppeteer": "^1.12.3",
+    "ansi-escape-sequences": "^4.1.0",
+    "command-line-args": "^5.1.1",
     "command-line-usage": "^5.0.5",
-    "puppeteer": "^1.11.0",
-    "typescript": "^3.2.2"
+    "puppeteer": "^1.15.0",
+    "typescript": "^3.4.5"
   },
   "devDependencies": {
     "codecov.io": "^0.1.6",
     "chai": "^4.2.0",
-    "coveralls": "^3.0.2",
-    "mocha": "^5.2.0",
-    "nyc": "^13.1.0"
+    "coveralls": "^3.0.3",
+    "mocha": "^6.1.4",
+    "nyc": "^14.0.0"
   },
   "scripts": {
     "postinstall": "npm run build",
