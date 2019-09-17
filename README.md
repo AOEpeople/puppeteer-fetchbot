@@ -3,7 +3,7 @@
 [![cookie-notice on Npmjs][npm-icon]][npm]
 [![Total downloads ~ Npmjs][downl-icon]][npm]
 
-# FetchBot 1.6.1
+# FetchBot 1.7.0
 
 <img src="https://i.imgur.com/ntm3aNU.png" alt="FetchBot" width="200" align="center"/>
 
@@ -109,7 +109,7 @@ width: number     | defautlt=800            Browser and view port width
 height: number    | default=600             Browser and view port height
 wait: number      | default=750             Delay after each command before execution continues
 slowmo:number     | default=0               Slowes down the execution in milliseconds
-agent:string      | default=Fetchbot-1.6.1  User agent string
+agent:string      | default=Fetchbot-1.7.0  User agent string
 debug: boolean    | default=false           Determine if debug/logging messages are shown
  ````  
 
