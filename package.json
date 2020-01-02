@@ -16,23 +16,23 @@
     "fetchbot": "bin/fetchbot"
   },
   "dependencies": {
-    "@types/chai": "^4.2.3",
+    "@types/chai": "^4.2.7",
     "@types/command-line-args": "^5.0.0",
     "@types/mocha": "^5.2.7",
-    "@types/node": "^12.7.5",
-    "@types/puppeteer": "^1.19.1",
-    "ansi-escape-sequences": "^4.1.0",
+    "@types/node": "^13.1.2",
+    "@types/puppeteer": "^2.0.0",
+    "ansi-escape-sequences": "^5.1.2",
     "command-line-args": "^5.1.1",
-    "command-line-usage": "^6.0.2",
-    "puppeteer": "^1.20.0",
-    "typescript": "^3.6.3"
+    "command-line-usage": "^6.1.0",
+    "puppeteer": "^2.0.0",
+    "typescript": "^3.7.4"
   },
   "devDependencies": {
     "codecov.io": "^0.1.6",
     "chai": "^4.2.0",
-    "coveralls": "^3.0.6",
-    "mocha": "^6.2.0",
-    "nyc": "^14.1.1"
+    "coveralls": "^3.0.9",
+    "mocha": "^6.2.2",
+    "nyc": "^15.0.0"
   },
   "scripts": {
     "postinstall": "npm run build",
