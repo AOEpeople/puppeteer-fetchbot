@@ -1,6 +1,6 @@
 {
   "name": "fetchbot",
-  "version": "1.7.1",
+  "version": "1.8.1",
   "description": "A library and shell command that provides a simple JSON-API to perform human like interactions and data extractions on any website. Built on top of puppeteer.",
   "engines": {
     "node": ">=6.0.0"
@@ -16,29 +16,29 @@
     "fetchbot": "bin/fetchbot"
   },
   "dependencies": {
-    "@types/chai": "^4.2.7",
+    "@types/chai": "^4.2.11",
     "@types/command-line-args": "^5.0.0",
-    "@types/mocha": "^5.2.7",
-    "@types/node": "^13.1.2",
-    "@types/puppeteer": "^2.0.0",
+    "@types/mocha": "^7.0.2",
+    "@types/node": "^14.0.22",
+    "@types/puppeteer": "^3.0.1",
     "ansi-escape-sequences": "^5.1.2",
     "command-line-args": "^5.1.1",
     "command-line-usage": "^6.1.0",
-    "puppeteer": "^2.0.0",
-    "typescript": "^3.7.4"
+    "puppeteer": "^5.0.0",
+    "typescript": "^3.9.6"
   },
   "devDependencies": {
     "codecov.io": "^0.1.6",
     "chai": "^4.2.0",
-    "coveralls": "^3.0.9",
-    "mocha": "^6.2.2",
-    "nyc": "^15.0.0"
+    "coveralls": "^3.1.0",
+    "mocha": "^8.0.1",
+    "nyc": "^15.1.0"
   },
   "scripts": {
     "postinstall": "npm run build",
     "build": "./node_modules/.bin/tsc",
     "test": "npm run build && NODE_ENV=testing ./node_modules/.bin/mocha ./dist/lib/**/*.spec.js",
-    "cover": "./node_modules/.bin/nyc yarn run test",
+    "cover": "./node_modules/.bin/nyc npm run test",
     "codecov": "npm run cover && cat ./coverage/lcov.info | ./node_modules/.bin/codecov",
     "cli": "node ./dist/cli.js"
   },
@@ -54,9 +54,7 @@
     "chromium"
   ],
   "nyc": {
-    "include": [
-
-    ],
+    "include": [],
     "exclude": [
       "dist/*.js",
       "coverage",

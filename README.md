@@ -3,7 +3,7 @@
 [![cookie-notice on Npmjs][npm-icon]][npm]
 [![Total downloads ~ Npmjs][downl-icon]][npm]
 
-# FetchBot 1.7.1
+# FetchBot 1.8.1
 
 <img src="https://i.imgur.com/ntm3aNU.png" alt="FetchBot" width="200" align="center"/>
 
@@ -48,9 +48,7 @@ You can install via npm in your project using:
 ```bash
 npm install --save fetchbot
 ```
-```bash
-yarn add fetchbot
-```
+
 
 ### Safe installation (For installs on Debian/Ubuntu or other linux systems)
 Ensure dependencies below are installed on Debian/Ubuntu systems
@@ -73,14 +71,9 @@ From here on there are unlimited possibilities and a list of nice use cases will
 ````bash
 $ cd /my/existing/project/
 $ npm install fetchbot
-
-$ cd /my/existing/project/
-$ yarn add fetchbot 
 ````    
 ### Use as global command
 
-**NOTICE:** 
-**Do not install globally via yarn because linking is not working there**
 ````bash
 $ sudo npm install -g fetchbot --unsafe-perm=true
 
@@ -109,7 +102,7 @@ width: number     | defautlt=800            Browser and view port width
 height: number    | default=600             Browser and view port height
 wait: number      | default=750             Delay after each command before execution continues
 slowmo:number     | default=0               Slowes down the execution in milliseconds
-agent:string      | default=Fetchbot-1.7.1  User agent string
+agent:string      | default=Fetchbot-1.8.1  User agent string
 debug: boolean    | default=false           Determine if debug/logging messages are shown
  ````  
 
