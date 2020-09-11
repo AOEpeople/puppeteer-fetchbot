@@ -11,3 +11,4 @@
 20181024 1.6.0 Drop support for node.js versions below 8.x
 20181024 1.6.1 Add CI support for  newer node.js versions
 20181024 1.8.1 Dependency upgrades
+20181024 1.9.0 Dependency upgrades

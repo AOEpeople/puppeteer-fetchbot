@@ -3,7 +3,7 @@
 [![cookie-notice on Npmjs][npm-icon]][npm]
 [![Total downloads ~ Npmjs][downl-icon]][npm]
 
-# FetchBot 1.8.1
+# FetchBot 1.9.0
 
 <img src="https://i.imgur.com/ntm3aNU.png" alt="FetchBot" width="200" align="center"/>
 
@@ -16,6 +16,10 @@ data extractions on any website and was built on top of [puppeteer](https://gith
 
 **Extended data fetch working principle:**
 <img src="https://i.imgur.com/4RMv215.jpg" alt="Fetchbot working principle" align="center"/>
+
+**Fetchbot introduction video (German)**
+[![Fetchbot introduction in german](https://img.youtube.com/vi/t71saoi4slQ/0.jpg)](https://www.youtube.com/watch?v=t71saoi4slQ)
+
 
 **Using FetchBot you can do both:**
 - automate website interactions like a human
@@ -40,7 +44,7 @@ console.log(resultForJob2);
 
 ## Installation
 
-**NOTICE: FetchBot is not running on ARM architectures**
+**NOTICE: FetchBot is not running on ARM architectures yet**
 
 ### Short installation (works well on a mac) 
 
@@ -102,7 +106,7 @@ width: number     | defautlt=800            Browser and view port width
 height: number    | default=600             Browser and view port height
 wait: number      | default=750             Delay after each command before execution continues
 slowmo:number     | default=0               Slowes down the execution in milliseconds
-agent:string      | default=Fetchbot-1.8.1  User agent string
+agent:string      | default=Fetchbot-1.9.0 User agent string
 debug: boolean    | default=false           Determine if debug/logging messages are shown
  ````  
 
