@@ -17,7 +17,7 @@ data extractions on any website and was built on top of [puppeteer](https://gith
 **Extended data fetch working principle:**
 <img src="https://i.imgur.com/4RMv215.jpg" alt="Fetchbot working principle" align="center"/>
 
-**Fetchbot introduction video (German)**
+**Introduction video (German):**
 
 [![Fetchbot introduction in german](https://img.youtube.com/vi/t71saoi4slQ/0.jpg)](https://www.youtube.com/watch?v=t71saoi4slQ)
 
