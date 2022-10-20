@@ -13,6 +13,6 @@ describe('OperationalPage', () => {
 
         await page.exit();
 
-        expect(typeof pageInstance.waitFor).to.equal('function');
+        expect(typeof pageInstance.waitForTimeout).to.equal('function');
     }).timeout(10000);
 });

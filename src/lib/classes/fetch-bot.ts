@@ -1,5 +1,4 @@
 import {OperationalPage} from "./operational-page";
-import {Options} from "./options";
 import {isAllowedCmd} from "../helpers/is-allowed-cmd";
 import {isSelectorStringCmd} from "../helpers/is-selector-string-cmd";
 import {isCallWithArgs} from "../helpers/is-called-with-args";
@@ -156,7 +155,8 @@ export class FetchBot extends OperationalPage {
             await this._execution(task[resource]);
         }
 
-        await page.waitFor(this.options.wait);
+        //await page.waitFor(this.options.wait);
+        await page.waitForTimeout(this.options.wait);
 
         return true;
     }

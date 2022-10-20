@@ -1,4 +1,4 @@
-import {Page, SerializableOrJSHandle} from "puppeteer";
+import {Page} from "puppeteer";
 
 import {SelectorAndPropertyInterface} from "../interfaces/selector-and-property";
 
@@ -8,7 +8,7 @@ export class Fetcher {
 
     }
 
-    public async pull(adapter: SerializableOrJSHandle): Promise<Object> {
+    public async pull(adapter): Promise<Object> {
 
         return await this.page.evaluate((fetchItems) => {
 
