@@ -1,6 +1,6 @@
 {
   "name": "fetchbot",
-  "version": "1.10.0",
+  "version": "1.10.1",
   "description": "A library and shell command that provides a simple JSON-API to perform human like interactions and data extractions on any website. Built on top of puppeteer.",
   "engines": {
     "node": ">=6.0.0"
@@ -37,7 +37,7 @@
   },
   "scripts": {
     "postinstall": "npm run build",
-    "build": "./node_modules/.bin/tsc",
+    "build": "npx tsc",
     "test": "npm run build && NODE_ENV=testing ./node_modules/.bin/mocha ./dist/lib/**/*.spec.js",
     "cover": "./node_modules/.bin/nyc npm run test",
     "codecov": "npm run cover && cat ./coverage/lcov.info | ./node_modules/.bin/codecov",

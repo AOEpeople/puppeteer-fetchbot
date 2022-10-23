@@ -12,4 +12,5 @@
 20181024 1.6.1 Add CI support for  newer node.js versions
 20181024 1.8.1 Dependency upgrades
 20181024 1.9.0 Dependency upgrades
-20181024 1.10.0 Dependency upgrades and fix braking changes 
+20221020 1.10.0 Dependency upgrades and fix braking changes 
+20221023 1.10.1 postinstall fix
